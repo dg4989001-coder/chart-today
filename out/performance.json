@@ -1,0 +1,43 @@
+{
+ "as_of": "2026-09-08",
+ "rows": [
+  {
+   "code": "000660",
+   "name": "SK하이닉스",
+   "market": "KOSPI",
+   "intro_date": "2026-09-04",
+   "intro_close": 1647000,
+   "last_date": "2026.09.07",
+   "last_close": 1783000,
+   "return_pct": 8.26
+  },
+  {
+   "code": "108490",
+   "name": "로보티즈",
+   "market": "KOSDAQ",
+   "intro_date": "2026-09-04",
+   "intro_close": 304500,
+   "last_date": "2026.09.07",
+   "last_close": 301500,
+   "return_pct": -0.99
+  },
+  {
+   "code": "030530",
+   "name": "원익홀딩스",
+   "market": "KOSDAQ",
+   "intro_date": "2026-09-04",
+   "intro_close": 22500,
+   "last_date": "2026.09.07",
+   "last_close": 22350,
+   "return_pct": -0.67
+  }
+ ],
+ "summary": {
+  "count": 3,
+  "up": 1,
+  "down": 2,
+  "flat": 0,
+  "avg_return_pct": 2.2
+ },
+ "failed": []
+}

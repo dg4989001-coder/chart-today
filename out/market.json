@@ -1,0 +1,72 @@
+{
+ "date": "2026-09-08",
+ "source": "naver",
+ "picked": [
+  {
+   "code": "000660",
+   "name": "SK하이닉스",
+   "market": "KOSPI",
+   "chg": 8.26,
+   "value": 6110477000000.0,
+   "mcap": 1302467900000000.0
+  },
+  {
+   "code": "161580",
+   "name": "필옵틱스",
+   "market": "KOSDAQ",
+   "chg": 29.84,
+   "value": 32156000000.0,
+   "mcap": 785300000000.0
+  },
+  {
+   "code": "012210",
+   "name": "삼미금속",
+   "market": "KOSDAQ",
+   "chg": 22.16,
+   "value": 171368000000.0,
+   "mcap": 235100000000.0
+  }
+ ],
+ "rejected": [
+  {
+   "code": "386380",
+   "name": "스카이랩스",
+   "reason": "일봉 수집 실패: 야후 일봉 실패 386380: None"
+  },
+  {
+   "code": "014950",
+   "name": "삼익제약",
+   "reason": "거래일 213일뿐 — 240일선을 그릴 수 없음(신규상장 등)"
+  }
+ ],
+ "watchlist": [
+  {
+   "code": "000660",
+   "name": "SK하이닉스",
+   "market": "KOSPI",
+   "intro_date": "2026-09-04",
+   "intro_close": 1647000,
+   "last_close": 1783000,
+   "last_date": "2026-09-07"
+  },
+  {
+   "code": "108490",
+   "name": "로보티즈",
+   "market": "KOSDAQ",
+   "intro_date": "2026-09-04",
+   "intro_close": 304500,
+   "last_close": 301500,
+   "last_date": "2026-09-07"
+  },
+  {
+   "code": "030530",
+   "name": "원익홀딩스",
+   "market": "KOSDAQ",
+   "intro_date": "2026-09-04",
+   "intro_close": 22500,
+   "last_close": 22350,
+   "last_date": "2026-09-07"
+  }
+ ],
+ "generated_at": "2026-09-07T21:43:58.945490+00:00"
+}
