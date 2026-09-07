@@ -1,0 +1,5 @@
+[
+ {"code": "000660", "name": "SK하이닉스",   "market": "KOSPI",  "intro_date": "2026-09-04", "intro_close": 1647000},
+ {"code": "108490", "name": "로보티즈",     "market": "KOSDAQ", "intro_date": "2026-09-04", "intro_close": 304500},
+ {"code": "030530", "name": "원익홀딩스",   "market": "KOSDAQ", "intro_date": "2026-09-04", "intro_close": 22500}
+]
