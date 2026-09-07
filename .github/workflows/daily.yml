@@ -1,0 +1,77 @@
+name: 일일 시세 수집 및 차트 생성
+
+on:
+  schedule:
+    # 한국 증시 마감(15:30 KST = 06:30 UTC) 15분 뒤. GitHub cron은 UTC 기준.
+    - cron: "45 6 * * 1-5"
+  workflow_dispatch:        # 수동 실행 버튼
+    inputs:
+      date:
+        description: "기준일 (YYYY-MM-DD, 비우면 오늘)"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: 한글 폰트 설치
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-nanum
+          fc-cache -f
+
+      - name: 의존성 설치
+        run: pip install -r requirements.txt
+
+      - name: 공휴일·휴장일이면 건너뛰기
+        id: guard
+        run: |
+          DOW=$(TZ=Asia/Seoul date +%u)
+          if [ "$DOW" -ge 6 ]; then echo "skip=true" >> $GITHUB_OUTPUT; else echo "skip=false" >> $GITHUB_OUTPUT; fi
+
+      - name: 시세 수집
+        if: steps.guard.outputs.skip == 'false'
+        run: python fetch.py ${{ github.event.inputs.date }}
+
+      - name: 지표 계산 및 차트 생성
+        if: steps.guard.outputs.skip == 'false'
+        run: python build.py
+
+      - name: 결과 커밋
+        if: steps.guard.outputs.skip == 'false'
+        run: |
+          git config user.name  "chart-today-bot"
+          git config user.email "actions@github.com"
+          git add -A data out
+          if git diff --staged --quiet; then
+            echo "변경 없음"
+          else
+            git commit -m "데이터 갱신 $(TZ=Asia/Seoul date +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: 실패 시 로그 업로드
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: |
+            out/
+            data/
+          retention-days: 7
