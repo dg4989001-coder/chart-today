@@ -5,7 +5,7 @@
 데이터: Yahoo Finance 일봉 (KRX)
 출력  : charts/<code>.png  +  analysis/<code>.json
 """
-import json, math, os, sys
+import json, math, os, shutil, sys
 import pandas as pd, numpy as np
 import matplotlib
 matplotlib.use("Agg")
@@ -302,6 +302,9 @@ def build(code, name, asof_cut=None):
             f"MACD : {'골든크로스' if s['macd_cross']=='golden' else '데드크로스'} "
             f"{s['macd_cross_days_ago']}거래일 전")
     png = draw(df, code, name, asof, notes=notes, info=info)
+    # 날짜를 박은 사본도 남긴다 — 블로그 본문에 링크한 이미지가 나중에 덮어써지지 않도록
+    dated = f"{CHARTS}/{code}_{asof.replace('.', '')}.png"
+    shutil.copyfile(png, dated)
     with open(f"{ANALYSIS}/{code}.json", "w") as f:
         json.dump(s, f, ensure_ascii=False, indent=1)
     return s, png
