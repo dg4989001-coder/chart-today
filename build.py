@@ -45,6 +45,9 @@ def add_indicators(df):
     loss = (-d.clip(upper=0)).ewm(alpha=1/14, adjust=False).mean()
     df["rsi"] = 100 - 100 / (1 + gain / loss.replace(0, np.nan))
     df["vol_ma20"] = df["volume"].rolling(20).mean()
+    # "평소의 몇 배냐"는 당일을 뺀 직전 20거래일 평균으로 잰다.
+    # 당일을 평균에 넣으면 급등일의 거래량이 분모를 스스로 끌어올려 배수가 희석된다.
+    df["vol_ma20_prev"] = df["volume"].rolling(20).mean().shift(1)
     return df
 
 def weekly_ma20(df):
@@ -253,7 +256,9 @@ def summarize(df, code, name, asof):
         "chg_pct": round((r["close"]/p["close"]-1)*100, 2),
         "high": int(r["high"]), "low": int(r["low"]),
         "volume": int(r["volume"]), "vol_ma20": int(r["vol_ma20"]),
-        "vol_ratio": round(r["volume"]/r["vol_ma20"], 1),
+        "vol_ma20_prev": None if pd.isna(r["vol_ma20_prev"]) else int(r["vol_ma20_prev"]),
+        "vol_ratio": None if pd.isna(r["vol_ma20_prev"]) or r["vol_ma20_prev"] == 0
+                     else round(r["volume"]/r["vol_ma20_prev"], 1),
         "ma": {f"ma{n}": (None if pd.isna(r[f"ma{n}"]) else int(round(r[f"ma{n}"])))
                for n in (5, 10, 20, 60, 120, 240)},
         "arrangement": arrangement(r),
@@ -283,7 +288,8 @@ def build(code, name, asof_cut=None):
     ih, il = int(d["high"].idxmax()), int(d["low"].idxmin())
     notes = [
         dict(i=len(d)-1, y=float(d["close"].iloc[-1]), prefer=(0.72, 0.20),
-             text=f"{asof}  {s['close']:,}원 ({s['chg_pct']:+.2f}%)\n거래량 20일평균의 {s['vol_ratio']}배"),
+             text=f"{asof}  {s['close']:,}원 ({s['chg_pct']:+.2f}%)"
+                  + (f"\n거래량 직전 20일평균의 {s['vol_ratio']}배" if s['vol_ratio'] else "")),
         dict(i=ih, y=float(d["high"].iloc[ih]), prefer=(min(0.85, max(0.15, ih/len(d))), 0.93),
              text=f"120일 고점 {int(d['high'].iloc[ih]):,}원"),
         dict(i=il, y=float(d["low"].iloc[il]), prefer=(min(0.85, max(0.15, il/len(d))), 0.07),
