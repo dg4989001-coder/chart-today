@@ -1,47 +1,49 @@
 {
- "date": "2026-09-07",
+ "date": "2026-09-09",
  "source": "naver",
  "picked": [
   {
    "code": "000660",
    "name": "SK하이닉스",
    "market": "KOSPI",
-   "chg": 0.56,
-   "value": 7585160000000.0,
-   "mcap": 1309772800000000.0
+   "chg": 3.51,
+   "value": 6513175000000.0,
+   "mcap": 1355793800000000.0
   },
   {
-   "code": "069540",
-   "name": "빛과전자",
+   "code": "012210",
+   "name": "삼미금속",
    "market": "KOSDAQ",
-   "chg": 30.0,
-   "value": 143445000000.0,
-   "mcap": 410200000000.0
+   "chg": 29.91,
+   "value": 233513000000.0,
+   "mcap": 300400000000.0
   },
   {
-   "code": "046120",
-   "name": "오르비텍",
+   "code": "046970",
+   "name": "우리로",
    "market": "KOSDAQ",
-   "chg": 29.83,
-   "value": 45597000000.0,
-   "mcap": 204800000000.0
+   "chg": 29.84,
+   "value": 38008000000.0,
+   "mcap": 287900000000.0
   },
   {
-   "code": "004310",
-   "name": "현대약품",
-   "market": "KOSPI",
-   "chg": 23.99,
-   "value": 319771000000.0,
-   "mcap": 334100000000.0
+   "code": "327260",
+   "name": "RF머트리얼즈",
+   "market": "KOSDAQ",
+   "chg": 22.61,
+   "value": 141443000000.0,
+   "mcap": 760900000000.0
+  },
+  {
+   "code": "032820",
+   "name": "우리기술",
+   "market": "KOSDAQ",
+   "chg": 21.25,
+   "value": 531335000000.0,
+   "mcap": 2474300000000.0
   }
  ],
- "rejected": [
-  {
-   "code": "475040",
-   "name": "스트라드비젼",
-   "reason": "일봉 수집 실패: 야후 일봉 실패 475040: None"
-  }
- ],
+ "rejected": [],
  "watchlist": [
   {
    "code": "000660",
@@ -49,8 +51,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-04",
    "intro_close": 1647000,
-   "last_close": 1783000,
-   "last_date": "2026-09-07"
+   "last_close": 1856000,
+   "last_date": "2026-09-09"
   },
   {
    "code": "108490",
@@ -58,8 +60,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 304500,
-   "last_close": 301500,
-   "last_date": "2026-09-07"
+   "last_close": 310000,
+   "last_date": "2026-09-09"
   },
   {
    "code": "030530",
@@ -67,8 +69,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 22500,
-   "last_close": 22350,
-   "last_date": "2026-09-07"
+   "last_close": 23250,
+   "last_date": "2026-09-09"
   },
   {
    "code": "005930",
@@ -76,8 +78,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-07",
    "intro_close": 270000,
-   "last_close": 270000,
-   "last_date": "2026-09-07"
+   "last_close": 269500,
+   "last_date": "2026-09-09"
   },
   {
    "code": "161580",
@@ -85,8 +87,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 33500,
-   "last_close": 33500,
-   "last_date": "2026-09-07"
+   "last_close": 34600,
+   "last_date": "2026-09-09"
   },
   {
    "code": "212560",
@@ -94,8 +96,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 11880,
-   "last_close": 11880,
-   "last_date": "2026-09-07"
+   "last_close": 12350,
+   "last_date": "2026-09-09"
   },
   {
    "code": "036930",
@@ -103,9 +105,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 187200,
-   "last_close": 187200,
-   "last_date": "2026-09-07"
+   "last_close": 206500,
+   "last_date": "2026-09-09"
   }
  ],
- "generated_at": "2026-09-08T10:56:21.863168+00:00"
+ "generated_at": "2026-09-09T06:58:29.430121+00:00"
 }
