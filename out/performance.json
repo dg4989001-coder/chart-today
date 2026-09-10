@@ -1,5 +1,5 @@
 {
- "as_of": "2026-09-09",
+ "as_of": "2026-09-10",
  "rows": [
   {
    "code": "000660",
@@ -7,9 +7,9 @@
    "market": "KOSPI",
    "intro_date": "2026-09-04",
    "intro_close": 1647000,
-   "last_date": "2026.09.09",
-   "last_close": 1856000,
-   "return_pct": 12.69
+   "last_date": "2026.09.10",
+   "last_close": 1853000,
+   "return_pct": 12.51
   },
   {
    "code": "108490",
@@ -17,9 +17,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 304500,
-   "last_date": "2026.09.09",
-   "last_close": 310000,
-   "return_pct": 1.81
+   "last_date": "2026.09.10",
+   "last_close": 323500,
+   "return_pct": 6.24
   },
   {
    "code": "030530",
@@ -27,7 +27,7 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 22500,
-   "last_date": "2026.09.09",
+   "last_date": "2026.09.10",
    "last_close": 23250,
    "return_pct": 3.33
   },
@@ -37,9 +37,9 @@
    "market": "KOSPI",
    "intro_date": "2026-09-07",
    "intro_close": 270000,
-   "last_date": "2026.09.09",
-   "last_close": 269500,
-   "return_pct": -0.19
+   "last_date": "2026.09.10",
+   "last_close": 269000,
+   "return_pct": -0.37
   },
   {
    "code": "161580",
@@ -47,9 +47,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 33500,
-   "last_date": "2026.09.09",
-   "last_close": 34600,
-   "return_pct": 3.28
+   "last_date": "2026.09.10",
+   "last_close": 34200,
+   "return_pct": 2.09
   },
   {
    "code": "212560",
@@ -57,9 +57,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 11880,
-   "last_date": "2026.09.09",
-   "last_close": 12350,
-   "return_pct": 3.96
+   "last_date": "2026.09.10",
+   "last_close": 11830,
+   "return_pct": -0.42
   },
   {
    "code": "036930",
@@ -67,17 +67,17 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 187200,
-   "last_date": "2026.09.09",
-   "last_close": 206500,
-   "return_pct": 10.31
+   "last_date": "2026.09.10",
+   "last_close": 221000,
+   "return_pct": 18.06
   }
  ],
  "summary": {
   "count": 7,
-  "up": 6,
-  "down": 1,
+  "up": 5,
+  "down": 2,
   "flat": 0,
-  "avg_return_pct": 5.03
+  "avg_return_pct": 5.92
  },
  "failed": []
 }
