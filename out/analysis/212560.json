@@ -7,8 +7,8 @@
  "chg_pct": -4.21,
  "high": 12530,
  "low": 11700,
- "volume": 399793,
- "vol_ma20": 557082,
+ "volume": 403533,
+ "vol_ma20": 557269,
  "vol_ma20_prev": 539616,
  "vol_ratio": 0.7,
  "ma": {
@@ -17,10 +17,10 @@
   "ma20": 10220,
   "ma60": 10155,
   "ma120": 9835,
-  "ma240": 8786
+  "ma240": 8787
  },
  "arrangement": "정배열",
- "vs_ma240_pct": 34.7,
+ "vs_ma240_pct": 34.6,
  "weekly_ma20": 10541,
  "above_weekly_ma20": true,
  "macd": 347.7,

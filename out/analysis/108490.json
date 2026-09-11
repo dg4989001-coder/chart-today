@@ -7,7 +7,7 @@
  "chg_pct": 4.35,
  "high": 334500,
  "low": 314500,
- "volume": 659986,
+ "volume": 659987,
  "vol_ma20": 394058,
  "vol_ma20_prev": 370183,
  "vol_ratio": 1.8,
@@ -16,8 +16,8 @@
   "ma10": 277250,
   "ma20": 269200,
   "ma60": 241010,
-  "ma120": 266772,
-  "ma240": 252762
+  "ma120": 266776,
+  "ma240": 252680
  },
  "arrangement": "단기 정배열(중장기 미정렬)",
  "vs_ma240_pct": 28.0,
@@ -30,7 +30,7 @@
  "macd_cross_days_ago": 4,
  "rsi": 67.0,
  "high_52w": 464000,
- "low_52w": 96993,
+ "low_52w": 99600,
  "drawdown_from_52w_high_pct": -30.3,
  "recent60_high": 339000,
  "recent60_low": 155000,
