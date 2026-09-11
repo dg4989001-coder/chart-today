@@ -41,20 +41,21 @@ jobs:
 
       - name: 공휴일·휴장일이면 건너뛰기
         id: guard
+        if: github.event_name == 'schedule'
         run: |
           DOW=$(TZ=Asia/Seoul date +%u)
           if [ "$DOW" -ge 6 ]; then echo "skip=true" >> $GITHUB_OUTPUT; else echo "skip=false" >> $GITHUB_OUTPUT; fi
 
       - name: 시세 수집
-        if: steps.guard.outputs.skip == 'false'
+        if: github.event_name == 'workflow_dispatch' || steps.guard.outputs.skip == 'false'
         run: python fetch.py ${{ github.event.inputs.date }}
 
       - name: 지표 계산 및 차트 생성
-        if: steps.guard.outputs.skip == 'false'
+        if: github.event_name == 'workflow_dispatch' || steps.guard.outputs.skip == 'false'
         run: python build.py
 
       - name: 결과 커밋
-        if: steps.guard.outputs.skip == 'false'
+        if: github.event_name == 'workflow_dispatch' || steps.guard.outputs.skip == 'false'
         run: |
           git config user.name  "chart-today-bot"
           git config user.email "actions@github.com"
