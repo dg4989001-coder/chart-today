@@ -131,7 +131,9 @@ def pick(df: pd.DataFrame) -> pd.DataFrame:
     d = d[~bad]
 
     large = d[d["mcap"].fillna(0) >= LARGE_CAP_KR].sort_values("value", ascending=False)
-    small = d[d["mcap"].fillna(0) < LARGE_CAP_KR].sort_values("chg", ascending=False)
+    # 중소형주: 등락률 -10%~+20% 범위 + 거래대금 순 (상한가 추격 방지)
+    mid = d[(d["mcap"].fillna(0) < LARGE_CAP_KR) & (d["chg"] >= -10) & (d["chg"] <= 20)]
+    small = mid.sort_values("value", ascending=False)
 
     chosen = pd.concat([large.head(N_LARGE), small.head(N_TOTAL - N_LARGE)])
     return chosen.reset_index(drop=True)
