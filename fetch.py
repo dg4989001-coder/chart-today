@@ -67,7 +67,7 @@ def _parse_items(items: list[dict], market: str) -> list[dict]:
             close = float(it["nv"])
             chg = float(it["cr"])
             volume = float(it.get("aq", 0))
-            value = float(it.get("aa", 0)) * 1_000_000       # 백만원 → 원
+            value = float(it.get("aq", 0)) * float(it.get("nv", 0))  # 거래량 × 종가
             mcap = float(it.get("mks", 0)) * 100_000_000     # 억원 → 원
             out.append({
                 "code": code, "name": name, "market": market,
