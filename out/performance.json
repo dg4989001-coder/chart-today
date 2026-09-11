@@ -7,9 +7,9 @@
    "market": "KOSPI",
    "intro_date": "2026-09-04",
    "intro_close": 1647000,
-   "last_date": "2026.09.10",
-   "last_close": 1853000,
-   "return_pct": 12.51
+   "last_date": "2026.09.11",
+   "last_close": 1812000,
+   "return_pct": 10.02
   },
   {
    "code": "108490",
@@ -17,7 +17,7 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 304500,
-   "last_date": "2026.09.10",
+   "last_date": "2026.09.11",
    "last_close": 323500,
    "return_pct": 6.24
   },
@@ -27,9 +27,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 22500,
-   "last_date": "2026.09.10",
-   "last_close": 23250,
-   "return_pct": 3.33
+   "last_date": "2026.09.11",
+   "last_close": 22350,
+   "return_pct": -0.67
   },
   {
    "code": "005930",
@@ -37,9 +37,9 @@
    "market": "KOSPI",
    "intro_date": "2026-09-07",
    "intro_close": 270000,
-   "last_date": "2026.09.10",
-   "last_close": 269000,
-   "return_pct": -0.37
+   "last_date": "2026.09.11",
+   "last_close": 259500,
+   "return_pct": -3.89
   },
   {
    "code": "161580",
@@ -47,9 +47,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 33500,
-   "last_date": "2026.09.10",
-   "last_close": 34200,
-   "return_pct": 2.09
+   "last_date": "2026.09.11",
+   "last_close": 32050,
+   "return_pct": -4.33
   },
   {
    "code": "212560",
@@ -57,9 +57,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 11880,
-   "last_date": "2026.09.10",
-   "last_close": 11830,
-   "return_pct": -0.42
+   "last_date": "2026.09.11",
+   "last_close": 11090,
+   "return_pct": -6.65
   },
   {
    "code": "036930",
@@ -67,17 +67,17 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 187200,
-   "last_date": "2026.09.10",
-   "last_close": 221000,
-   "return_pct": 18.06
+   "last_date": "2026.09.11",
+   "last_close": 209000,
+   "return_pct": 11.65
   }
  ],
  "summary": {
   "count": 7,
-  "up": 5,
-  "down": 2,
+  "up": 3,
+  "down": 4,
   "flat": 0,
-  "avg_return_pct": 5.92
+  "avg_return_pct": 1.77
  },
  "failed": []
 }
