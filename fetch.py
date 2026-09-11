@@ -3,18 +3,12 @@
 """
 차트로 보는 오늘 — 일일 데이터 수집기 (GitHub Actions에서 실행)
 
-하는 일
-  1) 당일 국내 전 종목 시세를 받아 거래대금·등락률 순위를 만든다
-  2) 규격서 기준으로 핫종목 4~5개를 자동 선정한다
-  3) 선정 종목의 2년치 일봉을 data/<코드>.csv 로 저장한다
-  4) 시장 요약을 out/market.json 으로 저장한다
-
 데이터 경로:
   - 스냅샷: 네이버 새 API(m.stock.naver.com) 우선, 실패 시 pykrx
-  - 일봉: 야후 파이낸스 우선, 실패 시 pykrx
+  - 일봉: 네이버 일봉 API 우선 → 야후 → pykrx
 """
 from __future__ import annotations
-import io, json, os, re, sys, time, traceback
+import ast, io, json, os, re, sys, time, traceback
 import datetime as dt
 import pandas as pd, numpy as np
 import requests
@@ -28,12 +22,11 @@ UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.3
                     "(KHTML, like Gecko) Chrome/126.0 Safari/537.36",
       "Accept-Language": "ko-KR,ko;q=0.9"}
 
-# 선정 파라미터
-N_LARGE      = 1       # 대형주 최대 편수
-N_TOTAL      = 5       # 총 선정 종목 수
-LARGE_CAP_KR = 10_000_000_000_000   # 대형주 기준 시가총액 10조
-MIN_VALUE    = 30_000_000_000       # 최소 거래대금 300억 (유동성 필터)
-MIN_HISTORY  = 300     # 240일선을 그리려면 최소 300거래일
+N_LARGE      = 1
+N_TOTAL      = 5
+LARGE_CAP_KR = 10_000_000_000_000
+MIN_VALUE    = 30_000_000_000
+MIN_HISTORY  = 300
 
 
 def today_kst() -> dt.date:
@@ -41,12 +34,12 @@ def today_kst() -> dt.date:
 
 
 # ────────────────────────────────────────────────────────────
-# 1. 당일 전 종목 스냅샷 — 네이버 새 API
+# 1. 스냅샷 — 네이버 API
 # ────────────────────────────────────────────────────────────
 NAVER_API = "https://m.stock.naver.com/api/json/sise/siseListJson.nhn"
 
+
 def _naver_fetch(menu: str, sosok: int, page_size: int = 100) -> list[dict]:
-    """네이버 siseListJson 한 페이지 호출 → itemList 반환"""
     url = f"{NAVER_API}?menu={menu}&sosok={sosok}&pageSize={page_size}&page=1"
     r = requests.get(url, headers=UA, timeout=20)
     j = r.json()
@@ -56,7 +49,6 @@ def _naver_fetch(menu: str, sosok: int, page_size: int = 100) -> list[dict]:
 
 
 def _parse_items(items: list[dict], market: str) -> list[dict]:
-    """API item → 표준 딕셔너리로 변환 + ETF/ETN 필터"""
     out = []
     for it in items:
         if it.get("etf") or it.get("etn"):
@@ -67,8 +59,8 @@ def _parse_items(items: list[dict], market: str) -> list[dict]:
             close = float(it["nv"])
             chg = float(it["cr"])
             volume = float(it.get("aq", 0))
-            value = float(it.get("aq", 0)) * float(it.get("nv", 0))  # 거래량 × 종가
-            mcap = float(it.get("mks", 0)) * 100_000_000     # 억원 → 원
+            value = float(it.get("aq", 0)) * float(it.get("nv", 0))
+            mcap = float(it.get("mks", 0)) * 100_000_000
             out.append({
                 "code": code, "name": name, "market": market,
                 "close": close, "chg": chg,
@@ -80,7 +72,6 @@ def _parse_items(items: list[dict], market: str) -> list[dict]:
 
 
 def snapshot_naver() -> pd.DataFrame:
-    """네이버 새 API로 KOSPI·KOSDAQ × 시총/거래대금/상승 6개 페이지 합침"""
     combos = [
         ("market_sum", 0, "KOSPI"),
         ("market_sum", 1, "KOSDAQ"),
@@ -98,8 +89,7 @@ def snapshot_naver() -> pd.DataFrame:
             print(f"[warn] naver {menu} sosok={sosok}: {e}", file=sys.stderr)
     if not rows:
         raise RuntimeError("네이버 API를 모두 받지 못했습니다")
-    df = pd.DataFrame(rows)
-    df = df.drop_duplicates("code")
+    df = pd.DataFrame(rows).drop_duplicates("code")
     print(f"[ok] naver 스냅샷 {len(df)}종목 (ETF/ETN 제외)")
     return df
 
@@ -119,7 +109,6 @@ def snapshot_pykrx(day: str) -> pd.DataFrame:
 
 
 def market_snapshot(day: str):
-    # 네이버 우선 (pykrx는 최근 KRX 로그인 요구로 자주 실패)
     try:
         df = snapshot_naver()
         return df, "naver"
@@ -137,7 +126,6 @@ def market_snapshot(day: str):
 def pick(df: pd.DataFrame) -> pd.DataFrame:
     d = df.dropna(subset=["value"]).copy()
     d = d[d["value"] >= MIN_VALUE]
-    # 우선주·스팩·ETF/ETN 추가 필터 (이중 안전장치)
     bad = d["name"].str.contains(r"우$|우[ABC]$|스팩|제\d+호|KODEX|TIGER|KBSTAR|ARIRANG|"
                                  r"ETN|레버리지|인버스|선물", regex=True, na=False)
     d = d[~bad]
@@ -150,8 +138,29 @@ def pick(df: pd.DataFrame) -> pd.DataFrame:
 
 
 # ────────────────────────────────────────────────────────────
-# 3. 일봉 수집 (야후 우선)
+# 3. 일봉 수집 — 네이버 우선
 # ────────────────────────────────────────────────────────────
+def daily_naver(code: str, day: dt.date) -> pd.DataFrame:
+    start = (day - dt.timedelta(days=760)).strftime("%Y%m%d")
+    end = day.strftime("%Y%m%d")
+    url = (f"https://api.finance.naver.com/siseJson.naver?"
+           f"symbol={code}&requestType=1&startTime={start}&endTime={end}&timeframe=day")
+    r = requests.get(url, headers=UA, timeout=30)
+    data = ast.literal_eval(r.text.strip())
+    if len(data) < 2:
+        raise RuntimeError(f"네이버 일봉 데이터 없음: {code}")
+    df = pd.DataFrame(data[1:],
+                      columns=["date", "open", "high", "low", "close", "volume", "foreign"])
+    df = df[["date", "open", "high", "low", "close", "volume"]]
+    df["date"] = pd.to_datetime(df["date"], format="%Y%m%d")
+    for c in ("open", "high", "low", "close", "volume"):
+        df[c] = pd.to_numeric(df[c], errors="coerce")
+    df = df.dropna(subset=["close"]).reset_index(drop=True)
+    if len(df) < MIN_HISTORY // 2:
+        raise RuntimeError(f"네이버 일봉 데이터 부족: {code} {len(df)}행")
+    return df
+
+
 def daily_yahoo(code: str, market: str | None) -> pd.DataFrame:
     last = None
     for suf in ([".KS", ".KQ"] if not market else
@@ -184,7 +193,10 @@ def daily_pykrx(code: str, start: str, end: str) -> pd.DataFrame:
 
 
 def daily(code: str, market: str | None, day: dt.date) -> pd.DataFrame:
-    # 야후 우선 (pykrx는 KRX 로그인 이슈)
+    try:
+        return daily_naver(code, day)
+    except Exception as e:
+        print(f"[warn] {code} 네이버 일봉 실패({e}) → 야후", file=sys.stderr)
     try:
         return daily_yahoo(code, market)
     except Exception as e:
@@ -242,7 +254,6 @@ def main():
                        "mcap": None if pd.isna(r.get("mcap")) else float(r["mcap"])})
         print(f"[ok] {code} {r['name']} {len(df)}행 저장")
 
-    # watchlist 갱신
     watch = []
     wf = f"{ROOT}/watchlist.json"
     if os.path.exists(wf):
