@@ -9,8 +9,9 @@
   3) 선정 종목의 2년치 일봉을 data/<코드>.csv 로 저장한다
   4) 시장 요약을 out/market.json 으로 저장한다
 
-데이터 경로는 2중화: pykrx(KRX 직접) → 실패 시 네이버 금융.
-GitHub Actions 러너는 해외 IP라 어느 한쪽이 막힐 수 있어 반드시 두 경로를 둔다.
+데이터 경로:
+  - 스냅샷: 네이버 새 API(m.stock.naver.com) 우선, 실패 시 pykrx
+  - 일봉: 야후 파이낸스 우선, 실패 시 pykrx
 """
 from __future__ import annotations
 import io, json, os, re, sys, time, traceback
@@ -39,9 +40,70 @@ def today_kst() -> dt.date:
     return dt.datetime.now(KST).date()
 
 
-# ───────────────────────────────────────────────────────────
-# 1. 당일 전 종목 스냅샷
 # ────────────────────────────────────────────────────────────
+# 1. 당일 전 종목 스냅샷 — 네이버 새 API
+# ────────────────────────────────────────────────────────────
+NAVER_API = "https://m.stock.naver.com/api/json/sise/siseListJson.nhn"
+
+def _naver_fetch(menu: str, sosok: int, page_size: int = 100) -> list[dict]:
+    """네이버 siseListJson 한 페이지 호출 → itemList 반환"""
+    url = f"{NAVER_API}?menu={menu}&sosok={sosok}&pageSize={page_size}&page=1"
+    r = requests.get(url, headers=UA, timeout=20)
+    j = r.json()
+    if j.get("resultCode") != "success":
+        raise RuntimeError(f"naver api error: {menu} sosok={sosok}")
+    return j["result"]["itemList"]
+
+
+def _parse_items(items: list[dict], market: str) -> list[dict]:
+    """API item → 표준 딕셔너리로 변환 + ETF/ETN 필터"""
+    out = []
+    for it in items:
+        if it.get("etf") or it.get("etn"):
+            continue
+        try:
+            code = str(it["cd"]).zfill(6)
+            name = str(it["nm"]).strip()
+            close = float(it["nv"])
+            chg = float(it["cr"])
+            volume = float(it.get("aq", 0))
+            value = float(it.get("aa", 0)) * 1_000_000       # 백만원 → 원
+            mcap = float(it.get("mks", 0)) * 100_000_000     # 억원 → 원
+            out.append({
+                "code": code, "name": name, "market": market,
+                "close": close, "chg": chg,
+                "volume": volume, "value": value, "mcap": mcap,
+            })
+        except Exception:
+            continue
+    return out
+
+
+def snapshot_naver() -> pd.DataFrame:
+    """네이버 새 API로 KOSPI·KOSDAQ × 시총/거래대금/상승 6개 페이지 합침"""
+    combos = [
+        ("market_sum", 0, "KOSPI"),
+        ("market_sum", 1, "KOSDAQ"),
+        ("quant",      0, "KOSPI"),
+        ("quant",      1, "KOSDAQ"),
+        ("rise",       0, "KOSPI"),
+        ("rise",       1, "KOSDAQ"),
+    ]
+    rows = []
+    for menu, sosok, mkt in combos:
+        try:
+            items = _naver_fetch(menu, sosok)
+            rows.extend(_parse_items(items, mkt))
+        except Exception as e:
+            print(f"[warn] naver {menu} sosok={sosok}: {e}", file=sys.stderr)
+    if not rows:
+        raise RuntimeError("네이버 API를 모두 받지 못했습니다")
+    df = pd.DataFrame(rows)
+    df = df.drop_duplicates("code")
+    print(f"[ok] naver 스냅샷 {len(df)}종목 (ETF/ETN 제외)")
+    return df
+
+
 def snapshot_pykrx(day: str) -> pd.DataFrame:
     from pykrx import stock
     ohlcv = stock.get_market_ohlcv(day, market="ALL")
@@ -56,70 +118,17 @@ def snapshot_pykrx(day: str) -> pd.DataFrame:
     return df.reset_index()[["code", "name", "market", "close", "chg", "volume", "value", "mcap"]]
 
 
-def _naver_page(url: str, market: str):
-    """네이버 순위 페이지 한 장 → (표, {종목명: 종목코드})
-    pd.read_html은 링크를 버리기 때문에 종목코드는 HTML에서 직접 뽑아낸다."""
-    r = requests.get(url, headers=UA, timeout=20)
-    r.encoding = "euc-kr"
-    html = r.text
-    tables = pd.read_html(io.StringIO(html))
-    df = max(tables, key=len).dropna(how="all").dropna(axis=1, how="all")
-    df["market"] = market
-    codes = {}
-    for m in re.finditer(r'/item/main\.naver\?code=(\d{6})"[^>]*>([^<]+)</a>', html):
-        codes[m.group(2).strip()] = m.group(1)
-    return df, codes
-
-
-def snapshot_naver() -> pd.DataFrame:
-    """네이버 거래대금/상승률 상위 페이지를 합쳐 후보군을 만든다 (전 종목은 아님)"""
-    pages = [("https://finance.naver.com/sise/sise_quant.naver", "KOSPI"),
-             ("https://finance.naver.com/sise/sise_rise.naver", "KOSPI"),
-             ("https://finance.naver.com/sise/sise_quant.naver?sosok=1", "KOSDAQ"),
-             ("https://finance.naver.com/sise/sise_rise.naver?sosok=1", "KOSDAQ")]
-    frames, codemap = [], {}
-    for url, mkt in pages:
-        try:
-            df, codes = _naver_page(url, mkt)
-            frames.append(df); codemap.update(codes)
-        except Exception as e:
-            print(f"[warn] naver {url}: {e}", file=sys.stderr)
-    if not frames:
-        raise RuntimeError("네이버 순위 페이지를 모두 받지 못했습니다")
-    df = pd.concat(frames, ignore_index=True)
-    ren = {"종목명": "name", "현재가": "close", "등락률": "chg",
-           "거래량": "volume", "거래대금": "value", "시가총액": "mcap"}
-    df = df.rename(columns={k: v for k, v in ren.items() if k in df.columns})
-    keep = ("name", "market", "close", "chg", "volume", "value", "mcap")
-    df = df[[c for c in keep if c in df.columns]]
-    df = df.dropna(subset=["name"]).drop_duplicates("name")
-    for c in ("close", "volume", "value", "mcap"):
-        if c in df: df[c] = pd.to_numeric(df[c].astype(str).str.replace(r"[^\d.-]", "", regex=True),
-                                          errors="coerce")
-    df["chg"] = pd.to_numeric(df["chg"].astype(str).str.replace("%", "").str.replace("+", ""),
-                              errors="coerce")
-    if "value" in df: df["value"] = df["value"] * 1_000_000     # 네이버 거래대금 단위: 백만원
-    if "mcap" in df:  df["mcap"] = df["mcap"] * 100_000_000     # 시가총액 단위: 억원
-    df["code"] = df["name"].astype(str).str.strip().map(codemap)
-    missing = int(df["code"].isna().sum())
-    if missing:
-        print(f"[warn] 종목코드를 못 찾은 행 {missing}개 제외", file=sys.stderr)
-    df = df.dropna(subset=["code"])
-    print(f"[ok] 종목코드 매핑 {len(codemap)}건")
-    return df
-
-
 def market_snapshot(day: str):
+    # 네이버 우선 (pykrx는 최근 KRX 로그인 요구로 자주 실패)
     try:
+        df = snapshot_naver()
+        return df, "naver"
+    except Exception:
+        traceback.print_exc()
+        print("[warn] naver 실패 → pykrx로 대체", file=sys.stderr)
         df = snapshot_pykrx(day)
         print(f"[ok] pykrx 스냅샷 {len(df)}종목")
         return df, "pykrx"
-    except Exception:
-        traceback.print_exc()
-        print("[warn] pykrx 실패 → 네이버로 대체", file=sys.stderr)
-        df = snapshot_naver()
-        print(f"[ok] naver 스냅샷 {len(df)}종목")
-        return df, "naver"
 
 
 # ────────────────────────────────────────────────────────────
@@ -128,7 +137,7 @@ def market_snapshot(day: str):
 def pick(df: pd.DataFrame) -> pd.DataFrame:
     d = df.dropna(subset=["value"]).copy()
     d = d[d["value"] >= MIN_VALUE]
-    # 우선주·스팩·ETF/ETN 제외
+    # 우선주·스팩·ETF/ETN 추가 필터 (이중 안전장치)
     bad = d["name"].str.contains(r"우$|우[ABC]$|스팩|제\d+호|KODEX|TIGER|KBSTAR|ARIRANG|"
                                  r"ETN|레버리지|인버스|선물", regex=True, na=False)
     d = d[~bad]
@@ -141,17 +150,8 @@ def pick(df: pd.DataFrame) -> pd.DataFrame:
 
 
 # ────────────────────────────────────────────────────────────
-# 3. 일봉 수집
+# 3. 일봉 수집 (야후 우선)
 # ────────────────────────────────────────────────────────────
-def daily_pykrx(code: str, start: str, end: str) -> pd.DataFrame:
-    from pykrx import stock
-    df = stock.get_market_ohlcv(start, end, code)
-    df = df.rename(columns={"시가": "open", "고가": "high", "저가": "low",
-                            "종가": "close", "거래량": "volume"})
-    df.index.name = "date"
-    return df.reset_index()[["date", "open", "high", "low", "close", "volume"]]
-
-
 def daily_yahoo(code: str, market: str | None) -> pd.DataFrame:
     last = None
     for suf in ([".KS", ".KQ"] if not market else
@@ -174,25 +174,32 @@ def daily_yahoo(code: str, market: str | None) -> pd.DataFrame:
     raise RuntimeError(f"야후 일봉 실패 {code}: {last}")
 
 
+def daily_pykrx(code: str, start: str, end: str) -> pd.DataFrame:
+    from pykrx import stock
+    df = stock.get_market_ohlcv(start, end, code)
+    df = df.rename(columns={"시가": "open", "고가": "high", "저가": "low",
+                            "종가": "close", "거래량": "volume"})
+    df.index.name = "date"
+    return df.reset_index()[["date", "open", "high", "low", "close", "volume"]]
+
+
 def daily(code: str, market: str | None, day: dt.date) -> pd.DataFrame:
-    start = (day - dt.timedelta(days=760)).strftime("%Y%m%d")
+    # 야후 우선 (pykrx는 KRX 로그인 이슈)
     try:
-        df = daily_pykrx(code, start, day.strftime("%Y%m%d"))
-        if len(df) >= MIN_HISTORY: return df
-        print(f"[warn] {code} pykrx 이력 {len(df)}행 → 야후로 재시도", file=sys.stderr)
+        return daily_yahoo(code, market)
     except Exception as e:
-        print(f"[warn] {code} pykrx 실패({e}) → 야후", file=sys.stderr)
-    return daily_yahoo(code, market)
+        print(f"[warn] {code} 야후 실패({e}) → pykrx", file=sys.stderr)
+    start = (day - dt.timedelta(days=760)).strftime("%Y%m%d")
+    return daily_pykrx(code, start, day.strftime("%Y%m%d"))
 
 
 # ────────────────────────────────────────────────────────────
-# 4. 품질 검사 — 기술적 분석이 성립하지 않는 종목 걸러내기
+# 4. 품질 검사
 # ────────────────────────────────────────────────────────────
 def quality_problem(df: pd.DataFrame) -> str | None:
     if len(df) < MIN_HISTORY:
         return f"거래일 {len(df)}일뿐 — 240일선을 그릴 수 없음(신규상장 등)"
     c = df["close"].tail(120)
-    # 공개매수 등으로 가격이 장기간 고정된 구간 탐지
     flat = (c.pct_change().abs() < 0.002).rolling(15).sum().max()
     if flat is not None and flat >= 14:
         return "최근 120일 중 15거래일 이상 주가가 사실상 고정 — 기업 이벤트로 이평선 왜곡"
@@ -235,7 +242,7 @@ def main():
                        "mcap": None if pd.isna(r.get("mcap")) else float(r["mcap"])})
         print(f"[ok] {code} {r['name']} {len(df)}행 저장")
 
-    # 이미 소개한 종목(누적 수익률용)도 계속 갱신
+    # watchlist 갱신
     watch = []
     wf = f"{ROOT}/watchlist.json"
     if os.path.exists(wf):
