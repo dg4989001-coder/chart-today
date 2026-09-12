@@ -122,12 +122,15 @@ def occupancy(d, ylim):
             if pd.notna(v): mark(int(i / n * NC), v, v)
     return occ
 
-def find_slot(occ, w, h, prefer, taken, ignore_occ=False):
+def find_slot(occ, w, h, prefer, taken, ignore_occ=False, max_dc=None):
+    """max_dc를 주면 prefer 열에서 그만큼(격자 칸) 벗어난 후보는 아예 보지 않는다 —
+    화살표가 요약 박스 등을 가로질러 길어지는 것을 막는다."""
     pc, pr = prefer[0] * NC, prefer[1] * NR
     best, bestd = None, 1e9
     w = min(w, NC); h = min(h, NR)
     for r in range(NR - h + 1):
         for c in range(NC - w + 1):
+            if max_dc is not None and abs((c + w/2) - pc) > max_dc: continue
             if taken[r:r+h, c:c+w].any(): continue
             if not ignore_occ and occ[r:r+h, c:c+w].any(): continue
             dist = ((c + w/2 - pc) / NC) ** 2 + ((r + h/2 - pr) / NR) ** 2
@@ -240,10 +243,17 @@ def draw(df, code, name, asof, window=120, notes=None, info=None):
     for nt in (notes or []):
         bw = max(4, int(len(max(nt["text"].split("\n"), key=len)) * 0.55))
         h = 2 + nt["text"].count("\n")
-        slot = (find_slot(occ, bw, h, nt["prefer"], taken)
-                or find_slot(occ, max(3, bw - 3), h, nt["prefer"], taken)
-                or find_slot(occ, bw, h, nt["prefer"], taken, ignore_occ=True)
-                or nt["prefer"])
+        slot = None
+        for dc in (6, 10, None):
+            slot = find_slot(occ, bw, h, nt["prefer"], taken, max_dc=dc)
+            if slot: break
+        if not slot:
+            for dc in (6, 10, None):
+                slot = find_slot(occ, max(3, bw - 3), h, nt["prefer"], taken, max_dc=dc)
+                if slot: break
+        if not slot:
+            slot = (find_slot(occ, bw, h, nt["prefer"], taken, ignore_occ=True)
+                    or nt["prefer"])
         axp.annotate(nt["text"], xy=(nt["i"], nt["y"]), xycoords="data",
                      xytext=slot, textcoords="axes fraction",
                      fontsize=9.5, color=ACC, fontweight="bold", ha="center", va="center", zorder=9,
@@ -351,15 +361,19 @@ def build(code, name, asof_cut=None):
 
     d = df.tail(120).reset_index(drop=True)
     ih, il = int(d["high"].idxmax()), int(d["low"].idxmin())
+    last_i = len(d) - 1
     notes = [
         dict(i=len(d)-1, y=float(d["close"].iloc[-1]), prefer=(0.72, 0.20),
              text=f"{asof}  {s['close']:,}원 ({s['chg_pct']:+.2f}%)"
                   + (f"\n거래량 직전 20일평균의 {s['vol_ratio']}배" if s['vol_ratio'] else "")),
-        dict(i=ih, y=float(d["high"].iloc[ih]), prefer=(min(0.85, max(0.15, ih/len(d))), 0.93),
-             text=f"120일 고점 {int(d['high'].iloc[ih]):,}원"),
-        dict(i=il, y=float(d["low"].iloc[il]), prefer=(min(0.85, max(0.15, il/len(d))), 0.07),
-             text=f"120일 저점 {int(d['low'].iloc[il]):,}원"),
     ]
+    # 120일 고점·저점이 마지막 봉(당일)과 같은 자리면 당일 주석과 중복이므로 넣지 않는다.
+    if ih != last_i:
+        notes.append(dict(i=ih, y=float(d["high"].iloc[ih]), prefer=(min(0.85, max(0.15, ih/len(d))), 0.93),
+                          text=f"120일 고점 {int(d['high'].iloc[ih]):,}원"))
+    if il != last_i:
+        notes.append(dict(i=il, y=float(d["low"].iloc[il]), prefer=(min(0.85, max(0.15, il/len(d))), 0.07),
+                          text=f"120일 저점 {int(d['low'].iloc[il]):,}원"))
     if s["ma"]["ma240"]:
         j = int(len(d) * 0.45)
         notes.append(dict(i=j, y=float(d["ma240"].iloc[j]), prefer=(0.40, 0.12),
