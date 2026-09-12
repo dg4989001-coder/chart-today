@@ -26,13 +26,21 @@ os.makedirs(ANALYSIS, exist_ok=True)
 
 # ── 색 ───────────────────────────────────────────────────────────
 UP, DOWN = "#D32F2F", "#1565C0"          # 한국 관행: 상승 적, 하락 청
-MA_RAMP = {5: "#9B7EDE", 10: "#7A4FD0", 20: "#5B2CA8", 240: "#35176B"}  # 5·10·20·240
+# 이평선: 5일(진한 주황), 10일(파랑), 20일(빨강), 240일(굵고 찐한 초록)
+MA_RAMP = {
+    5:   {"color": "#FF8C00", "lw": 1.8, "ls": "-"},   # 진한 주황
+    10:  {"color": "#2196F3", "lw": 1.6, "ls": "-"},   # 파랑
+    20:  {"color": "#E53935", "lw": 1.8, "ls": "-"},   # 빨강
+    240: {"color": "#1B5E20", "lw": 2.8, "ls": "-"},   # 굵고 찐한 초록
+}
 INK, INK2, INK3 = "#1a1a1a", "#5b5b5b", "#8a8a8a"
 GRID, SURF = "#e8e8e8", "#ffffff"
 ACC = "#B45309"                           # 주석 강조
 TENKAN_C, KIJUN_C = "#E91E63", "#1A1A1A"  # 일목균형표 전환선/기준선
 CLOUD_UP, CLOUD_DN = "#FF6B6B", "#4A90E2"  # 구름대 양운/음운
-VP_C = "#B0B0B0"                          # 매물대 회색
+VP_C = "#7A7A7A"                          # 매물대 회색
+VP_MAX_C = "#B8860B"                      # 최대 매물대 강조 (다크 골든로드)
+CROSS_GOLD, CROSS_DEAD = "#D32F2F", "#1565C0"  # MACD 골든/데드
 
 # ── 지표 ──────────────────────────────────────────────────────────
 def add_indicators(df):
@@ -44,12 +52,19 @@ def add_indicators(df):
     df["macd"] = e12 - e26
     df["macd_sig"] = df["macd"].ewm(span=9, adjust=False).mean()
     df["macd_hist"] = df["macd"] - df["macd_sig"]
+    # MACD 크로스 마커 (골든=1, 데드=-1)
+    diff = df["macd"] - df["macd_sig"]
+    s = np.sign(diff)
+    cross = pd.Series(0, index=df.index, dtype=int)
+    for i in range(1, len(s)):
+        if pd.notna(s.iloc[i]) and pd.notna(s.iloc[i-1]) and s.iloc[i] != s.iloc[i-1] and s.iloc[i] != 0:
+            cross.iloc[i] = 1 if s.iloc[i] > 0 else -1
+    df["macd_cross_mark"] = cross
     d = c.diff()
     gain = d.clip(lower=0).ewm(alpha=1/14, adjust=False).mean()
     loss = (-d.clip(upper=0)).ewm(alpha=1/14, adjust=False).mean()
     df["rsi"] = 100 - 100 / (1 + gain / loss.replace(0, np.nan))
     df["vol_ma20"] = df["volume"].rolling(20).mean()
-    # "평소의 몇 배냐"는 당일을 뺀 직전 20거래일 평균으로 잰다.
     df["vol_ma20_prev"] = df["volume"].rolling(20).mean().shift(1)
     # 일목균형표
     tenkan = (h.rolling(9).max() + l.rolling(9).min()) / 2
@@ -61,12 +76,10 @@ def add_indicators(df):
     return df
 
 def weekly_ma20(df):
-    """주봉 20선 — 주간 마지막 거래일 종가 기준"""
     w = df.set_index("date")["close"].resample("W-FRI").last().dropna()
     return float(w.rolling(20).mean().iloc[-1]) if len(w) >= 20 else float("nan")
 
 def last_cross(fast, slow):
-    """가장 최근 교차: (방향, 며칠 전). 방향 golden/dead"""
     diff = (fast - slow).dropna()
     s = np.sign(diff)
     for i in range(len(s) - 1, 0, -1):
@@ -75,7 +88,6 @@ def last_cross(fast, slow):
     return None, None
 
 def arrangement(r):
-    """이동평균선 배열 판정 (5·10·20·240 기준)"""
     v = [r["close"], r["ma5"], r["ma10"], r["ma20"], r["ma240"]]
     if any(pd.isna(x) for x in v):
         return "판정불가"
@@ -86,17 +98,15 @@ def arrangement(r):
     short_ok = r["close"] > r["ma5"] > r["ma10"] > r["ma20"]
     return "단기 정배열(중장기 미정렬)" if short_ok else "혼조"
 
-# ── 차트 ──────────────────────────────────────────────────────────
 def won(v, _=None):
     v = float(v)
     if v >= 1000000: return f"{v/10000:,.0f}만"
     return f"{v:,.0f}"
 
 # ── 빈 자리 찾기 ──────────────────────────────────────────────────
-NC, NR = 30, 16   # 가격 패널을 나눈 격자
+NC, NR = 30, 16
 
 def occupancy(d, ylim):
-    """캔들·이동평균선이 차지한 격자 = True"""
     lo, hi = ylim; span = hi - lo
     occ = np.zeros((NR, NC), dtype=bool)
     n = len(d)
@@ -115,7 +125,6 @@ def occupancy(d, ylim):
     return occ
 
 def find_slot(occ, w, h, prefer, taken, ignore_occ=False):
-    """폭 w·높이 h(격자 단위) 빈 자리를 prefer(축 비율)에 가장 가깝게."""
     pc, pr = prefer[0] * NC, prefer[1] * NR
     best, bestd = None, 1e9
     w = min(w, NC); h = min(h, NR)
@@ -130,36 +139,50 @@ def find_slot(occ, w, h, prefer, taken, ignore_occ=False):
     taken[max(0, r-1):r+h+1, max(0, c-1):c+w+1] = True
     return ((c + w/2) / NC, (r + h/2) / NR)
 
-def add_volume_profile(ax, d, bins=40, width_frac=0.10):
-    """가격대별 누적 거래량을 왼쪽에 가로 막대로 표시 (매물대)"""
-    lo, hi = float(d["low"].min()), float(d["high"].max())
+def add_volume_profile(ax, df_full, bins=50, width_frac=0.14):
+    """전기간 누적 거래량을 왼쪽에 가로 막대로 표시. 최대 매물대는 강조."""
+    lo = float(df_full["low"].min())
+    hi = float(df_full["high"].max())
     if hi <= lo:
         return
     edges = np.linspace(lo, hi, bins + 1)
     profile = np.zeros(bins)
-    for _, r in d.iterrows():
+    for _, r in df_full.iterrows():
         b_lo = int(np.clip((r["low"] - lo) / (hi - lo) * bins, 0, bins - 1))
         b_hi = int(np.clip((r["high"] - lo) / (hi - lo) * bins, 0, bins - 1))
         n_bands = b_hi - b_lo + 1
         profile[b_lo:b_hi + 1] += r["volume"] / n_bands
     if profile.max() <= 0:
         return
-    profile = profile / profile.max()
-    trans = ax.get_yaxis_transform()  # x: axes fraction, y: data coords
-    for i, v in enumerate(profile):
+    profile_norm = profile / profile.max()
+    max_idx = int(np.argmax(profile))
+    trans = ax.get_yaxis_transform()
+    for i, v in enumerate(profile_norm):
         y_center = (edges[i] + edges[i + 1]) / 2
-        h = (edges[i + 1] - edges[i]) * 0.82
+        h = (edges[i + 1] - edges[i]) * 0.85
+        is_max = (i == max_idx)
+        color = VP_MAX_C if is_max else VP_C
+        alpha = 0.55 if is_max else 0.30
         ax.barh(y_center, v * width_frac, height=h, left=0.005,
-                color=VP_C, alpha=0.35, zorder=0, transform=trans)
+                color=color, alpha=alpha, zorder=0 if not is_max else 2,
+                transform=trans)
+    # 최대 매물대 라벨
+    max_y = (edges[max_idx] + edges[max_idx + 1]) / 2
+    ax.annotate(f"최대 매물대\n{int(max_y):,}원",
+                xy=(0.005 + width_frac, max_y), xycoords=trans,
+                xytext=(0.18, 0.5), textcoords="axes fraction",
+                fontsize=8, color=VP_MAX_C, fontweight="bold",
+                ha="left", va="center", zorder=10,
+                bbox=dict(boxstyle="round,pad=0.3", fc="#FFFBF0", ec=VP_MAX_C, lw=0.8, alpha=0.9),
+                arrowprops=dict(arrowstyle="->", color=VP_MAX_C, lw=1.2))
 
 def add_ichimoku(ax, d):
-    """일목균형표 — 전환선, 기준선, 구름대 (선행스팬 1·2)"""
+    """일목균형표 — 전환선·기준선(점선), 구름대"""
     x = np.arange(len(d))
     tenkan = d["tenkan"]
     kijun = d["kijun"]
     senkou1 = d["senkou1"]
     senkou2 = d["senkou2"]
-    # 구름대 (양운: 빨강, 음운: 파랑)
     valid = senkou1.notna() & senkou2.notna()
     up_mask = valid & (senkou1 >= senkou2)
     dn_mask = valid & (senkou1 < senkou2)
@@ -167,9 +190,9 @@ def add_ichimoku(ax, d):
                     color=CLOUD_UP, alpha=0.15, zorder=1, interpolate=True)
     ax.fill_between(x, senkou1, senkou2, where=dn_mask,
                     color=CLOUD_DN, alpha=0.15, zorder=1, interpolate=True)
-    # 전환선, 기준선
-    ax.plot(x, tenkan, color=TENKAN_C, lw=1.2, zorder=6, alpha=0.85)
-    ax.plot(x, kijun, color=KIJUN_C, lw=1.2, zorder=6, alpha=0.85)
+    # 전환선·기준선: 점선
+    ax.plot(x, tenkan, color=TENKAN_C, lw=1.2, ls=(0, (5, 3)), zorder=6, alpha=0.9)
+    ax.plot(x, kijun, color=KIJUN_C, lw=1.2, ls=(0, (5, 3)), zorder=6, alpha=0.9)
 
 def draw(df, code, name, asof, window=120, notes=None, info=None):
     d = df.tail(window).reset_index(drop=True)
@@ -188,16 +211,16 @@ def draw(df, code, name, asof, window=120, notes=None, info=None):
         ax.set_axisbelow(True)
         ax.margins(x=0.01)
 
-    # y축 범위 먼저 잡기 (매물대/구름대/캔들 모두 반영)
+    # y축 범위 먼저
     ymin = float(min(d["low"].min(), d["ma240"].min() if d["ma240"].notna().any() else d["low"].min()))
     ymax = float(max(d["high"].max(), d["ma240"].max() if d["ma240"].notna().any() else d["high"].max()))
     pad = (ymax - ymin) * 0.08
     axp.set_ylim(ymin - pad, ymax + pad)
 
-    # 매물대 (배경, zorder=0)
-    add_volume_profile(axp, d, bins=40, width_frac=0.10)
+    # 매물대 (전기간, 왼쪽 배경)
+    add_volume_profile(axp, df, bins=50, width_frac=0.14)
 
-    # 일목균형표 (구름대 zorder=1, 전환선/기준선 zorder=6)
+    # 일목균형표
     add_ichimoku(axp, d)
 
     # 캔들
@@ -208,15 +231,16 @@ def draw(df, code, name, asof, window=120, notes=None, info=None):
         lo, hi = min(r["open"], r["close"]), max(r["open"], r["close"])
         axp.add_patch(plt.Rectangle((i - w/2, lo), w, max(hi - lo, (r["high"]-r["low"])*0.004 or 1),
                                     facecolor=col, edgecolor=col, lw=0.4, zorder=4))
-    # 이동평균선
+    # 이동평균선 (색·굵기·선종류 개별 적용)
     labels = []
-    for n, col in MA_RAMP.items():
+    for n, style in MA_RAMP.items():
         if f"ma{n}" not in d.columns: continue
         if d[f"ma{n}"].notna().sum() == 0: continue
-        axp.plot(x, d[f"ma{n}"], color=col, lw=1.7, zorder=5, solid_capstyle="round")
+        axp.plot(x, d[f"ma{n}"], color=style["color"], lw=style["lw"],
+                 ls=style["ls"], zorder=5, solid_capstyle="round")
         yv = d[f"ma{n}"].iloc[-1]
-        if pd.notna(yv): labels.append([float(yv), f"{n}일선", col])
-    # 일목균형표 라벨도 우측에 추가
+        if pd.notna(yv): labels.append([float(yv), f"{n}일선", style["color"]])
+    # 일목균형표 라벨
     for col_name, col_c, col_txt in (("tenkan", TENKAN_C, "전환선"), ("kijun", KIJUN_C, "기준선")):
         if col_name in d.columns:
             yv = d[col_name].iloc[-1]
@@ -225,7 +249,7 @@ def draw(df, code, name, asof, window=120, notes=None, info=None):
     axp.yaxis.set_major_formatter(FuncFormatter(won))
     axp.set_xticklabels([])
 
-    # 우측 직접 라벨 — 겹치면 세로로 밀어냄
+    # 우측 라벨 겹침 방지
     lo_, hi_ = axp.get_ylim(); gap = (hi_ - lo_) * 0.030
     labels.sort(key=lambda t: t[0])
     for i in range(1, len(labels)):
@@ -243,11 +267,9 @@ def draw(df, code, name, asof, window=120, notes=None, info=None):
                            f"   ·   거래량 {last['volume']/10000:,.0f}만주", fontsize=10.5, color=INK2)
     fig.text(0.865, 0.962, "차트로 보는 오늘", fontsize=10, color=INK3, ha="right")
 
-    # 위아래 여백 재조정
     y0, y1 = axp.get_ylim(); pad = (y1 - y0) * 0.10
     axp.set_ylim(y0 - pad, y1 + pad)
 
-    # 빈 자리 계산 후 주석/요약 배치
     occ = occupancy(d, axp.get_ylim())
     taken = np.zeros_like(occ)
 
@@ -284,7 +306,18 @@ def draw(df, code, name, asof, window=120, notes=None, info=None):
     axm.plot(x, d["macd"], color="#35176B", lw=1.6, label="MACD")
     axm.plot(x, d["macd_sig"], color="#B45309", lw=1.4, label="시그널")
     axm.axhline(0, color=INK3, lw=0.8)
-    axm.legend(loc="upper left", fontsize=8, frameon=False, ncol=2, labelcolor=INK2)
+    # MACD 크로스 마커
+    if "macd_cross_mark" in d.columns:
+        for i, mark in d["macd_cross_mark"].items():
+            if mark == 1:
+                axm.scatter(i, d["macd"].iloc[i], marker="^", s=60,
+                            color=CROSS_GOLD, edgecolors="white", linewidths=0.8,
+                            zorder=10, label="골든크로스" if i == d[d["macd_cross_mark"]==1].index[0] else "")
+            elif mark == -1:
+                axm.scatter(i, d["macd"].iloc[i], marker="v", s=60,
+                            color=CROSS_DEAD, edgecolors="white", linewidths=0.8,
+                            zorder=10, label="데드크로스" if i == d[d["macd_cross_mark"]==-1].index[0] else "")
+    axm.legend(loc="upper left", fontsize=8, frameon=False, ncol=4, labelcolor=INK2)
     axm.set_xticklabels([]); axm.set_ylabel("MACD", fontsize=9, color=INK2)
     axm.yaxis.set_major_formatter(FuncFormatter(
         lambda v, _: "0" if abs(v) < 1e-9 else (f"{v/10000:,.0f}만" if abs(v) >= 10000 else f"{v:,.0f}")))
@@ -343,7 +376,6 @@ def summarize(df, code, name, asof):
         "drawdown_from_52w_high_pct": round((r["close"]/hi52-1)*100, 1),
         "recent60_high": int(win60["high"].max()), "recent60_low": int(win60["low"].min()),
         "recent120_high": int(win120["high"].max()), "recent120_low": int(win120["low"].min()),
-        # 일목균형표
         "tenkan": None if pd.isna(r["tenkan"]) else int(round(r["tenkan"])),
         "kijun": None if pd.isna(r["kijun"]) else int(round(r["kijun"])),
         "senkou1": None if pd.isna(r["senkou1"]) else int(round(r["senkou1"])),
@@ -358,7 +390,6 @@ def build(code, name, asof_cut=None):
     asof = df["date"].iloc[-1].strftime("%Y.%m.%d")
     s = summarize(df, code, name, asof)
 
-    # 데이터에서 뽑은 주석 (하드코딩 금지)
     d = df.tail(120).reset_index(drop=True)
     ih, il = int(d["high"].idxmax()), int(d["low"].idxmin())
     notes = [
@@ -383,7 +414,6 @@ def build(code, name, asof_cut=None):
             f"MACD : {'골든크로스' if s['macd_cross']=='golden' else '데드크로스'} "
             f"{s['macd_cross_days_ago']}거래일 전")
     png = draw(df, code, name, asof, notes=notes, info=info)
-    # 날짜를 박은 사본도 남긴다 — 블로그 본문에 링크한 이미지가 나중에 덮어써지지 않도록
     dated = f"{CHARTS}/{code}_{asof.replace('.', '')}.png"
     shutil.copyfile(png, dated)
     with open(f"{ANALYSIS}/{code}.json", "w") as f:
@@ -404,7 +434,7 @@ if __name__ == "__main__":
     for w in watch:
         if w["code"] not in seen:
             todo.append((w["code"], w["name"], False)); seen.add(w["code"])
-    if not todo:   # 로컬 테스트용
+    if not todo:
         todo = [(os.path.basename(f)[:6], os.path.basename(f)[:6], True)
                 for f in sorted(glob.glob(f"{BASE}/data/*.csv"))]
 
@@ -418,7 +448,6 @@ if __name__ == "__main__":
             failed.append({"code": code, "name": name, "error": str(e)})
             print(f"[fail] {name} {code}: {e}", file=sys.stderr)
 
-    # 누적 수익률
     perf = []
     for w in watch:
         r = results.get(w["code"])
