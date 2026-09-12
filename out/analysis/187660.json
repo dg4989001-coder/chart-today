@@ -15,8 +15,6 @@
   "ma5": 7238,
   "ma10": 6178,
   "ma20": 5001,
-  "ma60": 4755,
-  "ma120": 7378,
   "ma240": 6085
  },
  "arrangement": "단기 정배열(중장기 미정렬)",
@@ -35,5 +33,9 @@
  "recent60_high": 9100,
  "recent60_low": 3195,
  "recent120_high": 17912,
- "recent120_low": 3195
+ "recent120_low": 3195,
+ "tenkan": 6695,
+ "kijun": 6148,
+ "senkou1": 4752,
+ "senkou2": 6587
 }

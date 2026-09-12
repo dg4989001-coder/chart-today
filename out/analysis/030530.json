@@ -15,8 +15,6 @@
   "ma5": 22750,
   "ma10": 20752,
   "ma20": 20237,
-  "ma60": 19416,
-  "ma120": 24435,
   "ma240": 27717
  },
  "arrangement": "혼조",
@@ -35,5 +33,9 @@
  "recent60_high": 28350,
  "recent60_low": 13210,
  "recent120_high": 37300,
- "recent120_low": 13210
+ "recent120_low": 13210,
+ "tenkan": 20730,
+ "kijun": 20755,
+ "senkou1": 17455,
+ "senkou2": 23230
 }
