@@ -26,15 +26,19 @@ os.makedirs(ANALYSIS, exist_ok=True)
 
 # ── 색 ───────────────────────────────────────────────────────────
 UP, DOWN = "#D32F2F", "#1565C0"          # 한국 관행: 상승 적, 하락 청
-MA_RAMP = {5: "#9B7EDE", 20: "#7A4FD0", 60: "#5B2CA8", 240: "#35176B"}  # 순차 램프(기간=크기)
+MA_RAMP = {5: "#9B7EDE", 10: "#7A4FD0", 20: "#5B2CA8", 240: "#35176B"}  # 5·10·20·240
 INK, INK2, INK3 = "#1a1a1a", "#5b5b5b", "#8a8a8a"
 GRID, SURF = "#e8e8e8", "#ffffff"
 ACC = "#B45309"                           # 주석 강조
+TENKAN_C, KIJUN_C = "#E91E63", "#1A1A1A"  # 일목균형표 전환선/기준선
+CLOUD_UP, CLOUD_DN = "#FF6B6B", "#4A90E2"  # 구름대 양운/음운
+VP_C = "#B0B0B0"                          # 매물대 회색
 
 # ── 지표 ──────────────────────────────────────────────────────────
 def add_indicators(df):
     c = df["close"]
-    for n in (5, 10, 20, 60, 120, 240):
+    h, l = df["high"], df["low"]
+    for n in (5, 10, 20, 240):
         df[f"ma{n}"] = c.rolling(n).mean()
     e12, e26 = c.ewm(span=12, adjust=False).mean(), c.ewm(span=26, adjust=False).mean()
     df["macd"] = e12 - e26
@@ -46,8 +50,14 @@ def add_indicators(df):
     df["rsi"] = 100 - 100 / (1 + gain / loss.replace(0, np.nan))
     df["vol_ma20"] = df["volume"].rolling(20).mean()
     # "평소의 몇 배냐"는 당일을 뺀 직전 20거래일 평균으로 잰다.
-    # 당일을 평균에 넣으면 급등일의 거래량이 분모를 스스로 끌어올려 배수가 희석된다.
     df["vol_ma20_prev"] = df["volume"].rolling(20).mean().shift(1)
+    # 일목균형표
+    tenkan = (h.rolling(9).max() + l.rolling(9).min()) / 2
+    kijun = (h.rolling(26).max() + l.rolling(26).min()) / 2
+    df["tenkan"] = tenkan
+    df["kijun"] = kijun
+    df["senkou1"] = ((tenkan + kijun) / 2).shift(26)
+    df["senkou2"] = ((h.rolling(52).max() + l.rolling(52).min()) / 2).shift(26)
     return df
 
 def weekly_ma20(df):
@@ -65,15 +75,15 @@ def last_cross(fast, slow):
     return None, None
 
 def arrangement(r):
-    """이동평균선 배열 판정"""
-    v = [r["close"], r["ma5"], r["ma20"], r["ma60"], r["ma120"], r["ma240"]]
+    """이동평균선 배열 판정 (5·10·20·240 기준)"""
+    v = [r["close"], r["ma5"], r["ma10"], r["ma20"], r["ma240"]]
     if any(pd.isna(x) for x in v):
         return "판정불가"
     if all(v[i] > v[i+1] for i in range(len(v)-1)):
         return "정배열"
     if all(v[i] < v[i+1] for i in range(len(v)-1)):
         return "역배열"
-    short_ok = r["close"] > r["ma5"] > r["ma20"]
+    short_ok = r["close"] > r["ma5"] > r["ma10"] > r["ma20"]
     return "단기 정배열(중장기 미정렬)" if short_ok else "혼조"
 
 # ── 차트 ──────────────────────────────────────────────────────────
@@ -97,15 +107,15 @@ def occupancy(d, ylim):
         occ[min(r0, r1):max(r0, r1) + 1, col] = True
     for i, r in d.iterrows():
         mark(int(i / n * NC), r["low"], r["high"])
-    for k in (5, 20, 60, 240):
+    for k in (5, 10, 20, 240):
+        if f"ma{k}" not in d.columns: continue
         s = d[f"ma{k}"]
         for i, v in s.items():
             if pd.notna(v): mark(int(i / n * NC), v, v)
     return occ
 
 def find_slot(occ, w, h, prefer, taken, ignore_occ=False):
-    """폭 w·높이 h(격자 단위) 빈 자리를 prefer(축 비율)에 가장 가깝게.
-    ignore_occ=True면 차트선 위는 허용하되 다른 말풍선과는 절대 겹치지 않음."""
+    """폭 w·높이 h(격자 단위) 빈 자리를 prefer(축 비율)에 가장 가깝게."""
     pc, pr = prefer[0] * NC, prefer[1] * NR
     best, bestd = None, 1e9
     w = min(w, NC); h = min(h, NR)
@@ -119,6 +129,47 @@ def find_slot(occ, w, h, prefer, taken, ignore_occ=False):
     r, c = best
     taken[max(0, r-1):r+h+1, max(0, c-1):c+w+1] = True
     return ((c + w/2) / NC, (r + h/2) / NR)
+
+def add_volume_profile(ax, d, bins=40, width_frac=0.10):
+    """가격대별 누적 거래량을 왼쪽에 가로 막대로 표시 (매물대)"""
+    lo, hi = float(d["low"].min()), float(d["high"].max())
+    if hi <= lo:
+        return
+    edges = np.linspace(lo, hi, bins + 1)
+    profile = np.zeros(bins)
+    for _, r in d.iterrows():
+        b_lo = int(np.clip((r["low"] - lo) / (hi - lo) * bins, 0, bins - 1))
+        b_hi = int(np.clip((r["high"] - lo) / (hi - lo) * bins, 0, bins - 1))
+        n_bands = b_hi - b_lo + 1
+        profile[b_lo:b_hi + 1] += r["volume"] / n_bands
+    if profile.max() <= 0:
+        return
+    profile = profile / profile.max()
+    trans = ax.get_yaxis_transform()  # x: axes fraction, y: data coords
+    for i, v in enumerate(profile):
+        y_center = (edges[i] + edges[i + 1]) / 2
+        h = (edges[i + 1] - edges[i]) * 0.82
+        ax.barh(y_center, v * width_frac, height=h, left=0.005,
+                color=VP_C, alpha=0.35, zorder=0, transform=trans)
+
+def add_ichimoku(ax, d):
+    """일목균형표 — 전환선, 기준선, 구름대 (선행스팬 1·2)"""
+    x = np.arange(len(d))
+    tenkan = d["tenkan"]
+    kijun = d["kijun"]
+    senkou1 = d["senkou1"]
+    senkou2 = d["senkou2"]
+    # 구름대 (양운: 빨강, 음운: 파랑)
+    valid = senkou1.notna() & senkou2.notna()
+    up_mask = valid & (senkou1 >= senkou2)
+    dn_mask = valid & (senkou1 < senkou2)
+    ax.fill_between(x, senkou1, senkou2, where=up_mask,
+                    color=CLOUD_UP, alpha=0.15, zorder=1, interpolate=True)
+    ax.fill_between(x, senkou1, senkou2, where=dn_mask,
+                    color=CLOUD_DN, alpha=0.15, zorder=1, interpolate=True)
+    # 전환선, 기준선
+    ax.plot(x, tenkan, color=TENKAN_C, lw=1.2, zorder=6, alpha=0.85)
+    ax.plot(x, kijun, color=KIJUN_C, lw=1.2, zorder=6, alpha=0.85)
 
 def draw(df, code, name, asof, window=120, notes=None, info=None):
     d = df.tail(window).reset_index(drop=True)
@@ -137,6 +188,18 @@ def draw(df, code, name, asof, window=120, notes=None, info=None):
         ax.set_axisbelow(True)
         ax.margins(x=0.01)
 
+    # y축 범위 먼저 잡기 (매물대/구름대/캔들 모두 반영)
+    ymin = float(min(d["low"].min(), d["ma240"].min() if d["ma240"].notna().any() else d["low"].min()))
+    ymax = float(max(d["high"].max(), d["ma240"].max() if d["ma240"].notna().any() else d["high"].max()))
+    pad = (ymax - ymin) * 0.08
+    axp.set_ylim(ymin - pad, ymax + pad)
+
+    # 매물대 (배경, zorder=0)
+    add_volume_profile(axp, d, bins=40, width_frac=0.10)
+
+    # 일목균형표 (구름대 zorder=1, 전환선/기준선 zorder=6)
+    add_ichimoku(axp, d)
+
     # 캔들
     w = 0.62
     for i, r in d.iterrows():
@@ -148,22 +211,29 @@ def draw(df, code, name, asof, window=120, notes=None, info=None):
     # 이동평균선
     labels = []
     for n, col in MA_RAMP.items():
+        if f"ma{n}" not in d.columns: continue
         if d[f"ma{n}"].notna().sum() == 0: continue
         axp.plot(x, d[f"ma{n}"], color=col, lw=1.7, zorder=5, solid_capstyle="round")
         yv = d[f"ma{n}"].iloc[-1]
         if pd.notna(yv): labels.append([float(yv), f"{n}일선", col])
+    # 일목균형표 라벨도 우측에 추가
+    for col_name, col_c, col_txt in (("tenkan", TENKAN_C, "전환선"), ("kijun", KIJUN_C, "기준선")):
+        if col_name in d.columns:
+            yv = d[col_name].iloc[-1]
+            if pd.notna(yv):
+                labels.append([float(yv), col_txt, col_c])
     axp.yaxis.set_major_formatter(FuncFormatter(won))
     axp.set_xticklabels([])
 
     # 우측 직접 라벨 — 겹치면 세로로 밀어냄
-    lo_, hi_ = axp.get_ylim(); gap = (hi_ - lo_) * 0.035
+    lo_, hi_ = axp.get_ylim(); gap = (hi_ - lo_) * 0.030
     labels.sort(key=lambda t: t[0])
     for i in range(1, len(labels)):
         if labels[i][0] - labels[i-1][0] < gap:
             labels[i][0] = labels[i-1][0] + gap
     for yv, txt, col in labels:
         axp.annotate(txt, xy=(x[-1], yv), xytext=(8, 0), textcoords="offset points",
-                     color=col, fontsize=9.5, va="center", fontweight="bold", annotation_clip=False)
+                     color=col, fontsize=9, va="center", fontweight="bold", annotation_clip=False)
 
     last = d.iloc[-1]
     chg = (last["close"] / d.iloc[-2]["close"] - 1) * 100
@@ -173,7 +243,7 @@ def draw(df, code, name, asof, window=120, notes=None, info=None):
                            f"   ·   거래량 {last['volume']/10000:,.0f}만주", fontsize=10.5, color=INK2)
     fig.text(0.865, 0.962, "차트로 보는 오늘", fontsize=10, color=INK3, ha="right")
 
-    # 위아래 여백을 만들어 주석 자리를 확보
+    # 위아래 여백 재조정
     y0, y1 = axp.get_ylim(); pad = (y1 - y0) * 0.10
     axp.set_ylim(y0 - pad, y1 + pad)
 
@@ -260,7 +330,7 @@ def summarize(df, code, name, asof):
         "vol_ratio": None if pd.isna(r["vol_ma20_prev"]) or r["vol_ma20_prev"] == 0
                      else round(r["volume"]/r["vol_ma20_prev"], 1),
         "ma": {f"ma{n}": (None if pd.isna(r[f"ma{n}"]) else int(round(r[f"ma{n}"])))
-               for n in (5, 10, 20, 60, 120, 240)},
+               for n in (5, 10, 20, 240)},
         "arrangement": arrangement(r),
         "vs_ma240_pct": None if pd.isna(r["ma240"]) else round((r["close"]/r["ma240"]-1)*100, 1),
         "weekly_ma20": None if math.isnan(wma20) else int(round(wma20)),
@@ -273,6 +343,11 @@ def summarize(df, code, name, asof):
         "drawdown_from_52w_high_pct": round((r["close"]/hi52-1)*100, 1),
         "recent60_high": int(win60["high"].max()), "recent60_low": int(win60["low"].min()),
         "recent120_high": int(win120["high"].max()), "recent120_low": int(win120["low"].min()),
+        # 일목균형표
+        "tenkan": None if pd.isna(r["tenkan"]) else int(round(r["tenkan"])),
+        "kijun": None if pd.isna(r["kijun"]) else int(round(r["kijun"])),
+        "senkou1": None if pd.isna(r["senkou1"]) else int(round(r["senkou1"])),
+        "senkou2": None if pd.isna(r["senkou2"]) else int(round(r["senkou2"])),
     }
     return s
 
