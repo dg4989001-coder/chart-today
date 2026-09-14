@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-차트로 보는 오늘 — 일일 데이터 수집기 (GitHub Actions에서 실행)
+차트로 보는 오늘 — 일일 데이터 수집기
 
 데이터 경로:
-  - 스냅샷: 네이버 새 API(m.stock.naver.com) 우선, 실패 시 pykrx
+  - 스냅샷: 네이버 새 API
   - 일봉: 네이버 일봉 API 우선 → 야후 → pykrx
+  - 뉴스: 네이버페이증권 종목 뉴스 API (picked 종목만)
 
 종목 선정: 『언덕을 넘을 때 산다』 매수 전 체크리스트 기반 필터
-  - 1차: 오늘 기준 240일선 위 + 기준선 위 + 정배열 + 이격 50% 이내 + 5일선 위
-  - 2차: 부족하면 전일/전전일 필터 통과 + 오늘 눌림(-10~0%) 종목으로 보충
 """
 from __future__ import annotations
 import ast, io, json, os, re, sys, time, traceback
@@ -38,7 +37,6 @@ def today_kst() -> dt.date:
 
 
 def add_indicators(df):
-    """책 이론 필터용 지표 (이평선 + 일목 전환선/기준선)"""
     c = df["close"]
     h, l = df["high"], df["low"]
     for n in (5, 10, 20, 240):
@@ -51,7 +49,7 @@ def add_indicators(df):
 
 
 # ────────────────────────────────────────────────────────────
-# 1. 스냅샷 — 네이버 API
+# 스냅샷 — 네이버 API
 # ────────────────────────────────────────────────────────────
 NAVER_API = "https://m.stock.naver.com/api/json/sise/siseListJson.nhn"
 
@@ -90,12 +88,9 @@ def _parse_items(items: list[dict], market: str) -> list[dict]:
 
 def snapshot_naver() -> pd.DataFrame:
     combos = [
-        ("market_sum", 0, "KOSPI"),
-        ("market_sum", 1, "KOSDAQ"),
-        ("quant",      0, "KOSPI"),
-        ("quant",      1, "KOSDAQ"),
-        ("rise",       0, "KOSPI"),
-        ("rise",       1, "KOSDAQ"),
+        ("market_sum", 0, "KOSPI"), ("market_sum", 1, "KOSDAQ"),
+        ("quant",      0, "KOSPI"), ("quant",      1, "KOSDAQ"),
+        ("rise",       0, "KOSPI"), ("rise",       1, "KOSDAQ"),
     ]
     rows = []
     for menu, sosok, mkt in combos:
@@ -138,7 +133,7 @@ def market_snapshot(day: str):
 
 
 # ────────────────────────────────────────────────────────────
-# 2. 일봉 수집 — 네이버 우선
+# 일봉 수집
 # ────────────────────────────────────────────────────────────
 def daily_naver(code: str, day: dt.date) -> pd.DataFrame:
     start = (day - dt.timedelta(days=760)).strftime("%Y%m%d")
@@ -206,10 +201,46 @@ def daily(code: str, market: str | None, day: dt.date) -> pd.DataFrame:
 
 
 # ────────────────────────────────────────────────────────────
-# 3. 책 이론 필터 + 종목 선정
+# 뉴스 수집 — 네이버페이증권 종목 뉴스 API
+# ────────────────────────────────────────────────────────────
+def fetch_news(code: str, page_size: int = 5, max_age_days: int = 3) -> list[dict]:
+    """종목 뉴스 (최근 max_age_days 이내, 최신순)"""
+    url = f"https://m.stock.naver.com/api/news/stock/{code}?pageSize={page_size}&page=1"
+    try:
+        r = requests.get(url, headers=UA, timeout=10)
+        j = r.json()
+        cutoff = dt.datetime.now(KST) - dt.timedelta(days=max_age_days)
+        seen, news = set(), []
+        for section in j:
+            for it in section.get("items", []):
+                nid = it.get("id")
+                if not nid or nid in seen:
+                    continue
+                seen.add(nid)
+                raw_dt = it.get("datetime", "")
+                try:
+                    ndt = dt.datetime.strptime(raw_dt, "%Y%m%d%H%M").replace(tzinfo=KST)
+                except Exception:
+                    ndt = None
+                if ndt and ndt < cutoff:
+                    continue
+                news.append({
+                    "title": it.get("title", "").strip(),
+                    "office": it.get("officeName", "").strip(),
+                    "datetime": raw_dt,
+                    "url": it.get("mobileNewsUrl", "").strip(),
+                })
+        news.sort(key=lambda x: x["datetime"], reverse=True)
+        return news[:page_size]
+    except Exception as e:
+        print(f"[warn] news {code}: {e}", file=sys.stderr)
+        return []
+
+
+# ────────────────────────────────────────────────────────────
+# 책 이론 필터 + 종목 선정
 # ────────────────────────────────────────────────────────────
 def check_book_filter(df_d: pd.DataFrame, asof_idx: int = -1):
-    """df_d에 add_indicators 적용됐다고 가정. asof_idx 기준 책 이론 필터 통과 여부."""
     n = len(df_d)
     if asof_idx < 0:
         asof_idx = n + asof_idx
@@ -228,7 +259,6 @@ def check_book_filter(df_d: pd.DataFrame, asof_idx: int = -1):
 
 
 def pick(df: pd.DataFrame, day: dt.date) -> pd.DataFrame:
-    """책 이론 필터로 종목 선정. 부족하면 전일/전전일 통과 + 오늘 눌림으로 보충."""
     d = df.dropna(subset=["value"]).copy()
     d = d[d["value"] >= MIN_VALUE]
     bad = d["name"].str.contains(r"우$|우[ABC]$|스팩|제\d+호|KODEX|TIGER|KBSTAR|ARIRANG|"
@@ -244,15 +274,11 @@ def pick(df: pd.DataFrame, day: dt.date) -> pd.DataFrame:
         small.head((N_TOTAL - N_LARGE) * 15),
     ]).drop_duplicates("code").reset_index(drop=True)
 
-    # ── 1차: 오늘 기준 필터 통과
-    passed = []
-    already = set()
-    cached = {}
+    passed, already, cached = [], set(), {}
     for _, r in cand.iterrows():
         code = str(r["code"]).zfill(6)
         try:
-            df_d = daily(code, r.get("market"), day)
-            df_d = add_indicators(df_d)
+            df_d = add_indicators(daily(code, r.get("market"), day))
             cached[code] = df_d
             ok, _ = check_book_filter(df_d, -1)
             if ok:
@@ -265,27 +291,20 @@ def pick(df: pd.DataFrame, day: dt.date) -> pd.DataFrame:
 
     print(f"[ok] 1차 필터 통과: {len(passed)}종목")
 
-    # ── 2차: 부족하면 전일/전전일 통과 + 오늘 눌림으로 보충
     if len(passed) < N_TOTAL:
         needed = N_TOTAL - len(passed)
-        print(f"[info] {needed}종목 부족 → 눌림 관찰 대상으로 보충 시도")
-        fallback_cand = d.sort_values("value", ascending=False).head(50)
-        for _, r in fallback_cand.iterrows():
+        print(f"[info] {needed}종목 부족 → 눌림 관찰 대상 보충 시도")
+        for _, r in d.sort_values("value", ascending=False).head(50).iterrows():
             if len(passed) >= N_TOTAL: break
             code = str(r["code"]).zfill(6)
             if code in already: continue
             try:
-                df_d = cached.get(code)
-                if df_d is None:
-                    df_d = add_indicators(daily(code, r.get("market"), day))
-                    cached[code] = df_d
-                # 오늘 눌림 조건: 등락률 -10% ~ 0%
+                df_d = cached.get(code) or add_indicators(daily(code, r.get("market"), day))
+                cached[code] = df_d
                 if not (-10 <= r["chg"] <= 0): continue
-                # 오늘도 240일선 위 + 정배열 유지
                 last = df_d.iloc[-1]
                 if pd.isna(last["ma240"]) or last["close"] <= last["ma240"]: continue
                 if not (last["ma5"] > last["ma10"] > last["ma20"]): continue
-                # 어제/전전일 기준 필터 통과 여부
                 for back in (1, 2):
                     ok, _ = check_book_filter(df_d, -1 - back)
                     if ok:
@@ -297,14 +316,11 @@ def pick(df: pd.DataFrame, day: dt.date) -> pd.DataFrame:
                 continue
 
     if not passed:
-        print("[warn] 필터 통과 종목이 없습니다", file=sys.stderr)
+        print("[warn] 필터 통과 종목 없음", file=sys.stderr)
         return pd.DataFrame(columns=df.columns)
-
     return pd.DataFrame(passed).reset_index(drop=True)
 
 
-# ────────────────────────────────────────────────────────────
-# 4. 품질 검사
 # ────────────────────────────────────────────────────────────
 def quality_problem(df: pd.DataFrame) -> str | None:
     if len(df) < MIN_HISTORY:
@@ -349,11 +365,13 @@ def main():
         if why:
             rejected.append({"code": code, "name": r["name"], "reason": why}); continue
         df.to_csv(f"{DATA}/{code}.csv", index=False, date_format="%Y-%m-%d")
+        news = fetch_news(code)
+        print(f"[ok] {code} {r['name']} {len(df)}행 / 뉴스 {len(news)}건")
         picked.append({"code": code, "name": r["name"],
                        "market": r.get("market"), "chg": float(r["chg"]),
                        "value": None if pd.isna(r.get("value")) else float(r["value"]),
-                       "mcap": None if pd.isna(r.get("mcap")) else float(r["mcap"])})
-        print(f"[ok] {code} {r['name']} {len(df)}행 저장")
+                       "mcap": None if pd.isna(r.get("mcap")) else float(r["mcap"]),
+                       "news": news})
 
     watch = []
     wf = f"{ROOT}/watchlist.json"
