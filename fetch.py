@@ -6,6 +6,10 @@
 데이터 경로:
   - 스냅샷: 네이버 새 API(m.stock.naver.com) 우선, 실패 시 pykrx
   - 일봉: 네이버 일봉 API 우선 → 야후 → pykrx
+
+종목 선정: 『언덕을 넘을 때 산다』 매수 전 체크리스트 기반 필터
+  - 1차: 오늘 기준 240일선 위 + 기준선 위 + 정배열 + 이격 50% 이내 + 5일선 위
+  - 2차: 부족하면 전일/전전일 필터 통과 + 오늘 눌림(-10~0%) 종목으로 보충
 """
 from __future__ import annotations
 import ast, io, json, os, re, sys, time, traceback
@@ -31,6 +35,19 @@ MIN_HISTORY  = 300
 
 def today_kst() -> dt.date:
     return dt.datetime.now(KST).date()
+
+
+def add_indicators(df):
+    """책 이론 필터용 지표 (이평선 + 일목 전환선/기준선)"""
+    c = df["close"]
+    h, l = df["high"], df["low"]
+    for n in (5, 10, 20, 240):
+        df[f"ma{n}"] = c.rolling(n).mean()
+    tenkan = (h.rolling(9).max() + l.rolling(9).min()) / 2
+    kijun = (h.rolling(26).max() + l.rolling(26).min()) / 2
+    df["tenkan"] = tenkan
+    df["kijun"] = kijun
+    return df
 
 
 # ────────────────────────────────────────────────────────────
@@ -121,26 +138,7 @@ def market_snapshot(day: str):
 
 
 # ────────────────────────────────────────────────────────────
-# 2. 종목 선정
-# ────────────────────────────────────────────────────────────
-def pick(df: pd.DataFrame) -> pd.DataFrame:
-    d = df.dropna(subset=["value"]).copy()
-    d = d[d["value"] >= MIN_VALUE]
-    bad = d["name"].str.contains(r"우$|우[ABC]$|스팩|제\d+호|KODEX|TIGER|KBSTAR|ARIRANG|"
-                                 r"ETN|레버리지|인버스|선물", regex=True, na=False)
-    d = d[~bad]
-
-    large = d[d["mcap"].fillna(0) >= LARGE_CAP_KR].sort_values("value", ascending=False)
-    # 중소형주: 등락률 -10%~+20% 범위 + 거래대금 순 (상한가 추격 방지)
-    mid = d[(d["mcap"].fillna(0) < LARGE_CAP_KR) & (d["chg"] >= -10) & (d["chg"] <= 20)]
-    small = mid.sort_values("value", ascending=False)
-
-    chosen = pd.concat([large.head(N_LARGE), small.head(N_TOTAL - N_LARGE)])
-    return chosen.reset_index(drop=True)
-
-
-# ────────────────────────────────────────────────────────────
-# 3. 일봉 수집 — 네이버 우선
+# 2. 일봉 수집 — 네이버 우선
 # ────────────────────────────────────────────────────────────
 def daily_naver(code: str, day: dt.date) -> pd.DataFrame:
     start = (day - dt.timedelta(days=760)).strftime("%Y%m%d")
@@ -208,6 +206,104 @@ def daily(code: str, market: str | None, day: dt.date) -> pd.DataFrame:
 
 
 # ────────────────────────────────────────────────────────────
+# 3. 책 이론 필터 + 종목 선정
+# ────────────────────────────────────────────────────────────
+def check_book_filter(df_d: pd.DataFrame, asof_idx: int = -1):
+    """df_d에 add_indicators 적용됐다고 가정. asof_idx 기준 책 이론 필터 통과 여부."""
+    n = len(df_d)
+    if asof_idx < 0:
+        asof_idx = n + asof_idx
+    if asof_idx < 0 or asof_idx >= n or asof_idx < 240:
+        return False, None
+    row = df_d.iloc[asof_idx]
+    if pd.isna(row["ma240"]) or pd.isna(row["kijun"]) or pd.isna(row["ma20"]):
+        return False, None
+    if row["close"] <= row["ma240"]: return False, None
+    if row["close"] <= row["kijun"]: return False, None
+    if not (row["ma5"] > row["ma10"] > row["ma20"]): return False, None
+    vs_ma240 = (row["close"] / row["ma240"] - 1) * 100
+    if vs_ma240 > 50: return False, None
+    if row["close"] < row["ma5"]: return False, None
+    return True, row
+
+
+def pick(df: pd.DataFrame, day: dt.date) -> pd.DataFrame:
+    """책 이론 필터로 종목 선정. 부족하면 전일/전전일 통과 + 오늘 눌림으로 보충."""
+    d = df.dropna(subset=["value"]).copy()
+    d = d[d["value"] >= MIN_VALUE]
+    bad = d["name"].str.contains(r"우$|우[ABC]$|스팩|제\d+호|KODEX|TIGER|KBSTAR|ARIRANG|"
+                                 r"ETN|레버리지|인버스|선물", regex=True, na=False)
+    d = d[~bad]
+
+    large = d[d["mcap"].fillna(0) >= LARGE_CAP_KR].sort_values("value", ascending=False)
+    mid = d[(d["mcap"].fillna(0) < LARGE_CAP_KR) & (d["chg"] >= -10) & (d["chg"] <= 20)]
+    small = mid.sort_values("value", ascending=False)
+
+    cand = pd.concat([
+        large.head(N_LARGE * 8),
+        small.head((N_TOTAL - N_LARGE) * 15),
+    ]).drop_duplicates("code").reset_index(drop=True)
+
+    # ── 1차: 오늘 기준 필터 통과
+    passed = []
+    already = set()
+    cached = {}
+    for _, r in cand.iterrows():
+        code = str(r["code"]).zfill(6)
+        try:
+            df_d = daily(code, r.get("market"), day)
+            df_d = add_indicators(df_d)
+            cached[code] = df_d
+            ok, _ = check_book_filter(df_d, -1)
+            if ok:
+                passed.append(r); already.add(code)
+        except Exception as e:
+            print(f"[warn] pick {r['name']}: {e}", file=sys.stderr)
+            continue
+        if len(passed) >= N_TOTAL:
+            break
+
+    print(f"[ok] 1차 필터 통과: {len(passed)}종목")
+
+    # ── 2차: 부족하면 전일/전전일 통과 + 오늘 눌림으로 보충
+    if len(passed) < N_TOTAL:
+        needed = N_TOTAL - len(passed)
+        print(f"[info] {needed}종목 부족 → 눌림 관찰 대상으로 보충 시도")
+        fallback_cand = d.sort_values("value", ascending=False).head(50)
+        for _, r in fallback_cand.iterrows():
+            if len(passed) >= N_TOTAL: break
+            code = str(r["code"]).zfill(6)
+            if code in already: continue
+            try:
+                df_d = cached.get(code)
+                if df_d is None:
+                    df_d = add_indicators(daily(code, r.get("market"), day))
+                    cached[code] = df_d
+                # 오늘 눌림 조건: 등락률 -10% ~ 0%
+                if not (-10 <= r["chg"] <= 0): continue
+                # 오늘도 240일선 위 + 정배열 유지
+                last = df_d.iloc[-1]
+                if pd.isna(last["ma240"]) or last["close"] <= last["ma240"]: continue
+                if not (last["ma5"] > last["ma10"] > last["ma20"]): continue
+                # 어제/전전일 기준 필터 통과 여부
+                for back in (1, 2):
+                    ok, _ = check_book_filter(df_d, -1 - back)
+                    if ok:
+                        passed.append(r); already.add(code)
+                        print(f"[info] 눌림 보충: {r['name']} ({back}일 전 통과, 오늘 {r['chg']:+.2f}%)")
+                        break
+            except Exception as e:
+                print(f"[warn] fallback {r['name']}: {e}", file=sys.stderr)
+                continue
+
+    if not passed:
+        print("[warn] 필터 통과 종목이 없습니다", file=sys.stderr)
+        return pd.DataFrame(columns=df.columns)
+
+    return pd.DataFrame(passed).reset_index(drop=True)
+
+
+# ────────────────────────────────────────────────────────────
 # 4. 품질 검사
 # ────────────────────────────────────────────────────────────
 def quality_problem(df: pd.DataFrame) -> str | None:
@@ -232,8 +328,11 @@ def main():
     snap, source = market_snapshot(ymd)
     snap.to_csv(f"{OUT}/snapshot.csv", index=False)
 
-    cands = pick(snap)
-    print("\n[선정 후보]\n", cands[["code", "name", "chg", "value", "mcap"]].to_string())
+    cands = pick(snap, day)
+    if len(cands):
+        print("\n[선정 후보]\n", cands[["code", "name", "chg", "value", "mcap"]].to_string())
+    else:
+        print("\n[선정 후보] 없음")
 
     picked, rejected = [], []
     for _, r in cands.iterrows():
