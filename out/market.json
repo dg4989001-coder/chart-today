@@ -1,47 +1,49 @@
 {
- "date": "2026-09-11",
+ "date": "2026-09-14",
  "source": "naver",
  "picked": [
   {
    "code": "000660",
    "name": "SK하이닉스",
    "market": "KOSPI",
-   "chg": -2.21,
-   "value": 4748333316000.0,
-   "mcap": 1323652200000000.0
+   "chg": -6.35,
+   "value": 6353333814000.0,
+   "mcap": 1239645500000000.0
+  },
+  {
+   "code": "069540",
+   "name": "빛과전자",
+   "market": "KOSDAQ",
+   "chg": 11.76,
+   "value": 317333908650.0,
+   "mcap": 487400000000.0
+  },
+  {
+   "code": "356680",
+   "name": "엑스게이트",
+   "market": "KOSDAQ",
+   "chg": 7.1,
+   "value": 277299690000.0,
+   "mcap": 490900000000.0
   },
   {
    "code": "001820",
    "name": "삼화콘덴서",
    "market": "KOSPI",
-   "chg": 18.76,
-   "value": 541155533400.0,
-   "mcap": 1428300000000.0
+   "chg": 1.31,
+   "value": 223137460800.0,
+   "mcap": 1447000000000.0
   },
   {
-   "code": "036930",
-   "name": "주성엔지니어링",
+   "code": "010170",
+   "name": "대한광통신",
    "market": "KOSDAQ",
-   "chg": -5.43,
-   "value": 358764802000.0,
-   "mcap": 9714600000000.0
-  },
-  {
-   "code": "024060",
-   "name": "흥구석유",
-   "market": "KOSDAQ",
-   "chg": 0.69,
-   "value": 202367858250.0,
-   "mcap": 219200000000.0
+   "chg": 2.4,
+   "value": 179018675640.0,
+   "mcap": 2253000000000.0
   }
  ],
- "rejected": [
-  {
-   "code": "386380",
-   "name": "스카이랩스",
-   "reason": "거래일 6일뿐 — 240일선을 그릴 수 없음(신규상장 등)"
-  }
- ],
+ "rejected": [],
  "watchlist": [
   {
    "code": "000660",
@@ -49,8 +51,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-04",
    "intro_close": 1647000,
-   "last_close": 1812000,
-   "last_date": "2026-09-11"
+   "last_close": 1697000,
+   "last_date": "2026-09-14"
   },
   {
    "code": "108490",
@@ -58,8 +60,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 304500,
-   "last_close": 323500,
-   "last_date": "2026-09-11"
+   "last_close": 324500,
+   "last_date": "2026-09-14"
   },
   {
    "code": "030530",
@@ -67,8 +69,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 22500,
-   "last_close": 22350,
-   "last_date": "2026-09-11"
+   "last_close": 21900,
+   "last_date": "2026-09-14"
   },
   {
    "code": "005930",
@@ -76,8 +78,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-07",
    "intro_close": 270000,
-   "last_close": 259500,
-   "last_date": "2026-09-11"
+   "last_close": 249000,
+   "last_date": "2026-09-14"
   },
   {
    "code": "161580",
@@ -85,8 +87,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 33500,
-   "last_close": 32050,
-   "last_date": "2026-09-11"
+   "last_close": 31200,
+   "last_date": "2026-09-14"
   },
   {
    "code": "212560",
@@ -94,8 +96,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 11880,
-   "last_close": 11090,
-   "last_date": "2026-09-11"
+   "last_close": 10530,
+   "last_date": "2026-09-14"
   },
   {
    "code": "036930",
@@ -103,8 +105,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 187200,
-   "last_close": 209000,
-   "last_date": "2026-09-11"
+   "last_close": 206000,
+   "last_date": "2026-09-14"
   },
   {
    "code": "024060",
@@ -112,8 +114,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 14510,
-   "last_close": 14610,
-   "last_date": "2026-09-11"
+   "last_close": 14660,
+   "last_date": "2026-09-14"
   },
   {
    "code": "100590",
@@ -121,8 +123,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 4970,
-   "last_close": 4750,
-   "last_date": "2026-09-11"
+   "last_close": 4785,
+   "last_date": "2026-09-14"
   },
   {
    "code": "187660",
@@ -130,8 +132,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 8300,
-   "last_close": 8290,
-   "last_date": "2026-09-11"
+   "last_close": 8460,
+   "last_date": "2026-09-14"
   },
   {
    "code": "001820",
@@ -139,9 +141,9 @@
    "market": "KOSPI",
    "intro_date": "2026-09-11",
    "intro_close": 137400,
-   "last_close": 137400,
-   "last_date": "2026-09-11"
+   "last_close": 139200,
+   "last_date": "2026-09-14"
   }
  ],
- "generated_at": "2026-09-12T18:29:20.157932+00:00"
+ "generated_at": "2026-09-14T06:59:42.919646+00:00"
 }
