@@ -110,5 +110,19 @@
     "market": "KOSDAQ",
     "intro_date": "2026-09-15",
     "intro_close": 12960
+  },
+  {
+    "code": "052690",
+    "name": "한전기술",
+    "market": "KOSPI",
+    "intro_date": "2026-09-08",
+    "intro_close": 142600
+  },
+  {
+    "code": "004310",
+    "name": "현대약품",
+    "market": "KOSPI",
+    "intro_date": "2026-09-08",
+    "intro_close": 10440
   }
 ]
