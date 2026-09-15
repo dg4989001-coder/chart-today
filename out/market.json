@@ -1,104 +1,141 @@
 {
- "date": "2026-09-14",
+ "date": "2026-09-15",
  "source": "naver",
  "picked": [
-  {
-   "code": "105560",
-   "name": "KB금융",
-   "market": "KOSPI",
-   "chg": 1.85,
-   "value": 195418582800.0,
-   "mcap": 64269400000000.0,
-   "news": [
-    {
-     "title": "“1등에 안주 말라는 메시지… 역량 갖춘 리더 고민”",
-     "office": "동아일보",
-     "datetime": "202609150031",
-     "url": "https://n.news.naver.com/mnews/article/020/0003748058"
-    },
-    {
-     "title": "“국내 1등 안주 않겠다”… 이재근 “KB, 글로벌 금융 도약 목표”",
-     "office": "국민일보",
-     "datetime": "202609150014",
-     "url": "https://n.news.naver.com/mnews/article/005/0001872885"
-    },
-    {
-     "title": "&quot;1등 안주 안 한다… KB금융, AI·디지털 전환 속도 낼 것&quot;",
-     "office": "파이낸셜뉴스",
-     "datetime": "202609141826",
-     "url": "https://n.news.naver.com/mnews/article/014/0005575596"
-    },
-    {
-     "title": "대세론 깬 이재근…금융지주 보장된 연임 없다",
-     "office": "SBS Biz",
-     "datetime": "202609141814",
-     "url": "https://n.news.naver.com/mnews/article/374/0000532840"
-    },
-    {
-     "title": "이재근 &quot;1등 안주 않고, 과감한 변화 이끌 것&quot;",
-     "office": "한국경제",
-     "datetime": "202609141805",
-     "url": "https://n.news.naver.com/mnews/article/015/0005332180"
-    }
-   ]
-  },
-  {
-   "code": "024060",
-   "name": "흥구석유",
-   "market": "KOSDAQ",
-   "chg": 4.38,
-   "value": 163487091250.0,
-   "mcap": 228800000000.0,
-   "news": []
-  },
   {
    "code": "108490",
    "name": "로보티즈",
    "market": "KOSDAQ",
-   "chg": -1.85,
-   "value": 118367810000.0,
-   "mcap": 4656800000000.0,
+   "chg": 0.0,
+   "value": 216650478000.0,
+   "mcap": 4759500000000.0,
    "news": [
     {
-     "title": "&quot;인간처럼 움직여라&quot; … 로봇관절 액추에이터 65조 시장 격돌",
-     "office": "매일경제",
-     "datetime": "202609141800",
-     "url": "https://n.news.naver.com/mnews/article/009/0005735098"
+     "title": "[오후장 체크포인트] 코스피 하단이 단단해졌다 반등의 주인공은 소부...",
+     "office": "SBS Biz",
+     "datetime": "202609151554",
+     "url": "https://n.news.naver.com/mnews/article/374/0000533040"
     },
     {
-     "title": "로봇이 포장하고 화물차는 무인 주행…물류현장 파고든 '피지컬 AI'",
-     "office": "머니투데이",
-     "datetime": "202609141700",
-     "url": "https://n.news.naver.com/mnews/article/008/0005413515"
+     "title": "美 국채금리 상승에 3조 던진 외국인…코스피 하락 마감",
+     "office": "한국경제",
+     "datetime": "202609151544",
+     "url": "https://n.news.naver.com/mnews/article/015/0005332522"
     },
     {
-     "title": "AI 속도조절·美 긴축 경계…코스피 3% 급락해 6680선 마감[시황종합]",
+     "title": "‘코스피 아웃퍼폼’ 코스닥…피지컬AI·2차전지가 뒷받침 [마켓시그...",
+     "office": "서울경제",
+     "datetime": "202609151509",
+     "url": "https://n.news.naver.com/mnews/article/011/0004662041"
+    },
+    {
+     "title": "금리·유가·AI속도 '트리플 악재'…코스피 6600선 '낙폭 확대'[장중시...",
      "office": "뉴스1",
-     "datetime": "202609141642",
-     "url": "https://n.news.naver.com/mnews/article/421/0009169361"
+     "datetime": "202609151444",
+     "url": "https://n.news.naver.com/mnews/article/421/0009171402"
     },
     {
-     "title": "‘애프터마켓이 더 두려워’ 삼전 4%·하닉 6% 급락…저녁에 더 떨어질...",
-     "office": "헤럴드경제",
-     "datetime": "202609141625",
-     "url": "https://n.news.naver.com/mnews/article/016/0002697081"
-    },
-    {
-     "title": "외국인 3.3조 '팔자'…코스피 3%대 급락, 6680선 마감",
-     "office": "아시아경제",
-     "datetime": "202609141613",
-     "url": "https://n.news.naver.com/mnews/article/277/0005816060"
+     "title": "[단독] 레인보우로보틱스, 미국에 생산시설 만든다…&quot;로봇 수출 재개...",
+     "office": "한국경제TV",
+     "datetime": "202609151428",
+     "url": "https://n.news.naver.com/mnews/article/215/0001266027"
     }
    ]
   },
   {
-   "code": "000990",
-   "name": "DB하이텍",
+   "code": "052690",
+   "name": "한전기술",
    "market": "KOSPI",
-   "chg": 5.67,
-   "value": 114276146400.0,
-   "mcap": 4863800000000.0,
+   "chg": 4.05,
+   "value": 177332003000.0,
+   "mcap": 5496000000000.0,
    "news": [
+    {
+     "title": "다시 뛰는 건설株…대미 원전 수주 기대감에 '훨훨'",
+     "office": "매일신문",
+     "datetime": "202609151016",
+     "url": "https://n.news.naver.com/mnews/article/088/0001028493"
+    },
+    {
+     "title": "SK브로드밴드, AI·양자보안으로 사회보장정보원 디지털 전환 지원",
+     "office": "데일리안",
+     "datetime": "202609150853",
+     "url": "https://n.news.naver.com/mnews/article/119/0003132646"
+    },
+    {
+     "title": "“언제부턴지 주식창 안 켜는게 편하네요”...외국인, 하루 3.2조원 왜...",
+     "office": "매일경제",
+     "datetime": "202609141806",
+     "url": "https://n.news.naver.com/mnews/article/009/0005735123"
+    },
+    {
+     "title": "한전기술, 팀코리아 미국 원전시장 진출에 낙수효과 톡톡",
+     "office": "이데일리",
+     "datetime": "202609140759",
+     "url": "https://n.news.naver.com/mnews/article/018/0006368769"
+    },
+    {
+     "title": "7천피 찍고 밀린 코스피 美연준 '금리 결정' 촉각",
+     "office": "머니투데이",
+     "datetime": "202609140300",
+     "url": "https://n.news.naver.com/mnews/article/008/0005413013"
+    }
+   ]
+  },
+  {
+   "code": "004310",
+   "name": "현대약품",
+   "market": "KOSPI",
+   "chg": 1.3,
+   "value": 157167789680.0,
+   "mcap": 323800000000.0,
+   "news": [
+    {
+     "title": "정부, '임신중절 약품' 미프진 도입 추진… 현대약품, 10%대 ↑",
+     "office": "머니투데이",
+     "datetime": "202609150935",
+     "url": "https://n.news.naver.com/mnews/article/008/0005413737"
+    },
+    {
+     "title": "‘옥토버페스트 서울 2026’, 문화비축기지서 화려하게 막 올랐다",
+     "office": "스포츠서울",
+     "datetime": "202609141014",
+     "url": "https://n.news.naver.com/mnews/article/468/0001266099"
+    },
+    {
+     "title": "현대약품 아트엠콘서트, 17일 유다윤 바이올린 리사이틀",
+     "office": "코메디닷컴",
+     "datetime": "202609140842",
+     "url": "https://n.news.naver.com/mnews/article/296/0000104808"
+    }
+   ]
+  },
+  {
+   "code": "036540",
+   "name": "SFA반도체",
+   "market": "KOSDAQ",
+   "chg": 14.21,
+   "value": 147786485000.0,
+   "mcap": 1414400000000.0,
+   "news": [
+    {
+     "title": "&quot;앤트로픽 상장도 노린다&quot;…AI·반도체 ETF 4종 나란히 출격",
+     "office": "한국경제",
+     "datetime": "202609151257",
+     "url": "https://n.news.naver.com/mnews/article/015/0005332445"
+    },
+    {
+     "title": "상위 1%, 삼성전자 보통주 사고 우선주는 ‘차익 실현’ [주식 초고수...",
+     "office": "서울경제",
+     "datetime": "202609151151",
+     "url": "https://n.news.naver.com/mnews/article/011/0004661975"
+    },
+    {
+     "title": "메모리 부족이 부른 증설…후공정도 웃는다[화제의 리포트]",
+     "office": "한경비즈니스",
+     "datetime": "202609141030",
+     "url": "https://n.news.naver.com/mnews/article/050/0000110832"
+    },
     {
      "title": "美 반도체주는 올랐는데…삼성 3%·하닉 6% 급락, 이유는? [칩칩폭폭]",
      "office": "조세일보",
@@ -106,39 +143,52 @@
      "url": "https://n.news.naver.com/mnews/article/123/0002390121"
     },
     {
-     "title": "[투자자 순매수 TOP5] 외국인, 반도체 담다 매도전환…9일부터 사흘 연...",
-     "office": "SBS Biz",
-     "datetime": "202609140834",
-     "url": "https://n.news.naver.com/mnews/article/374/0000532678"
-    },
-    {
-     "title": "반도체주 주춤한 사이…대미투자·중국 AI 수혜주 날았다",
+     "title": "&quot;SFA반도체, 목표가↑…DDR5 외주물량 증가세&quot;-한투",
      "office": "머니투데이",
-     "datetime": "202609131654",
-     "url": "https://n.news.naver.com/mnews/article/008/0005412972"
-    },
-    {
-     "title": "AI가 띄운 코스피, 중동 악재에 찬물…이번주 7,000선 안착할까",
-     "office": "한국경제TV",
-     "datetime": "202609131449",
-     "url": "https://n.news.naver.com/mnews/article/215/0001265789"
-    },
-    {
-     "title": "“구형 반도체라고 무시했는데, 주문 2배 폭주”…한달새 21% 뛴 DB하이...",
-     "office": "매일경제",
-     "datetime": "202609121441",
-     "url": "https://n.news.naver.com/mnews/article/009/0005734213"
+     "datetime": "202609140834",
+     "url": "https://n.news.naver.com/mnews/article/008/0005413086"
     }
    ]
   },
   {
-   "code": "093370",
-   "name": "후성",
-   "market": "KOSPI",
-   "chg": 6.84,
-   "value": 108781364700.0,
-   "mcap": 1525200000000.0,
-   "news": []
+   "code": "042510",
+   "name": "라온시큐어",
+   "market": "KOSDAQ",
+   "chg": 14.69,
+   "value": 142741297440.0,
+   "mcap": 143900000000.0,
+   "news": [
+    {
+     "title": "'AI 속도조절론'에 양자암호·보안주 급등…아톤·한컴위드 '上'",
+     "office": "뉴시스",
+     "datetime": "202609151458",
+     "url": "https://n.news.naver.com/mnews/article/003/0014191750"
+    },
+    {
+     "title": "&quot;AI 다음은 이것&quot; 젠슨 황 한마디에 뛴 주식...실적 봤더니 '갸우뚱'",
+     "office": "머니투데이",
+     "datetime": "202609151019",
+     "url": "https://n.news.naver.com/mnews/article/008/0005413775"
+    },
+    {
+     "title": "&quot;AI 다음 타자&quot; 젠슨 황이 콕 찍었더니…'이 종목' 25% 뛰었다",
+     "office": "한국경제",
+     "datetime": "202609150601",
+     "url": "https://n.news.naver.com/mnews/article/015/0005332297"
+    },
+    {
+     "title": "우리 회사는 안전한가…경영진이 물어야 할 8가지",
+     "office": "이데일리",
+     "datetime": "202609150526",
+     "url": "https://n.news.naver.com/mnews/article/018/0006369366"
+    },
+    {
+     "title": "'고도의 해킹'이란 착각…대기업을 무너뜨린 건 '사소한 기본'",
+     "office": "이데일리",
+     "datetime": "202609150522",
+     "url": "https://n.news.naver.com/mnews/article/018/0006369364"
+    }
+   ]
   }
  ],
  "rejected": [],
@@ -149,8 +199,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-04",
    "intro_close": 1647000,
-   "last_close": 1683000,
-   "last_date": "2026-09-14"
+   "last_close": 1690000,
+   "last_date": "2026-09-15"
   },
   {
    "code": "108490",
@@ -158,8 +208,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 304500,
-   "last_close": 317500,
-   "last_date": "2026-09-14"
+   "last_close": 324500,
+   "last_date": "2026-09-15"
   },
   {
    "code": "030530",
@@ -167,8 +217,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 22500,
-   "last_close": 21350,
-   "last_date": "2026-09-14"
+   "last_close": 25050,
+   "last_date": "2026-09-15"
   },
   {
    "code": "005930",
@@ -177,7 +227,7 @@
    "intro_date": "2026-09-07",
    "intro_close": 270000,
    "last_close": 248500,
-   "last_date": "2026-09-14"
+   "last_date": "2026-09-15"
   },
   {
    "code": "161580",
@@ -185,8 +235,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 33500,
-   "last_close": 30650,
-   "last_date": "2026-09-14"
+   "last_close": 31000,
+   "last_date": "2026-09-15"
   },
   {
    "code": "212560",
@@ -194,8 +244,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 11880,
-   "last_close": 10320,
-   "last_date": "2026-09-14"
+   "last_close": 10540,
+   "last_date": "2026-09-15"
   },
   {
    "code": "036930",
@@ -203,8 +253,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 187200,
-   "last_close": 202500,
-   "last_date": "2026-09-14"
+   "last_close": 192800,
+   "last_date": "2026-09-15"
   },
   {
    "code": "024060",
@@ -212,8 +262,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 14510,
-   "last_close": 15250,
-   "last_date": "2026-09-14"
+   "last_close": 14980,
+   "last_date": "2026-09-15"
   },
   {
    "code": "100590",
@@ -221,8 +271,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 4970,
-   "last_close": 4755,
-   "last_date": "2026-09-14"
+   "last_close": 4520,
+   "last_date": "2026-09-15"
   },
   {
    "code": "187660",
@@ -230,8 +280,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 8300,
-   "last_close": 8320,
-   "last_date": "2026-09-14"
+   "last_close": 7800,
+   "last_date": "2026-09-15"
   },
   {
    "code": "001820",
@@ -239,9 +289,36 @@
    "market": "KOSPI",
    "intro_date": "2026-09-11",
    "intro_close": 137400,
-   "last_close": 137600,
-   "last_date": "2026-09-14"
+   "last_close": 142500,
+   "last_date": "2026-09-15"
+  },
+  {
+   "code": "105560",
+   "name": "KB금융",
+   "market": "KOSPI",
+   "intro_date": "2026-09-14",
+   "intro_close": 181200,
+   "last_close": 175800,
+   "last_date": "2026-09-15"
+  },
+  {
+   "code": "093370",
+   "name": "후성",
+   "market": "KOSPI",
+   "intro_date": "2026-09-14",
+   "intro_close": 14220,
+   "last_close": 14780,
+   "last_date": "2026-09-15"
+  },
+  {
+   "code": "000990",
+   "name": "DB하이텍",
+   "market": "KOSPI",
+   "intro_date": "2026-09-14",
+   "intro_close": 111800,
+   "last_close": 116700,
+   "last_date": "2026-09-15"
   }
  ],
- "generated_at": "2026-09-14T18:12:42.711663+00:00"
+ "generated_at": "2026-09-15T06:59:51.905260+00:00"
 }
