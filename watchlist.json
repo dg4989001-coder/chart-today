@@ -96,5 +96,19 @@
     "market": "KOSPI",
     "intro_date": "2026-09-14",
     "intro_close": 111800
+  },
+  {
+    "code": "036540",
+    "name": "SFA반도체",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-15",
+    "intro_close": 8600
+  },
+  {
+    "code": "042510",
+    "name": "라온시큐어",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-15",
+    "intro_close": 12960
   }
 ]
