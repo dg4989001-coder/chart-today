@@ -124,5 +124,26 @@
     "market": "KOSPI",
     "intro_date": "2026-09-08",
     "intro_close": 10440
+  },
+  {
+    "code": "413630",
+    "name": "씨피시스템",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-16",
+    "intro_close": 4680
+  },
+  {
+    "code": "115440",
+    "name": "우리넷",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-16",
+    "intro_close": 9660
+  },
+  {
+    "code": "411080",
+    "name": "샌즈랩",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-16",
+    "intro_close": 7120
   }
 ]
