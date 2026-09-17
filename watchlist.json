@@ -145,5 +145,26 @@
     "market": "KOSDAQ",
     "intro_date": "2026-09-16",
     "intro_close": 7120
+  },
+  {
+    "code": "000150",
+    "name": "두산",
+    "market": "KOSPI",
+    "intro_date": "2026-09-17",
+    "intro_close": 1405000
+  },
+  {
+    "code": "082740",
+    "name": "한화엔진",
+    "market": "KOSPI",
+    "intro_date": "2026-09-17",
+    "intro_close": 53000
+  },
+  {
+    "code": "119850",
+    "name": "지엔씨에너지",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-17",
+    "intro_close": 51300
   }
 ]
