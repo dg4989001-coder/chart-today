@@ -1,5 +1,5 @@
 {
- "as_of": "2026-09-16",
+ "as_of": "2026-09-17",
  "rows": [
   {
    "code": "000660",
@@ -7,9 +7,9 @@
    "market": "KOSPI",
    "intro_date": "2026-09-04",
    "intro_close": 1647000,
-   "last_date": "2026.09.16",
-   "last_close": 1759000,
-   "return_pct": 6.8
+   "last_date": "2026.09.17",
+   "last_close": 1745000,
+   "return_pct": 5.95
   },
   {
    "code": "108490",
@@ -17,9 +17,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 304500,
-   "last_date": "2026.09.16",
-   "last_close": 309000,
-   "return_pct": 1.48
+   "last_date": "2026.09.17",
+   "last_close": 310000,
+   "return_pct": 1.81
   },
   {
    "code": "030530",
@@ -27,9 +27,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 22500,
-   "last_date": "2026.09.16",
-   "last_close": 25300,
-   "return_pct": 12.44
+   "last_date": "2026.09.17",
+   "last_close": 25500,
+   "return_pct": 13.33
   },
   {
    "code": "005930",
@@ -37,9 +37,9 @@
    "market": "KOSPI",
    "intro_date": "2026-09-07",
    "intro_close": 270000,
-   "last_date": "2026.09.16",
-   "last_close": 253500,
-   "return_pct": -6.11
+   "last_date": "2026.09.17",
+   "last_close": 252500,
+   "return_pct": -6.48
   },
   {
    "code": "161580",
@@ -47,9 +47,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 33500,
-   "last_date": "2026.09.16",
-   "last_close": 31300,
-   "return_pct": -6.57
+   "last_date": "2026.09.17",
+   "last_close": 31500,
+   "return_pct": -5.97
   },
   {
    "code": "212560",
@@ -57,9 +57,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 11880,
-   "last_date": "2026.09.16",
-   "last_close": 10280,
-   "return_pct": -13.47
+   "last_date": "2026.09.17",
+   "last_close": 10200,
+   "return_pct": -14.14
   },
   {
    "code": "036930",
@@ -67,9 +67,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 187200,
-   "last_date": "2026.09.16",
-   "last_close": 202000,
-   "return_pct": 7.91
+   "last_date": "2026.09.17",
+   "last_close": 204000,
+   "return_pct": 8.97
   },
   {
    "code": "024060",
@@ -77,9 +77,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 14510,
-   "last_date": "2026.09.16",
-   "last_close": 13970,
-   "return_pct": -3.72
+   "last_date": "2026.09.17",
+   "last_close": 13610,
+   "return_pct": -6.2
   },
   {
    "code": "100590",
@@ -87,9 +87,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 4970,
-   "last_date": "2026.09.16",
-   "last_close": 4825,
-   "return_pct": -2.92
+   "last_date": "2026.09.17",
+   "last_close": 4700,
+   "return_pct": -5.43
   },
   {
    "code": "187660",
@@ -97,9 +97,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 8300,
-   "last_date": "2026.09.16",
-   "last_close": 6740,
-   "return_pct": -18.8
+   "last_date": "2026.09.17",
+   "last_close": 6480,
+   "return_pct": -21.93
   },
   {
    "code": "001820",
@@ -107,9 +107,9 @@
    "market": "KOSPI",
    "intro_date": "2026-09-11",
    "intro_close": 137400,
-   "last_date": "2026.09.16",
-   "last_close": 143900,
-   "return_pct": 4.73
+   "last_date": "2026.09.17",
+   "last_close": 137600,
+   "return_pct": 0.15
   },
   {
    "code": "105560",
@@ -117,9 +117,9 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 181200,
-   "last_date": "2026.09.16",
-   "last_close": 176700,
-   "return_pct": -2.48
+   "last_date": "2026.09.17",
+   "last_close": 179200,
+   "return_pct": -1.1
   },
   {
    "code": "093370",
@@ -127,9 +127,9 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 14220,
-   "last_date": "2026.09.16",
-   "last_close": 14530,
-   "return_pct": 2.18
+   "last_date": "2026.09.17",
+   "last_close": 14810,
+   "return_pct": 4.15
   },
   {
    "code": "000990",
@@ -137,9 +137,9 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 111800,
-   "last_date": "2026.09.16",
-   "last_close": 125000,
-   "return_pct": 11.81
+   "last_date": "2026.09.17",
+   "last_close": 124500,
+   "return_pct": 11.36
   },
   {
    "code": "036540",
@@ -147,9 +147,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-15",
    "intro_close": 8650,
-   "last_date": "2026.09.16",
-   "last_close": 8920,
-   "return_pct": 3.12
+   "last_date": "2026.09.17",
+   "last_close": 8650,
+   "return_pct": 0.0
   },
   {
    "code": "042510",
@@ -157,9 +157,9 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-15",
    "intro_close": 12270,
-   "last_date": "2026.09.16",
-   "last_close": 12120,
-   "return_pct": -1.22
+   "last_date": "2026.09.17",
+   "last_close": 11810,
+   "return_pct": -3.75
   },
   {
    "code": "052690",
@@ -167,9 +167,9 @@
    "market": "KOSPI",
    "intro_date": "2026-09-08",
    "intro_close": 142600,
-   "last_date": "2026.09.16",
-   "last_close": 135400,
-   "return_pct": -5.05
+   "last_date": "2026.09.17",
+   "last_close": 137600,
+   "return_pct": -3.51
   },
   {
    "code": "004310",
@@ -177,17 +177,47 @@
    "market": "KOSPI",
    "intro_date": "2026-09-08",
    "intro_close": 10440,
-   "last_date": "2026.09.16",
-   "last_close": 9970,
-   "return_pct": -4.5
+   "last_date": "2026.09.17",
+   "last_close": 10500,
+   "return_pct": 0.57
+  },
+  {
+   "code": "413630",
+   "name": "씨피시스템",
+   "market": "KOSDAQ",
+   "intro_date": "2026-09-16",
+   "intro_close": 4680,
+   "last_date": "2026.09.17",
+   "last_close": 4480,
+   "return_pct": -4.27
+  },
+  {
+   "code": "115440",
+   "name": "우리넷",
+   "market": "KOSDAQ",
+   "intro_date": "2026-09-16",
+   "intro_close": 9660,
+   "last_date": "2026.09.17",
+   "last_close": 9370,
+   "return_pct": -3.0
+  },
+  {
+   "code": "411080",
+   "name": "샌즈랩",
+   "market": "KOSDAQ",
+   "intro_date": "2026-09-16",
+   "intro_close": 7120,
+   "last_date": "2026.09.17",
+   "last_close": 6530,
+   "return_pct": -8.29
   }
  ],
  "summary": {
-  "count": 18,
+  "count": 21,
   "up": 8,
-  "down": 10,
-  "flat": 0,
-  "avg_return_pct": -0.8
+  "down": 12,
+  "flat": 1,
+  "avg_return_pct": -1.8
  },
  "failed": []
 }

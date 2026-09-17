@@ -1,26 +1,84 @@
 {
- "date": "2026-09-16",
+ "date": "2026-09-17",
  "source": "naver",
  "picked": [
   {
-   "code": "413630",
-   "name": "씨피시스템",
-   "market": "KOSDAQ",
-   "chg": 5.0,
-   "value": 127769443200.0,
-   "mcap": 172200000000.0,
+   "code": "000150",
+   "name": "두산",
+   "market": "KOSPI",
+   "chg": 1.3,
+   "value": 269803555000.0,
+   "mcap": 22752300000000.0,
    "news": [
     {
-     "title": "[서울데이터랩]코스닥 거래상위, 통신·광부품주 강세…대한광통신 거...",
-     "office": "서울신문",
-     "datetime": "202609161312",
-     "url": "https://n.news.naver.com/mnews/article/081/0003680784"
+     "title": "두산, 하이엔드 동박적층판 생산 역량 강화…3년간 9700억 투자",
+     "office": "동아일보",
+     "datetime": "202609171554",
+     "url": "https://n.news.naver.com/mnews/article/020/0003748963"
     },
     {
-     "title": "오락가락 증시서 로봇이 먼저 뛰어올랐다…로보티즈 한달새 50% 급등,...",
+     "title": "㈜두산, 하이엔드 CCL에 9700억 투자…AI 데이터센터 수요 정조준",
+     "office": "블로터",
+     "datetime": "202609171548",
+     "url": "https://n.news.naver.com/mnews/article/293/0000090608"
+    },
+    {
+     "title": "두산 전자BG, 9700억 투자해 CCL 증설...AIDC 수요 대응",
+     "office": "지디넷코리아",
+     "datetime": "202609171538",
+     "url": "https://n.news.naver.com/mnews/article/092/0002437904"
+    },
+    {
+     "title": "DS證 &quot;두산, AI 전자소재 증설로 매출 4.2조 추가 가능&quot;",
+     "office": "파이낸셜뉴스",
+     "datetime": "202609171514",
+     "url": "https://n.news.naver.com/mnews/article/014/0005577445"
+    },
+    {
+     "title": "두산, 자사주 1213억원 소각 결정",
+     "office": "파이낸셜뉴스",
+     "datetime": "202609171431",
+     "url": "https://n.news.naver.com/mnews/article/014/0005577398"
+    }
+   ]
+  },
+  {
+   "code": "105560",
+   "name": "KB금융",
+   "market": "KOSPI",
+   "chg": 1.41,
+   "value": 160654233600.0,
+   "mcap": 63560000000000.0,
+   "news": [
+    {
+     "title": "코스피, 매파적 FOMC에도 충격 제한…6710선 약보합 마감",
+     "office": "뉴시스",
+     "datetime": "202609171557",
+     "url": "https://n.news.naver.com/mnews/article/003/0014197757"
+    },
+    {
+     "title": "증시에 목돈넣기 두렵다면 8% 금리 파킹통장 어때요",
      "office": "매일경제",
-     "datetime": "202609160912",
-     "url": "https://n.news.naver.com/mnews/article/009/0005735848"
+     "datetime": "202609171557",
+     "url": "https://n.news.naver.com/mnews/article/009/0005736757"
+    },
+    {
+     "title": "코스피 6715.41 약보합 마감…'선반영'에 잦아든 연준 삭풍",
+     "office": "머니투데이",
+     "datetime": "202609171551",
+     "url": "https://n.news.naver.com/mnews/article/008/0005415373"
+    },
+    {
+     "title": "코스피, 美 금리인상에도 강보합…‘추가 긴축’ 경계는 커져[투자360...",
+     "office": "헤럴드경제",
+     "datetime": "202609171501",
+     "url": "https://n.news.naver.com/mnews/article/016/0002698892"
+    },
+    {
+     "title": "은행장 후보도 지주서 낙점, 금융권 관행 깨지나 [금융 인사이트]",
+     "office": "이데일리",
+     "datetime": "202609171440",
+     "url": "https://n.news.naver.com/mnews/article/018/0006371168"
     }
    ]
   },
@@ -28,135 +86,107 @@
    "code": "004310",
    "name": "현대약품",
    "market": "KOSPI",
-   "chg": -1.48,
-   "value": 118571405430.0,
-   "mcap": 319000000000.0,
+   "chg": 5.32,
+   "value": 174211663500.0,
+   "mcap": 336000000000.0,
    "news": [
     {
-     "title": "먹는 임신중지약 미프진 국내 들어온다…현대약품 허가는?",
-     "office": "SBS Biz",
-     "datetime": "202609161547",
-     "url": "https://n.news.naver.com/mnews/article/374/0000533298"
-    },
-    {
-     "title": "임신중지 약물 도입에 의료계 &quot;안전체계 먼저&quot;…미성년자 처방도 쟁점",
-     "office": "파이낸셜뉴스",
-     "datetime": "202609161523",
-     "url": "https://n.news.naver.com/mnews/article/014/0005576779"
-    },
-    {
-     "title": "[그래픽] 임신중지약 '미프지미소' 도입 추진 경과",
+     "title": "[특징주] 현대약품, 정부 임신중지약 도입 추진에 5% 강세 마감(종합)",
      "office": "연합뉴스",
-     "datetime": "202609161518",
-     "url": "https://n.news.naver.com/mnews/article/001/0016315328"
+     "datetime": "202609171537",
+     "url": "https://n.news.naver.com/mnews/article/001/0016318511"
     },
     {
-     "title": "'임신중지 약물' 헌법불합치 결정 7년 만에…이르면 내년 1분기 도입",
-     "office": "전자신문",
-     "datetime": "202609161502",
-     "url": "https://n.news.naver.com/mnews/article/030/0003467428"
+     "title": "'미프진' 도입에 다시 커지는 불안 목소리⋯모자보건법 개정에 쏠리는...",
+     "office": "아이뉴스24",
+     "datetime": "202609171358",
+     "url": "https://n.news.naver.com/mnews/article/031/0001059322"
     },
     {
-     "title": "“임신중지약 9주까지만”⋯정부도 못 정한 그 다음 누가 책임지나",
-     "office": "코메디닷컴",
-     "datetime": "202609161459",
-     "url": "https://n.news.naver.com/mnews/article/296/0000104925"
-    }
-   ]
-  },
-  {
-   "code": "000990",
-   "name": "DB하이텍",
-   "market": "KOSPI",
-   "chg": 7.11,
-   "value": 109485750000.0,
-   "mcap": 5438100000000.0,
-   "news": [
+     "title": "“낙태약” vs “여성 권리” 난리인데…17%↑ ‘불기둥’ 뿜은 종목...",
+     "office": "서울신문",
+     "datetime": "202609171042",
+     "url": "https://n.news.naver.com/mnews/article/081/0003681153"
+    },
     {
-     "title": "금리 인상 선반영 됐나… 코스피 외인 1.6조 매도에도 6700 복귀 ‘성공...",
+     "title": "입법 공백에 약국 판매 ‘제동’…‘병원 처방·조제 2년’ 연장될 수...",
      "office": "서울경제",
-     "datetime": "202609161554",
-     "url": "https://n.news.naver.com/mnews/article/011/0004662505"
+     "datetime": "202609170700",
+     "url": "https://n.news.naver.com/mnews/article/011/0004662723"
     },
     {
-     "title": "DB하이텍 'AI 속도 조절론' 비켜간 이유",
-     "office": "아이뉴스24",
-     "datetime": "202609161432",
-     "url": "https://n.news.naver.com/mnews/article/031/0001058945"
-    },
+     "title": "李언급 2달만에 ‘먹는 낙태약’ 공식화… 미성년자 구매는 추후결정",
+     "office": "매일경제",
+     "datetime": "202609162018",
+     "url": "https://n.news.naver.com/mnews/article/009/0005736368"
+    }
+   ]
+  },
+  {
+   "code": "082740",
+   "name": "한화엔진",
+   "market": "KOSPI",
+   "chg": 10.3,
+   "value": 109054761000.0,
+   "mcap": 4422700000000.0,
+   "news": [
     {
-     "title": "기업유치 전공 살린 신용한 지사 “충북에 투자하세요”",
-     "office": "아이뉴스24",
-     "datetime": "202609161120",
-     "url": "https://n.news.naver.com/mnews/article/031/0001058842"
-    },
-    {
-     "title": "&quot;외국인은 이미 발 뺐다?&quot;…삼전·하이닉스 '10조' 던진 이유 [종목+]",
+     "title": "아마존이 '11조 몰빵'…금리 인상에도 '34% 폭등' 무슨 일이 [빈난새의...",
      "office": "한국경제",
-     "datetime": "202609160949",
-     "url": "https://n.news.naver.com/mnews/article/015/0005332828"
+     "datetime": "202609171152",
+     "url": "https://n.news.naver.com/mnews/article/015/0005333367"
     },
     {
-     "title": "수요 폭발에 삼성·TSMC 공백까지…DB하이텍 이달 23% '껑충'",
+     "title": "&quot;선제 매수할 시점&quot; 한화엔진, 4행정 중속엔진 새 성장축…포스코인터...",
      "office": "파이낸셜뉴스",
-     "datetime": "202609151707",
-     "url": "https://n.news.naver.com/mnews/article/014/0005576195"
-    }
-   ]
-  },
-  {
-   "code": "115440",
-   "name": "우리넷",
-   "market": "KOSDAQ",
-   "chg": 11.02,
-   "value": 79319287050.0,
-   "mcap": 104400000000.0,
-   "news": [
-    {
-     "title": "[서울데이터랩]코스닥 거래상위, 통신·광부품주 강세…대한광통신 거...",
-     "office": "서울신문",
-     "datetime": "202609161312",
-     "url": "https://n.news.naver.com/mnews/article/081/0003680784"
-    }
-   ]
-  },
-  {
-   "code": "411080",
-   "name": "샌즈랩",
-   "market": "KOSDAQ",
-   "chg": 3.77,
-   "value": 76208161680.0,
-   "mcap": 109300000000.0,
-   "news": [
-    {
-     "title": "[서울데이터랩]코스닥 거래상위, 통신·광부품주 강세…대한광통신 거...",
-     "office": "서울신문",
-     "datetime": "202609161312",
-     "url": "https://n.news.naver.com/mnews/article/081/0003680784"
+     "datetime": "202609171118",
+     "url": "https://n.news.naver.com/mnews/article/014/0005577280"
     },
     {
-     "title": "&quot;AI 다음은 이것&quot; 젠슨 황 한마디에 뛴 주식...실적 봤더니 '갸우뚱'",
-     "office": "머니투데이",
-     "datetime": "202609151019",
-     "url": "https://n.news.naver.com/mnews/article/008/0005413775"
+     "title": "개미 눈물의 '쓴잔' 멈추나…&quot;전형적 낙폭과대&quot; 평가에 조선주↑",
+     "office": "한국경제TV",
+     "datetime": "202609171024",
+     "url": "https://n.news.naver.com/mnews/article/215/0001266278"
     },
     {
-     "title": "[마켓뷰] 고유가·고금리·AI 브레이크 ‘3중고’… 코스피, 3% 넘게 급...",
+     "title": "&quot;조선주 낙폭과대…데이터센터 주목&quot; 한화엔진 6% 강세[핫종목]",
+     "office": "뉴스1",
+     "datetime": "202609170950",
+     "url": "https://n.news.naver.com/mnews/article/421/0009175696"
+    },
+    {
+     "title": "[특징주] 조선株, 증권가 긍정 전망에 일제히 강세",
      "office": "조선비즈",
-     "datetime": "202609141603",
-     "url": "https://n.news.naver.com/mnews/article/366/0001192280"
+     "datetime": "202609170939",
+     "url": "https://n.news.naver.com/mnews/article/366/0001192940"
+    }
+   ]
+  },
+  {
+   "code": "119850",
+   "name": "지엔씨에너지",
+   "market": "KOSDAQ",
+   "chg": 8.34,
+   "value": 67467092400.0,
+   "mcap": 843800000000.0,
+   "news": [
+    {
+     "title": "아마존이 '11조 몰빵'…금리 인상에도 '34% 폭등' 무슨 일이 [빈난새의...",
+     "office": "한국경제",
+     "datetime": "202609171152",
+     "url": "https://n.news.naver.com/mnews/article/015/0005333367"
     },
     {
-     "title": "젠슨 황이 쏘아 올린 ‘사이버보안’…증권가, 피지컬 AI 수혜주 ‘아...",
-     "office": "이데일리",
-     "datetime": "202609141138",
-     "url": "https://n.news.naver.com/mnews/article/018/0006368989"
+     "title": "[이 시각 시황] 美 금리 인상에도 코스피 상승…스페이스X發 우주항공...",
+     "office": "SBS Biz",
+     "datetime": "202609170939",
+     "url": "https://n.news.naver.com/mnews/article/374/0000533398"
     },
     {
-     "title": "젠슨 황 &quot;AI 다음은 사이버보안&quot;…보안株 동반 강세",
-     "office": "매일신문",
-     "datetime": "202609141016",
-     "url": "https://n.news.naver.com/mnews/article/088/0001028242"
+     "title": "[MK 시그널] 티씨케이 20일새 수익률 24% … 데이터센터 수혜주 상위권",
+     "office": "매일경제",
+     "datetime": "202609151751",
+     "url": "https://n.news.naver.com/mnews/article/009/0005735736"
     }
    ]
   }
@@ -169,8 +199,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-04",
    "intro_close": 1647000,
-   "last_close": 1759000,
-   "last_date": "2026-09-16"
+   "last_close": 1745000,
+   "last_date": "2026-09-17"
   },
   {
    "code": "108490",
@@ -178,8 +208,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 304500,
-   "last_close": 309000,
-   "last_date": "2026-09-16"
+   "last_close": 310000,
+   "last_date": "2026-09-17"
   },
   {
    "code": "030530",
@@ -187,8 +217,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 22500,
-   "last_close": 25300,
-   "last_date": "2026-09-16"
+   "last_close": 25500,
+   "last_date": "2026-09-17"
   },
   {
    "code": "005930",
@@ -196,8 +226,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-07",
    "intro_close": 270000,
-   "last_close": 253500,
-   "last_date": "2026-09-16"
+   "last_close": 252500,
+   "last_date": "2026-09-17"
   },
   {
    "code": "161580",
@@ -205,8 +235,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 33500,
-   "last_close": 31300,
-   "last_date": "2026-09-16"
+   "last_close": 31500,
+   "last_date": "2026-09-17"
   },
   {
    "code": "212560",
@@ -214,8 +244,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 11880,
-   "last_close": 10280,
-   "last_date": "2026-09-16"
+   "last_close": 10200,
+   "last_date": "2026-09-17"
   },
   {
    "code": "036930",
@@ -223,8 +253,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 187200,
-   "last_close": 202000,
-   "last_date": "2026-09-16"
+   "last_close": 204000,
+   "last_date": "2026-09-17"
   },
   {
    "code": "024060",
@@ -232,8 +262,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 14510,
-   "last_close": 13970,
-   "last_date": "2026-09-16"
+   "last_close": 13610,
+   "last_date": "2026-09-17"
   },
   {
    "code": "100590",
@@ -241,8 +271,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 4970,
-   "last_close": 4825,
-   "last_date": "2026-09-16"
+   "last_close": 4700,
+   "last_date": "2026-09-17"
   },
   {
    "code": "187660",
@@ -250,8 +280,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 8300,
-   "last_close": 6740,
-   "last_date": "2026-09-16"
+   "last_close": 6480,
+   "last_date": "2026-09-17"
   },
   {
    "code": "001820",
@@ -259,8 +289,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-11",
    "intro_close": 137400,
-   "last_close": 143900,
-   "last_date": "2026-09-16"
+   "last_close": 137600,
+   "last_date": "2026-09-17"
   },
   {
    "code": "105560",
@@ -268,8 +298,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 181200,
-   "last_close": 176700,
-   "last_date": "2026-09-16"
+   "last_close": 179200,
+   "last_date": "2026-09-17"
   },
   {
    "code": "093370",
@@ -277,8 +307,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 14220,
-   "last_close": 14530,
-   "last_date": "2026-09-16"
+   "last_close": 14810,
+   "last_date": "2026-09-17"
   },
   {
    "code": "000990",
@@ -286,8 +316,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 111800,
-   "last_close": 125000,
-   "last_date": "2026-09-16"
+   "last_close": 124500,
+   "last_date": "2026-09-17"
   },
   {
    "code": "036540",
@@ -295,8 +325,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-15",
    "intro_close": 8650,
-   "last_close": 8920,
-   "last_date": "2026-09-16"
+   "last_close": 8650,
+   "last_date": "2026-09-17"
   },
   {
    "code": "042510",
@@ -304,8 +334,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-15",
    "intro_close": 12270,
-   "last_close": 12120,
-   "last_date": "2026-09-16"
+   "last_close": 11810,
+   "last_date": "2026-09-17"
   },
   {
    "code": "052690",
@@ -313,8 +343,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-08",
    "intro_close": 142600,
-   "last_close": 135400,
-   "last_date": "2026-09-16"
+   "last_close": 137600,
+   "last_date": "2026-09-17"
   },
   {
    "code": "004310",
@@ -322,9 +352,36 @@
    "market": "KOSPI",
    "intro_date": "2026-09-08",
    "intro_close": 10440,
-   "last_close": 9970,
-   "last_date": "2026-09-16"
+   "last_close": 10500,
+   "last_date": "2026-09-17"
+  },
+  {
+   "code": "413630",
+   "name": "씨피시스템",
+   "market": "KOSDAQ",
+   "intro_date": "2026-09-16",
+   "intro_close": 4680,
+   "last_close": 4480,
+   "last_date": "2026-09-17"
+  },
+  {
+   "code": "115440",
+   "name": "우리넷",
+   "market": "KOSDAQ",
+   "intro_date": "2026-09-16",
+   "intro_close": 9660,
+   "last_close": 9370,
+   "last_date": "2026-09-17"
+  },
+  {
+   "code": "411080",
+   "name": "샌즈랩",
+   "market": "KOSDAQ",
+   "intro_date": "2026-09-16",
+   "intro_close": 7120,
+   "last_close": 6530,
+   "last_date": "2026-09-17"
   }
  ],
- "generated_at": "2026-09-16T06:59:23.192021+00:00"
+ "generated_at": "2026-09-17T06:59:39.181923+00:00"
 }
