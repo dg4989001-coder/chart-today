@@ -166,5 +166,33 @@
     "market": "KOSDAQ",
     "intro_date": "2026-09-17",
     "intro_close": 51300
+  },
+  {
+    "code": "028050",
+    "name": "삼성E&A",
+    "market": "KOSPI",
+    "intro_date": "2026-09-18",
+    "intro_close": 51800
+  },
+  {
+    "code": "218410",
+    "name": "RFHIC",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-18",
+    "intro_close": 60100
+  },
+  {
+    "code": "032820",
+    "name": "우리기술",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-18",
+    "intro_close": 13870
+  },
+  {
+    "code": "042370",
+    "name": "비츠로테크",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-18",
+    "intro_close": 11440
   }
 ]
