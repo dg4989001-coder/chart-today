@@ -20,7 +20,7 @@ if not DEEPSEEK_API_KEY:
     sys.exit("DEEPSEEK_API_KEY 환경변수가 없습니다")
 
 DEEPSEEK_URL = "https://api.deepseek.com/v1/chat/completions"
-MODEL = "deepseek-flash"
+MODEL = "deepseek-chat"
 
 LARGE_CAP_NAMES = {
     "KB금융", "삼성전자", "SK하이닉스", "현대차", "네이버", "카카오",
@@ -95,7 +95,7 @@ def call_deepseek(user_prompt: str) -> str:
         ],
         "response_format": {"type": "json_object"},
         "temperature": 0.7,
-        "max_tokens": 4000,
+        "max_tokens": 8000,
     }
     r = requests.post(DEEPSEEK_URL, headers=headers, json=payload, timeout=180)
     r.raise_for_status()
@@ -197,6 +197,11 @@ def main():
         print(f"[생성] {p['name']} ({code})...")
         try:
             content = call_deepseek(build_user_prompt(p, analysis, news_list, chart_url))
+            # 마크다운 코드블록 제거
+            content = content.strip()
+            if content.startswith("```"):
+                content = re.sub(r"^```(?:json)?\s*", "", content)
+                content = re.sub(r"\s*```$", "", content)
             data = json.loads(content)
             articles.append({
                 "code": code,
