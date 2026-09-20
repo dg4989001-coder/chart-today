@@ -6,39 +6,33 @@
    "code": "028050",
    "name": "삼성E&A",
    "market": "KOSPI",
-   "chg": 1.37,
-   "value": 283701140800.0,
-   "mcap": 10152800000000.0,
+   "chg": 1.96,
+   "value": 291453287300.0,
+   "mcap": 10211600000000.0,
    "news": [
+    {
+     "title": "“끝날 듯 안 끝난다” 7개월째 미-이란 전쟁…‘K-기업’ 3대 수혜 분...",
+     "office": "헤럴드경제",
+     "datetime": "202609191800",
+     "url": "https://n.news.naver.com/mnews/article/016/0002699701"
+    },
+    {
+     "title": "‘삼전닉스’ 6조 던진 외국인, 대한광통신·가온전선 담았다",
+     "office": "주간동아",
+     "datetime": "202609181747",
+     "url": "https://n.news.naver.com/mnews/article/037/0000038862"
+    },
+    {
+     "title": "사이오닉에이아이, 태국·싱가포르 공략 가속…동남아 AI 시장 확장 본...",
+     "office": "지디넷코리아",
+     "datetime": "202609181603",
+     "url": "https://n.news.naver.com/mnews/article/092/0002438066"
+    },
     {
      "title": "AI 데이터센터·인프라 투자 확대 기대감…건설주 강세[핫종목]",
      "office": "뉴스1",
      "datetime": "202609181031",
      "url": "https://n.news.naver.com/mnews/article/421/0009178283"
-    },
-    {
-     "title": "삼성E&amp;A, LNG 플랜트 사업 본격 진출",
-     "office": "한국경제",
-     "datetime": "202609171842",
-     "url": "https://n.news.naver.com/mnews/article/015/0005333626"
-    },
-    {
-     "title": "삼성E&amp;A, 'LNG 모듈 패키지' 첫선…액화 플랜트 시장 공략 본격화",
-     "office": "뉴스1",
-     "datetime": "202609171558",
-     "url": "https://n.news.naver.com/mnews/article/421/0009177217"
-    },
-    {
-     "title": "&quot;2029년까지 못 기다려&quot;…美 결국 SOS? 한국 '역대급 기회'",
-     "office": "한국경제",
-     "datetime": "202609161759",
-     "url": "https://n.news.naver.com/mnews/article/015/0005333100"
-    },
-    {
-     "title": "초고수는 이틀 연속 “삼성전자 본주 줍고 우선주 턴다” [주식 초고...",
-     "office": "서울경제",
-     "datetime": "202609161128",
-     "url": "https://n.news.naver.com/mnews/article/011/0004662414"
     }
    ]
   },
@@ -46,39 +40,79 @@
    "code": "000150",
    "name": "두산",
    "market": "KOSPI",
-   "chg": 2.99,
-   "value": 204463994000.0,
-   "mcap": 23432500000000.0,
+   "chg": 3.13,
+   "value": 207701109000.0,
+   "mcap": 23464900000000.0,
    "news": [
     {
-     "title": "[특징주] 두산, 1조원 규모 CCL 생산라인 증설 소식에 강세(종합)",
-     "office": "연합뉴스",
-     "datetime": "202609181542",
-     "url": "https://n.news.naver.com/mnews/article/001/0016321133"
+     "title": "'글로벌 큰손' 드러켄밀러 회장 방한, 두산 등과 회동 추진",
+     "office": "머니투데이",
+     "datetime": "202609201818",
+     "url": "https://n.news.naver.com/mnews/article/008/0005416358"
     },
     {
-     "title": "[특징주] 삼성전기, 3분기 실적 개선 기대감 등에 4% 상승 마감(종합)",
-     "office": "연합뉴스",
-     "datetime": "202609181537",
-     "url": "https://n.news.naver.com/mnews/article/001/0016321107"
+     "title": "&quot;내년 주가 크게 오른다&quot;…리포트가 찍은 6종목 모두 뛰었다",
+     "office": "머니투데이",
+     "datetime": "202609201509",
+     "url": "https://n.news.naver.com/mnews/article/008/0005416320"
     },
     {
-     "title": "“‘반도체 소재 1조 투자’ 두산, 하반기 동박적층판 매출 3배 증가할...",
-     "office": "주간동아",
-     "datetime": "202609181338",
-     "url": "https://n.news.naver.com/mnews/article/037/0000038860"
+     "title": "&quot;황제주 반납하시오&quot; 눈물→반격…&quot;275만원까지 여력&quot; 전망",
+     "office": "한국경제TV",
+     "datetime": "202609191008",
+     "url": "https://n.news.naver.com/mnews/article/215/0001266536"
     },
     {
-     "title": "매입·소각 기대감 여전…‘삼전우’ 순매수 1위 [주식 초고수는 지금...",
+     "title": "[경제계 인사] 두산로보틱스 신임 CEO에 권영민",
+     "office": "조선일보",
+     "datetime": "202609190035",
+     "url": "https://n.news.naver.com/mnews/article/023/0003999331"
+    },
+    {
+     "title": "“언제부터 반도체 회사였지?”…3조 넘게 쏟아붓고 랠리 합류한 이 ...",
+     "office": "매일경제",
+     "datetime": "202609182128",
+     "url": "https://n.news.naver.com/mnews/article/009/0005737526"
+    }
+   ]
+  },
+  {
+   "code": "006360",
+   "name": "GS건설",
+   "market": "KOSPI",
+   "chg": 1.64,
+   "value": 119217927600.0,
+   "mcap": 3183600000000.0,
+   "news": [
+    {
+     "title": "현대건설, 2년 연속 ‘정비사업 10조 클럽’…삼성물산도 추격[집슐랭...",
      "office": "서울경제",
-     "datetime": "202609181256",
-     "url": "https://n.news.naver.com/mnews/article/011/0004663319"
+     "datetime": "202609210522",
+     "url": "https://n.news.naver.com/mnews/article/011/0004663838"
     },
     {
-     "title": "SK실트론 품는 두산, 승인 절차 돌입",
-     "office": "SBS Biz",
-     "datetime": "202609181150",
-     "url": "https://n.news.naver.com/mnews/article/374/0000533719"
+     "title": "불 안 붙는 서울 목동 재건축 수주전",
+     "office": "조선일보",
+     "datetime": "202609210037",
+     "url": "https://n.news.naver.com/mnews/article/023/0003999525"
+    },
+    {
+     "title": "도시철도 트리플 역세권 갖춘 부산 ‘연제갤러리자이’",
+     "office": "경향신문",
+     "datetime": "202609201957",
+     "url": "https://n.news.naver.com/mnews/article/032/0003471572"
+    },
+    {
+     "title": "현대건설 10조원 선두…성수3 품은 삼성물산, GS건설 제치고 2위",
+     "office": "머니투데이",
+     "datetime": "202609201529",
+     "url": "https://n.news.naver.com/mnews/article/008/0005416325"
+    },
+    {
+     "title": "㈜GS, 15조 AI 데이터센터 추진...출자 여력에도 수익성 과제",
+     "office": "블로터",
+     "datetime": "202609201500",
+     "url": "https://n.news.naver.com/mnews/article/293/0000090711"
     }
    ]
   },
@@ -86,59 +120,36 @@
    "code": "218410",
    "name": "RFHIC",
    "market": "KOSDAQ",
-   "chg": 12.55,
-   "value": 104652791100.0,
-   "mcap": 1597200000000.0,
-   "news": [
-    {
-     "title": "GS건설, 데이터센터에 원전까지 수주 영역 확대…RFHIC, 통신 부품 쇼...",
-     "office": "파이낸셜뉴스",
-     "datetime": "202609161115",
-     "url": "https://n.news.naver.com/mnews/article/014/0005576611"
-    }
-   ]
+   "chg": 14.79,
+   "value": 112778207500.0,
+   "mcap": 1629100000000.0,
+   "news": []
   },
   {
    "code": "032820",
    "name": "우리기술",
    "market": "KOSDAQ",
-   "chg": 4.05,
-   "value": 77738048940.0,
-   "mcap": 2396500000000.0,
+   "chg": 4.8,
+   "value": 87285272470.0,
+   "mcap": 2413800000000.0,
    "news": [
+    {
+     "title": "사자마자 한 달 만에 -30% “나 어떡해”…외인·기관 던질 때 개미만...",
+     "office": "서울경제",
+     "datetime": "202609201712",
+     "url": "https://n.news.naver.com/mnews/article/011/0004663732"
+    },
+    {
+     "title": "경고등 켜졌는데 달려든 개미… 4건 중 1건 '30% 급락'",
+     "office": "한국경제TV",
+     "datetime": "202609201238",
+     "url": "https://n.news.naver.com/mnews/article/215/0001266594"
+    },
     {
      "title": "AI 데이터센터에 광통신주 '들썩'…국내 업체 수주 확대 기회",
      "office": "매일신문",
      "datetime": "202609181055",
      "url": "https://n.news.naver.com/mnews/article/088/0001029275"
-    },
-    {
-     "title": "우리기술, 두산에너빌리티향 원전 가상화 DCS 개발용역 수주",
-     "office": "이데일리",
-     "datetime": "202609171050",
-     "url": "https://n.news.naver.com/mnews/article/018/0006370957"
-    }
-   ]
-  },
-  {
-   "code": "042370",
-   "name": "비츠로테크",
-   "market": "KOSDAQ",
-   "chg": 0.0,
-   "value": 69722372720.0,
-   "mcap": 299700000000.0,
-   "news": [
-    {
-     "title": "[특징주] 우주항공株, 스페이스X 스타십 궤도 비행 소식에 일제히 강...",
-     "office": "조선비즈",
-     "datetime": "202609170954",
-     "url": "https://n.news.naver.com/mnews/article/366/0001192947"
-    },
-    {
-     "title": "[이 시각 시황] 美 금리 인상에도 코스피 상승…스페이스X發 우주항공...",
-     "office": "SBS Biz",
-     "datetime": "202609170939",
-     "url": "https://n.news.naver.com/mnews/article/374/0000533398"
     }
    ]
   }
@@ -151,7 +162,7 @@
    "market": "KOSPI",
    "intro_date": "2026-09-04",
    "intro_close": 1647000,
-   "last_close": 1857000,
+   "last_close": 1849000,
    "last_date": "2026-09-18"
   },
   {
@@ -160,7 +171,7 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 304500,
-   "last_close": 306500,
+   "last_close": 307500,
    "last_date": "2026-09-18"
   },
   {
@@ -169,7 +180,7 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 22500,
-   "last_close": 26050,
+   "last_close": 26300,
    "last_date": "2026-09-18"
   },
   {
@@ -178,7 +189,7 @@
    "market": "KOSPI",
    "intro_date": "2026-09-07",
    "intro_close": 270000,
-   "last_close": 261000,
+   "last_close": 260000,
    "last_date": "2026-09-18"
   },
   {
@@ -187,7 +198,7 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 33500,
-   "last_close": 31550,
+   "last_close": 31500,
    "last_date": "2026-09-18"
   },
   {
@@ -196,7 +207,7 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 11880,
-   "last_close": 10190,
+   "last_close": 10230,
    "last_date": "2026-09-18"
   },
   {
@@ -205,7 +216,7 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 187200,
-   "last_close": 205500,
+   "last_close": 204500,
    "last_date": "2026-09-18"
   },
   {
@@ -214,7 +225,7 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 14510,
-   "last_close": 12880,
+   "last_close": 12930,
    "last_date": "2026-09-18"
   },
   {
@@ -223,7 +234,7 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 4970,
-   "last_close": 4940,
+   "last_close": 4960,
    "last_date": "2026-09-18"
   },
   {
@@ -241,7 +252,7 @@
    "market": "KOSPI",
    "intro_date": "2026-09-11",
    "intro_close": 137400,
-   "last_close": 144600,
+   "last_close": 143900,
    "last_date": "2026-09-18"
   },
   {
@@ -250,7 +261,7 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 181200,
-   "last_close": 174900,
+   "last_close": 175700,
    "last_date": "2026-09-18"
   },
   {
@@ -259,7 +270,7 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 14220,
-   "last_close": 14680,
+   "last_close": 14570,
    "last_date": "2026-09-18"
   },
   {
@@ -268,7 +279,7 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 111800,
-   "last_close": 126100,
+   "last_close": 125900,
    "last_date": "2026-09-18"
   },
   {
@@ -277,7 +288,7 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-15",
    "intro_close": 8650,
-   "last_close": 9020,
+   "last_close": 8990,
    "last_date": "2026-09-18"
   },
   {
@@ -286,7 +297,7 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-15",
    "intro_close": 12270,
-   "last_close": 11550,
+   "last_close": 11440,
    "last_date": "2026-09-18"
   },
   {
@@ -295,7 +306,7 @@
    "market": "KOSPI",
    "intro_date": "2026-09-08",
    "intro_close": 142600,
-   "last_close": 133800,
+   "last_close": 134600,
    "last_date": "2026-09-18"
   },
   {
@@ -304,7 +315,7 @@
    "market": "KOSPI",
    "intro_date": "2026-09-08",
    "intro_close": 10440,
-   "last_close": 10070,
+   "last_close": 10000,
    "last_date": "2026-09-18"
   },
   {
@@ -313,7 +324,7 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-16",
    "intro_close": 4680,
-   "last_close": 4410,
+   "last_close": 4385,
    "last_date": "2026-09-18"
   },
   {
@@ -322,7 +333,7 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-16",
    "intro_close": 9660,
-   "last_close": 10210,
+   "last_close": 10220,
    "last_date": "2026-09-18"
   },
   {
@@ -340,7 +351,7 @@
    "market": "KOSPI",
    "intro_date": "2026-09-17",
    "intro_close": 1405000,
-   "last_close": 1447000,
+   "last_close": 1449000,
    "last_date": "2026-09-18"
   },
   {
@@ -349,7 +360,7 @@
    "market": "KOSPI",
    "intro_date": "2026-09-17",
    "intro_close": 53000,
-   "last_close": 51300,
+   "last_close": 51600,
    "last_date": "2026-09-18"
   },
   {
@@ -358,9 +369,45 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-17",
    "intro_close": 51300,
-   "last_close": 54200,
+   "last_close": 54000,
+   "last_date": "2026-09-18"
+  },
+  {
+   "code": "028050",
+   "name": "삼성E&A",
+   "market": "KOSPI",
+   "intro_date": "2026-09-18",
+   "intro_close": 51800,
+   "last_close": 52100,
+   "last_date": "2026-09-18"
+  },
+  {
+   "code": "218410",
+   "name": "RFHIC",
+   "market": "KOSDAQ",
+   "intro_date": "2026-09-18",
+   "intro_close": 60100,
+   "last_close": 61300,
+   "last_date": "2026-09-18"
+  },
+  {
+   "code": "032820",
+   "name": "우리기술",
+   "market": "KOSDAQ",
+   "intro_date": "2026-09-18",
+   "intro_close": 13870,
+   "last_close": 13970,
+   "last_date": "2026-09-18"
+  },
+  {
+   "code": "042370",
+   "name": "비츠로테크",
+   "market": "KOSDAQ",
+   "intro_date": "2026-09-18",
+   "intro_close": 11440,
+   "last_close": 11630,
    "last_date": "2026-09-18"
   }
  ],
- "generated_at": "2026-09-18T06:57:55.548552+00:00"
+ "generated_at": "2026-09-20T21:23:45.285099+00:00"
 }
