@@ -395,17 +395,47 @@ def main():
                        "mcap": None if pd.isna(r.get("mcap")) else float(r["mcap"]),
                        "news": news})
 
+    # ── watchlist 자동 갱신 ──────────────────────────────────
     watch = []
     wf = f"{ROOT}/watchlist.json"
-    if os.path.exists(wf):
-        for w in json.load(open(wf)):
-            try:
-                df = daily(w["code"], w.get("market"), day)
-                df.to_csv(f"{DATA}/{w['code']}.csv", index=False, date_format="%Y-%m-%d")
-                watch.append({**w, "last_close": int(df["close"].iloc[-1]),
-                              "last_date": str(df["date"].iloc[-1])[:10]})
-            except Exception as e:
-                print(f"[warn] watchlist {w['code']}: {e}", file=sys.stderr)
+    existing = json.load(open(wf)) if os.path.exists(wf) else []
+    existing_codes = {w["code"] for w in existing}
+
+    # 1) 기존 watchlist 항목: 최신 종가 갱신
+    for w in existing:
+        try:
+            df = daily(w["code"], w.get("market"), day)
+            df.to_csv(f"{DATA}/{w['code']}.csv", index=False, date_format="%Y-%m-%d")
+            watch.append({**w, "last_close": int(df["close"].iloc[-1]),
+                          "last_date": str(df["date"].iloc[-1])[:10]})
+        except Exception as e:
+            print(f"[warn] watchlist {w['code']}: {e}", file=sys.stderr)
+            watch.append(w)  # 실패 시 기존 값 유지
+
+    # 2) picked 중 watchlist에 없는 종목 → 신규 추가
+    for p in picked:
+        if p["code"] in existing_codes:
+            continue
+        try:
+            df = daily(p["code"], p.get("market"), day)
+            df.to_csv(f"{DATA}/{p['code']}.csv", index=False, date_format="%Y-%m-%d")
+            new_entry = {
+                "code": p["code"],
+                "name": p["name"],
+                "market": p.get("market"),
+                "intro_date": day.isoformat(),
+                "intro_close": int(df["close"].iloc[-1]),
+                "last_close": int(df["close"].iloc[-1]),
+                "last_date": str(df["date"].iloc[-1])[:10],
+            }
+            watch.append(new_entry)
+            print(f"[신규] watchlist 추가: {p['name']} ({p['code']})")
+        except Exception as e:
+            print(f"[warn] watchlist 신규 {p['code']}: {e}", file=sys.stderr)
+
+    # 3) watchlist.json 저장
+    json.dump(watch, open(wf, "w"), ensure_ascii=False, indent=1)
+
 
     out = {"date": day.isoformat(), "source": source,
            "picked": picked, "rejected": rejected, "watchlist": watch,
