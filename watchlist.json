@@ -194,5 +194,12 @@
     "market": "KOSDAQ",
     "intro_date": "2026-09-18",
     "intro_close": 11440
+  },
+  {
+    "code": "006360",
+    "name": "GS건설",
+    "market": "KOSPI",
+    "intro_date": "2026-09-18",
+    "intro_close": 37200
   }
 ]
