@@ -121,15 +121,37 @@ def snapshot_pykrx(day: str) -> pd.DataFrame:
 
 
 def market_snapshot(day: str):
-    try:
-        df = snapshot_naver()
-        return df, "naver"
-    except Exception:
-        traceback.print_exc()
-        print("[warn] naver 실패 → pykrx로 대체", file=sys.stderr)
-        df = snapshot_pykrx(day)
-        print(f"[ok] pykrx 스냅샷 {len(df)}종목")
-        return df, "pykrx"
+    """스냅샷: 날짜별 캐시로 재현성 보장.
+    - 오늘: 네이버 실시간 → 캐시 저장
+    - 과거: 캐시 있으면 재사용, 없으면 pykrx
+    - 과거 재실행에 네이버 실시간을 쓰지 않는다 (picked 흔들림 방지)
+    """
+    cache_path = f"{OUT}/snapshot_{day}.csv"
+    today_str = today_kst().strftime("%Y%m%d")
+
+    # 1) 과거 날짜 & 캐시 존재 → 재사용
+    if day != today_str and os.path.exists(cache_path):
+        df = pd.read_csv(cache_path, dtype={"code": str})
+        df["code"] = df["code"].str.zfill(6)
+        print(f"[ok] 스냅샷 캐시 재사용 {cache_path} ({len(df)}종목)")
+        return df, "cache"
+
+    # 2) 오늘 → 네이버 실시간
+    if day == today_str:
+        try:
+            df = snapshot_naver()
+            df.to_csv(cache_path, index=False)
+            print(f"[ok] 스냅샷 캐시 저장 {cache_path}")
+            return df, "naver"
+        except Exception:
+            traceback.print_exc()
+            print("[warn] naver 실패 → pykrx로 대체", file=sys.stderr)
+
+    # 3) 과거 & 캐시 없음 → pykrx로 해당 날짜 조회 (네이버 실시간 금지)
+    df = snapshot_pykrx(day)
+    df.to_csv(cache_path, index=False)
+    print(f"[ok] pykrx 스냅샷 {len(df)}종목 (과거 {day})")
+    return df, "pykrx"
 
 
 # ────────────────────────────────────────────────────────────
