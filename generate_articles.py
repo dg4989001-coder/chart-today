@@ -83,7 +83,17 @@ SYSTEM_PROMPT = """당신은 한국 주식 블로그 「차트로 보는 오늘�
 
 
 def fetch_daum_quote(code: str):
-    """Daum API로 종가·등락률 재검증. 실패 시 None."""
+    """Daum API로 종가·등락률 재검증. 실패 시 None.
+
+    2026-09-21 수정 (사고 8/9 대응):
+    - r.json()["data"] 는 잘못됨 — 실제 응답은 data 래퍼 없이 최상위에 필드가 옴.
+      이 버그 때문에 매번 KeyError -> except 로 빠져서 항상 None을 반환했고,
+      결과적으로 "Daum 재검증"이 추가된 뒤에도 실제로는 한 번도 실행되지 않았음.
+    - tradePrice 는 시간외(애프터마켓) 체결가라 장중에도 계속 바뀐다(사고 6 참고).
+      "오늘 종가"는 반드시 regularTradePrice(정규장 15:30 확정 종가)를 써야 함.
+    - changeRate 필드도 tradePrice 기준으로 계산되어 있어 그대로 쓰면 안 되고,
+      regularTradePrice / prevClosingPrice 로 직접 재계산한다.
+    """
     url = f"https://finance.daum.net/api/quotes/A{code}?summary=false"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
@@ -91,11 +101,14 @@ def fetch_daum_quote(code: str):
     }
     try:
         r = requests.get(url, headers=headers, timeout=10)
-        j = r.json()["data"]
+        j = r.json()
+        close = int(j["regularTradePrice"])
+        prev_close = int(j["prevClosingPrice"])
+        chg_pct = round((close / prev_close - 1) * 100, 2)
         return {
-            "close": int(j["tradePrice"]),
-            "prev_close": int(j["prevClosingPrice"]),
-            "chg_pct": round(float(j["changeRate"]) * 100, 2),
+            "close": close,
+            "prev_close": prev_close,
+            "chg_pct": chg_pct,
             "high": int(j["highPrice"]),
             "low": int(j["lowPrice"]),
             "volume": int(j["accTradeVolume"]),
