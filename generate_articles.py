@@ -82,6 +82,29 @@ SYSTEM_PROMPT = """당신은 한국 주식 블로그 「차트로 보는 오늘�
 """
 
 
+def fetch_daum_quote(code: str) -> dict | None:
+    """Daum API로 종가·등락률 재검증. 실패 시 None."""
+    url = f"https://finance.daum.net/api/quotes/A{code}?summary=false"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Referer": f"https://finance.daum.net/quotes/A{code}",
+    }
+    try:
+        r = requests.get(url, headers=headers, timeout=10)
+        j = r.json()["data"]
+        return {
+            "close": int(j["tradePrice"]),
+            "prev_close": int(j["prevClosingPrice"]),
+            "chg_pct": round(float(j["changeRate"]) * 100, 2),
+            "high": int(j["highPrice"]),
+            "low": int(j["lowPrice"]),
+            "volume": int(j["accTradeVolume"]),
+        }
+    except Exception as e:
+        print(f"[warn] Daum {code}: {e}", file=sys.stderr)
+        return None
+
+
 def call_deepseek(user_prompt: str) -> str:
     headers = {
         "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
@@ -188,6 +211,21 @@ def main():
             continue
 
         analysis = json.load(open(apath, encoding="utf-8"))
+        
+
+        # Daum 재검증 — 원고 생성 전 종가·등락률 덮어쓰기
+        dq = fetch_daum_quote(code)
+        if dq:
+            analysis["close"] = dq["close"]
+            analysis["prev_close"] = dq["prev_close"]
+            analysis["chg_pct"] = dq["chg_pct"]
+            analysis["high"] = dq["high"]
+            analysis["low"] = dq["low"]
+            analysis["volume"] = dq["volume"]
+            print(f"[Daum] {p['name']} 검증: {dq['chg_pct']:+.2f}%")
+        else:
+            print(f"[warn] {p['name']} Daum 검증 실패 → analysis 값 사용", file=sys.stderr)
+      
         news_list = p.get("news", [])
         chart_url = (
             f"https://raw.githubusercontent.com/dg4989001-coder/chart-today"
