@@ -82,7 +82,7 @@ SYSTEM_PROMPT = """당신은 한국 주식 블로그 「차트로 보는 오늘�
 """
 
 
-def fetch_daum_quote(code: str) -> dict | None:
+def fetch_daum_quote(code: str):
     """Daum API로 종가·등락률 재검증. 실패 시 None."""
     url = f"https://finance.daum.net/api/quotes/A{code}?summary=false"
     headers = {
@@ -211,7 +211,6 @@ def main():
             continue
 
         analysis = json.load(open(apath, encoding="utf-8"))
-        
 
         # Daum 재검증 — 원고 생성 전 종가·등락률 덮어쓰기
         dq = fetch_daum_quote(code)
@@ -225,7 +224,7 @@ def main():
             print(f"[Daum] {p['name']} 검증: {dq['chg_pct']:+.2f}%")
         else:
             print(f"[warn] {p['name']} Daum 검증 실패 → analysis 값 사용", file=sys.stderr)
-      
+
         news_list = p.get("news", [])
         chart_url = (
             f"https://raw.githubusercontent.com/dg4989001-coder/chart-today"
