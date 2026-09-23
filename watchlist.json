@@ -1,317 +1,326 @@
 [
- {
-  "code": "000660",
-  "name": "SK하이닉스",
-  "market": "KOSPI",
-  "intro_date": "2026-09-04",
-  "intro_close": 1647000,
-  "last_close": 1840000,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "108490",
-  "name": "로보티즈",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-04",
-  "intro_close": 304500,
-  "last_close": 300000,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "030530",
-  "name": "원익홀딩스",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-04",
-  "intro_close": 22500,
-  "last_close": 26500,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "005930",
-  "name": "삼성전자",
-  "market": "KOSPI",
-  "intro_date": "2026-09-07",
-  "intro_close": 270000,
-  "last_close": 276500,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "161580",
-  "name": "필옵틱스",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-07",
-  "intro_close": 33500,
-  "last_close": 32150,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "212560",
-  "name": "네오오토",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-07",
-  "intro_close": 11880,
-  "last_close": 10350,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "036930",
-  "name": "주성엔지니어링",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-07",
-  "intro_close": 187200,
-  "last_close": 203500,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "024060",
-  "name": "흥구석유",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-10",
-  "intro_close": 14510,
-  "last_close": 12860,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "100590",
-  "name": "머큐리",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-10",
-  "intro_close": 4970,
-  "last_close": 4890,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "187660",
-  "name": "페니트리움바이오",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-10",
-  "intro_close": 8300,
-  "last_close": 6630,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "001820",
-  "name": "삼화콘덴서",
-  "market": "KOSPI",
-  "intro_date": "2026-09-11",
-  "intro_close": 137400,
-  "last_close": 147400,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "105560",
-  "name": "KB금융",
-  "market": "KOSPI",
-  "intro_date": "2026-09-14",
-  "intro_close": 181200,
-  "last_close": 175700,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "093370",
-  "name": "후성",
-  "market": "KOSPI",
-  "intro_date": "2026-09-14",
-  "intro_close": 14220,
-  "last_close": 13600,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "000990",
-  "name": "DB하이텍",
-  "market": "KOSPI",
-  "intro_date": "2026-09-14",
-  "intro_close": 111800,
-  "last_close": 130700,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "036540",
-  "name": "SFA반도체",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-15",
-  "intro_close": 8650,
-  "last_close": 10620,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "042510",
-  "name": "라온시큐어",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-15",
-  "intro_close": 12270,
-  "last_close": 10710,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "052690",
-  "name": "한전기술",
-  "market": "KOSPI",
-  "intro_date": "2026-09-08",
-  "intro_close": 142600,
-  "last_close": 138100,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "004310",
-  "name": "현대약품",
-  "market": "KOSPI",
-  "intro_date": "2026-09-08",
-  "intro_close": 10440,
-  "last_close": 8950,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "413630",
-  "name": "씨피시스템",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-16",
-  "intro_close": 4680,
-  "last_close": 4250,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "115440",
-  "name": "우리넷",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-16",
-  "intro_close": 9660,
-  "last_close": 9330,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "411080",
-  "name": "샌즈랩",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-16",
-  "intro_close": 7120,
-  "last_close": 6350,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "000150",
-  "name": "두산",
-  "market": "KOSPI",
-  "intro_date": "2026-09-17",
-  "intro_close": 1405000,
-  "last_close": 1473000,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "082740",
-  "name": "한화엔진",
-  "market": "KOSPI",
-  "intro_date": "2026-09-17",
-  "intro_close": 53000,
-  "last_close": 49250,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "119850",
-  "name": "지엔씨에너지",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-17",
-  "intro_close": 51300,
-  "last_close": 54900,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "028050",
-  "name": "삼성E&A",
-  "market": "KOSPI",
-  "intro_date": "2026-09-18",
-  "intro_close": 51800,
-  "last_close": 51200,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "218410",
-  "name": "RFHIC",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-18",
-  "intro_close": 60100,
-  "last_close": 59000,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "032820",
-  "name": "우리기술",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-18",
-  "intro_close": 13870,
-  "last_close": 13420,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "042370",
-  "name": "비츠로테크",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-18",
-  "intro_close": 11440,
-  "last_close": 10970,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "006360",
-  "name": "GS건설",
-  "market": "KOSPI",
-  "intro_date": "2026-09-18",
-  "intro_close": 37200,
-  "last_close": 37450,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "067310",
-  "name": "하나마이크론",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-21",
-  "intro_close": 44800,
-  "last_close": 45650,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "240810",
-  "name": "원익IPS",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-21",
-  "intro_close": 129000,
-  "last_close": 130300,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "437730",
-  "name": "삼현",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-21",
-  "intro_close": 55700,
-  "last_close": 53900,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "043260",
-  "name": "성호전자",
-  "market": "KOSDAQ",
-  "intro_date": "2026-09-21",
-  "intro_close": 26850,
-  "last_close": 26950,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "003490",
-  "name": "대한항공",
-  "market": "KOSPI",
-  "intro_date": "2026-09-22",
-  "intro_close": 31400,
-  "last_close": 31400,
-  "last_date": "2026-09-22"
- },
- {
-  "code": "001440",
-  "name": "대한전선",
-  "market": "KOSPI",
-  "intro_date": "2026-09-22",
-  "intro_close": 31600,
-  "last_close": 31600,
-  "last_date": "2026-09-22"
- }
+  {
+    "code": "000660",
+    "name": "SK하이닉스",
+    "market": "KOSPI",
+    "intro_date": "2026-09-04",
+    "intro_close": 1647000,
+    "last_close": 1862000,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "108490",
+    "name": "로보티즈",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-04",
+    "intro_close": 304500,
+    "last_close": 301000,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "030530",
+    "name": "원익홀딩스",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-04",
+    "intro_close": 22500,
+    "last_close": 28300,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "005930",
+    "name": "삼성전자",
+    "market": "KOSPI",
+    "intro_date": "2026-09-07",
+    "intro_close": 270000,
+    "last_close": 285500,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "161580",
+    "name": "필옵틱스",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-07",
+    "intro_close": 33500,
+    "last_close": 32650,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "212560",
+    "name": "네오오토",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-07",
+    "intro_close": 11880,
+    "last_close": 10410,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "036930",
+    "name": "주성엔지니어링",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-07",
+    "intro_close": 187200,
+    "last_close": 209500,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "024060",
+    "name": "흥구석유",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-10",
+    "intro_close": 14510,
+    "last_close": 12360,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "100590",
+    "name": "머큐리",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-10",
+    "intro_close": 4970,
+    "last_close": 4995,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "187660",
+    "name": "페니트리움바이오",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-10",
+    "intro_close": 8300,
+    "last_close": 6630,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "001820",
+    "name": "삼화콘덴서",
+    "market": "KOSPI",
+    "intro_date": "2026-09-11",
+    "intro_close": 137400,
+    "last_close": 146900,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "105560",
+    "name": "KB금융",
+    "market": "KOSPI",
+    "intro_date": "2026-09-14",
+    "intro_close": 181200,
+    "last_close": 173200,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "093370",
+    "name": "후성",
+    "market": "KOSPI",
+    "intro_date": "2026-09-14",
+    "intro_close": 14220,
+    "last_close": 13950,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "000990",
+    "name": "DB하이텍",
+    "market": "KOSPI",
+    "intro_date": "2026-09-14",
+    "intro_close": 111800,
+    "last_close": 132000,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "036540",
+    "name": "SFA반도체",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-15",
+    "intro_close": 8650,
+    "last_close": 10570,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "042510",
+    "name": "라온시큐어",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-15",
+    "intro_close": 12270,
+    "last_close": 10950,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "052690",
+    "name": "한전기술",
+    "market": "KOSPI",
+    "intro_date": "2026-09-08",
+    "intro_close": 142600,
+    "last_close": 130400,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "004310",
+    "name": "현대약품",
+    "market": "KOSPI",
+    "intro_date": "2026-09-08",
+    "intro_close": 10440,
+    "last_close": 8860,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "413630",
+    "name": "씨피시스템",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-16",
+    "intro_close": 4680,
+    "last_close": 4275,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "115440",
+    "name": "우리넷",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-16",
+    "intro_close": 9660,
+    "last_close": 12120,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "411080",
+    "name": "샌즈랩",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-16",
+    "intro_close": 7120,
+    "last_close": 6350,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "000150",
+    "name": "두산",
+    "market": "KOSPI",
+    "intro_date": "2026-09-17",
+    "intro_close": 1405000,
+    "last_close": 1512000,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "082740",
+    "name": "한화엔진",
+    "market": "KOSPI",
+    "intro_date": "2026-09-17",
+    "intro_close": 53000,
+    "last_close": 47600,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "119850",
+    "name": "지엔씨에너지",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-17",
+    "intro_close": 51300,
+    "last_close": 56100,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "028050",
+    "name": "삼성E&A",
+    "market": "KOSPI",
+    "intro_date": "2026-09-18",
+    "intro_close": 51800,
+    "last_close": 49350,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "218410",
+    "name": "RFHIC",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-18",
+    "intro_close": 60100,
+    "last_close": 58600,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "032820",
+    "name": "우리기술",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-18",
+    "intro_close": 13870,
+    "last_close": 12960,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "042370",
+    "name": "비츠로테크",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-18",
+    "intro_close": 11440,
+    "last_close": 10650,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "006360",
+    "name": "GS건설",
+    "market": "KOSPI",
+    "intro_date": "2026-09-18",
+    "intro_close": 37200,
+    "last_close": 34600,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "067310",
+    "name": "하나마이크론",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-21",
+    "intro_close": 44800,
+    "last_close": 46200,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "240810",
+    "name": "원익IPS",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-21",
+    "intro_close": 129000,
+    "last_close": 133700,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "437730",
+    "name": "삼현",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-21",
+    "intro_close": 55700,
+    "last_close": 51900,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "043260",
+    "name": "성호전자",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-21",
+    "intro_close": 26850,
+    "last_close": 26200,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "003490",
+    "name": "대한항공",
+    "market": "KOSPI",
+    "intro_date": "2026-09-22",
+    "intro_close": 31400,
+    "last_close": 31500,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "001440",
+    "name": "대한전선",
+    "market": "KOSPI",
+    "intro_date": "2026-09-22",
+    "intro_close": 31600,
+    "last_close": 30950,
+    "last_date": "2026-09-23"
+  },
+  {
+    "code": "356680",
+    "name": "엑스게이트",
+    "market": "KOSDAQ",
+    "intro_date": "2026-09-23",
+    "intro_close": 18220,
+    "last_close": 18220,
+    "last_date": "2026-09-23"
+  }
 ]
