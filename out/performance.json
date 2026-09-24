@@ -1,5 +1,5 @@
 {
- "as_of": "2026-09-23",
+ "as_of": "2026-09-24",
  "rows": [
   {
    "code": "000660",
@@ -366,28 +366,28 @@
    "name": "파두",
    "market": "KOSDAQ",
    "intro_date": "2026-09-23",
-   "intro_close": 81400,
+   "intro_close": 81600,
    "last_close": 81400,
    "last_date": "2026.09.23",
-   "return_pct": 0.0
+   "return_pct": -0.25
   },
   {
    "code": "103590",
    "name": "일진전기",
    "market": "KOSPI",
    "intro_date": "2026-09-23",
-   "intro_close": 81800,
+   "intro_close": 81700,
    "last_close": 81800,
    "last_date": "2026.09.23",
-   "return_pct": 0.0
+   "return_pct": 0.12
   }
  ],
  "summary": {
   "count": 38,
-  "up": 15,
-  "down": 21,
-  "flat": 2,
-  "avg_return_pct": -0.02
+  "up": 16,
+  "down": 22,
+  "flat": 0,
+  "avg_return_pct": -0.03
  },
  "failed": []
 }

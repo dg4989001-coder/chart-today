@@ -1,5 +1,5 @@
 {
- "date": "2026-09-23",
+ "date": "2026-09-24",
  "source": "naver",
  "picked": [
   {
@@ -11,34 +11,34 @@
    "mcap": 1674958800000000.0,
    "news": [
     {
-     "title": "“추석 전에 주식 팔았는데”…내 돈 바로 못 찾는 속사정 [최소한의...",
-     "office": "매경이코노미",
-     "datetime": "202609232101",
-     "url": "https://n.news.naver.com/mnews/article/024/0000108449"
+     "title": "삼성전자 반도체 성과급 세부안에 쏠리는 눈…추석 연휴 후 공개",
+     "office": "데일리안",
+     "datetime": "202609242018",
+     "url": "https://n.news.naver.com/mnews/article/119/0003136238"
     },
     {
-     "title": "&quot;메모리 고점 멀었다&quot;…JP모건은 왜 [B급기자의 B급리포트]",
-     "office": "한국경제TV",
-     "datetime": "202609232100",
-     "url": "https://n.news.naver.com/mnews/article/215/0001267077"
+     "title": "미국 역사상 유일했던 '국가부채 0달러'… 그 이후의 재앙",
+     "office": "오마이뉴스",
+     "datetime": "202609241926",
+     "url": "https://n.news.naver.com/mnews/article/047/0002530205"
     },
     {
-     "title": "“6개월간 주식 450억 굴려” 김수용이 공개한 계좌…26년차 ‘개미 대...",
-     "office": "서울경제",
-     "datetime": "202609232045",
-     "url": "https://n.news.naver.com/mnews/article/011/0004665084"
+     "title": "&quot;박스피에 지쳤다&quot; 머니마켓액티브 ETF 인기몰이",
+     "office": "매일경제",
+     "datetime": "202609241804",
+     "url": "https://n.news.naver.com/mnews/article/009/0005739850"
     },
     {
-     "title": "이복현 “대출 풀면 부동산 폭발…그러나 아예 레버리지 못쓰게 막는...",
-     "office": "문화일보",
-     "datetime": "202609232041",
-     "url": "https://n.news.naver.com/mnews/article/021/0002821010"
+     "title": "서울 아파트 매매가격 85주째 ↑…역대 최장 상승 기간 동률",
+     "office": "서울신문",
+     "datetime": "202609241735",
+     "url": "https://n.news.naver.com/mnews/article/081/0003683417"
     },
     {
-     "title": "전남광주시 “반도체 팹 2기 우선 건설, 2030년 첫 양산 목표”",
-     "office": "경향신문",
-     "datetime": "202609232003",
-     "url": "https://n.news.naver.com/mnews/article/032/0003472328"
+     "title": "서울 아파트값 85주 연속 상승…文정부와 동률이나 상승률은 배 이상",
+     "office": "세계일보",
+     "datetime": "202609241728",
+     "url": "https://n.news.naver.com/mnews/article/022/0004161602"
     }
    ]
   },
@@ -50,6 +50,12 @@
    "value": 342121732400.0,
    "mcap": 6498700000000.0,
    "news": [
+    {
+     "title": "美 장기금리 5%에도 증시 버틸까…원화 강세 땐 환율 1200원대 가능성",
+     "office": "이데일리",
+     "datetime": "202609232301",
+     "url": "https://n.news.naver.com/mnews/article/018/0006375174"
+    },
     {
      "title": "'전강후약' 반복 코스피⋯7000선 턱걸이 마감",
      "office": "아이뉴스24",
@@ -73,12 +79,6 @@
      "office": "데일리안",
      "datetime": "202609231617",
      "url": "https://n.news.naver.com/mnews/article/119/0003136061"
-    },
-    {
-     "title": "[마감시황]코스닥, 1.21% 오른 844.48 마감…반도체 강세 속 연휴 앞 종...",
-     "office": "서울신문",
-     "datetime": "202609231609",
-     "url": "https://n.news.naver.com/mnews/article/081/0003683152"
     }
    ]
   },
@@ -131,6 +131,12 @@
    "mcap": 6144400000000.0,
    "news": [
     {
+     "title": "‘AI·해상풍력’ 붐 탄 유럽… HVDC 전력망 격전지로",
+     "office": "국민일보",
+     "datetime": "202609240014",
+     "url": "https://n.news.naver.com/mnews/article/005/0001874867"
+    },
+    {
      "title": "외국인, ‘30조 배당 예고’ 삼성전자 2.9조 순매수",
      "office": "주간동아",
      "datetime": "202609231721",
@@ -153,12 +159,6 @@
      "office": "서울경제",
      "datetime": "202609221818",
      "url": "https://n.news.naver.com/mnews/article/011/0004664685"
-    },
-    {
-     "title": "[서울데이터랩]마감 직후 인기 검색 종목 20選",
-     "office": "서울신문",
-     "datetime": "202609221541",
-     "url": "https://n.news.naver.com/mnews/article/081/0003682759"
     }
    ]
   },
@@ -175,12 +175,6 @@
      "office": "한국경제",
      "datetime": "202609231622",
      "url": "https://n.news.naver.com/mnews/article/015/0005335714"
-    },
-    {
-     "title": "우태희의 효성, HVDC 핵심설비 선점…LS는 ‘원팀’ 맞불",
-     "office": "아이뉴스24",
-     "datetime": "202609211644",
-     "url": "https://n.news.naver.com/mnews/article/031/0001060374"
     }
    ]
   }
@@ -516,7 +510,7 @@
    "name": "파두",
    "market": "KOSDAQ",
    "intro_date": "2026-09-23",
-   "intro_close": 81400,
+   "intro_close": 81600,
    "last_close": 81400,
    "last_date": "2026-09-23"
   },
@@ -525,10 +519,10 @@
    "name": "일진전기",
    "market": "KOSPI",
    "intro_date": "2026-09-23",
-   "intro_close": 81800,
+   "intro_close": 81700,
    "last_close": 81800,
    "last_date": "2026-09-23"
   }
  ],
- "generated_at": "2026-09-23T12:08:51.109025+00:00"
+ "generated_at": "2026-09-24T12:08:50.921056+00:00"
 }
