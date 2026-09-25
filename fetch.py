@@ -223,6 +223,57 @@ def daily(code: str, market: str | None, day: dt.date) -> pd.DataFrame:
 
 
 # ────────────────────────────────────────────────────────────
+# 오늘 종가 보정 — Daum 정규장 종가 (사고 14)
+# 네이버 일봉의 마지막 날 종가는 21시 수집 시점에 시간외 단일가까지 반영돼 있어
+# 정규장 종가와 다를 수 있다(09-23 실측: 삼성전자 286,500 vs 정규장 285,500).
+# 이 값이 data/*.csv → 지표·차트, watchlist.json last_close/intro_close 로 그대로 흘러가므로
+# 마지막 행 날짜가 Daum tradeDate 와 같을 때만 종가를 regularTradePrice 로 바꾼다.
+# Daum 조회가 실패하면 기존 값을 그대로 둔다(파이프라인은 멈추지 않음).
+# ────────────────────────────────────────────────────────────
+_DAUM_CACHE: dict = {}
+
+
+def daum_regular_close(code: str):
+    """(YYYY-MM-DD, 정규장 종가) 또는 실패 시 None."""
+    if code in _DAUM_CACHE:
+        return _DAUM_CACHE[code]
+    res = None
+    try:
+        r = requests.get(f"https://finance.daum.net/api/quotes/A{code}?summary=false",
+                         headers={**UA, "Referer": f"https://finance.daum.net/quotes/A{code}"},
+                         timeout=10)
+        j = r.json()
+        td = str(j["tradeDate"])
+        px = int(j["regularTradePrice"])
+        if len(td) == 8 and td.isdigit() and px > 0:
+            res = (f"{td[:4]}-{td[4:6]}-{td[6:]}", px)
+        time.sleep(0.3)
+    except Exception as e:
+        print(f"[warn] Daum 종가 조회 실패 {code}: {e}", file=sys.stderr)
+    _DAUM_CACHE[code] = res
+    return res
+
+
+def fix_last_close(code: str, df: pd.DataFrame) -> pd.DataFrame:
+    """df 마지막 행이 Daum 최신 거래일과 같은 날이면 종가를 정규장 종가로 교체."""
+    if df is None or not len(df):
+        return df
+    q = daum_regular_close(code)
+    if not q:
+        return df
+    d, px = q
+    last_d = str(df["date"].iloc[-1])[:10]
+    if last_d != d:
+        return df
+    old = df["close"].iloc[-1]
+    if pd.isna(old) or int(round(float(old))) != px:
+        df = df.copy()
+        df.loc[df.index[-1], "close"] = px
+        print(f"[fix] {code} {d} 종가 {old} → {px:,} (Daum 정규장 종가)")
+    return df
+
+
+# ────────────────────────────────────────────────────────────
 # 뉴스 수집 — 네이버페이증권 종목 뉴스 API
 # ────────────────────────────────────────────────────────────
 def fetch_news(code: str, page_size: int = 5, max_age_days: int = 3) -> list[dict]:
@@ -379,7 +430,7 @@ def main():
             rejected.append({"name": r["name"], "reason": "종목코드 확인 불가"}); continue
         code = str(code).zfill(6)
         try:
-            df = daily(code, r.get("market"), day)
+            df = fix_last_close(code, daily(code, r.get("market"), day))
         except Exception as e:
             rejected.append({"code": code, "name": r["name"], "reason": f"일봉 수집 실패: {e}"})
             continue
@@ -404,7 +455,7 @@ def main():
     # 1) 기존 watchlist 항목: 최신 종가 갱신
     for w in existing:
         try:
-            df = daily(w["code"], w.get("market"), day)
+            df = fix_last_close(w["code"], daily(w["code"], w.get("market"), day))
             df.to_csv(f"{DATA}/{w['code']}.csv", index=False, date_format="%Y-%m-%d")
             watch.append({**w, "last_close": int(df["close"].iloc[-1]),
                           "last_date": str(df["date"].iloc[-1])[:10]})
@@ -417,7 +468,7 @@ def main():
         if p["code"] in existing_codes:
             continue
         try:
-            df = daily(p["code"], p.get("market"), day)
+            df = fix_last_close(p["code"], daily(p["code"], p.get("market"), day))
             df.to_csv(f"{DATA}/{p['code']}.csv", index=False, date_format="%Y-%m-%d")
             new_entry = {
                 "code": p["code"],
