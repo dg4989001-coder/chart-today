@@ -1,5 +1,5 @@
 {
- "date": "2026-09-24",
+ "date": "2026-09-25",
  "source": "naver",
  "picked": [
   {
@@ -11,34 +11,34 @@
    "mcap": 1674958800000000.0,
    "news": [
     {
-     "title": "삼성전자 반도체 성과급 세부안에 쏠리는 눈…추석 연휴 후 공개",
-     "office": "데일리안",
-     "datetime": "202609242018",
-     "url": "https://n.news.naver.com/mnews/article/119/0003136238"
-    },
-    {
-     "title": "미국 역사상 유일했던 '국가부채 0달러'… 그 이후의 재앙",
-     "office": "오마이뉴스",
-     "datetime": "202609241926",
-     "url": "https://n.news.naver.com/mnews/article/047/0002530205"
-    },
-    {
-     "title": "&quot;박스피에 지쳤다&quot; 머니마켓액티브 ETF 인기몰이",
+     "title": "“삼전으로 번 1천만원은 0원, 엔비디아는 165만원”…추석에 정리하...",
      "office": "매일경제",
-     "datetime": "202609241804",
-     "url": "https://n.news.naver.com/mnews/article/009/0005739850"
+     "datetime": "202609252055",
+     "url": "https://n.news.naver.com/mnews/article/009/0005740027"
     },
     {
-     "title": "서울 아파트 매매가격 85주째 ↑…역대 최장 상승 기간 동률",
-     "office": "서울신문",
-     "datetime": "202609241735",
-     "url": "https://n.news.naver.com/mnews/article/081/0003683417"
+     "title": "&quot;손주랑 삼전닉스 얘기하다 놀라&quot;…1억 굴리는 꼬마개미들 [분석+]",
+     "office": "한국경제",
+     "datetime": "202609252050",
+     "url": "https://n.news.naver.com/mnews/article/015/0005336074"
     },
     {
-     "title": "서울 아파트값 85주 연속 상승…文정부와 동률이나 상승률은 배 이상",
-     "office": "세계일보",
-     "datetime": "202609241728",
-     "url": "https://n.news.naver.com/mnews/article/022/0004161602"
+     "title": "“10만원→5천원, 완전 망했습니다” 압도적 1위 ‘국민 매장’ 충격...",
+     "office": "헤럴드경제",
+     "datetime": "202609251941",
+     "url": "https://n.news.naver.com/mnews/article/016/0002701890"
+    },
+    {
+     "title": "‘폭스바겐, 참 대단했는데’ 이젠 우량주 그룹에서도 외면…무려 75%...",
+     "office": "헤럴드경제",
+     "datetime": "202609251941",
+     "url": "https://n.news.naver.com/mnews/article/016/0002701889"
+    },
+    {
+     "title": "[AI 대전환 리딩 전략] 한솔테크닉스, 가전부품 넘어 반도체 '도전'",
+     "office": "블로터",
+     "datetime": "202609251919",
+     "url": "https://n.news.naver.com/mnews/article/293/0000090902"
     }
    ]
   },
@@ -153,12 +153,6 @@
      "office": "국민일보",
      "datetime": "202609230602",
      "url": "https://n.news.naver.com/mnews/article/005/0001874694"
-    },
-    {
-     "title": "대한전선, 회사채 490억 발행…원재료 매입대금에 투입",
-     "office": "서울경제",
-     "datetime": "202609221818",
-     "url": "https://n.news.naver.com/mnews/article/011/0004664685"
     }
    ]
   },
@@ -524,5 +518,5 @@
    "last_date": "2026-09-23"
   }
  ],
- "generated_at": "2026-09-24T12:08:50.921056+00:00"
+ "generated_at": "2026-09-25T12:09:18.669594+00:00"
 }
