@@ -1,84 +1,124 @@
 {
- "date": "2026-09-30",
+ "date": "2026-10-01",
  "source": "naver",
  "picked": [
   {
    "code": "402340",
    "name": "SK스퀘어",
    "market": "KOSPI",
-   "chg": 1.43,
-   "value": 491128596000.0,
-   "mcap": 149601800000000.0,
+   "chg": 0.79,
+   "value": 528275160000.0,
+   "mcap": 151448700000000.0,
    "news": [
     {
-     "title": "3거래일 연속 하락한 코스피, 美 금리 부담에 투심 제한 [시황]",
-     "office": "데일리안",
-     "datetime": "202609301559",
-     "url": "https://n.news.naver.com/mnews/article/119/0003138095"
+     "title": "코스피, 반도체 훈풍에 상승 전환…코스닥도 4% 껑충",
+     "office": "더팩트",
+     "datetime": "202610011605",
+     "url": "https://n.news.naver.com/mnews/article/629/0000538705"
     },
     {
-     "title": "마이크론 실적 앞두고 엇갈린 ‘삼전닉스’…코스피, 6830선 약보합",
-     "office": "디지털타임스",
-     "datetime": "202609301555",
-     "url": "https://n.news.naver.com/mnews/article/029/0003050743"
+     "title": "SK주주들 ‘중복 상장’ 우려에...하이닉스 “솔리다임 상장 결정 안돼...",
+     "office": "조선일보",
+     "datetime": "202610011557",
+     "url": "https://n.news.naver.com/mnews/article/023/0004001571"
     },
     {
-     "title": "코스피, 6800선 약보합 마감…코스닥은 소폭 상승",
-     "office": "아시아경제",
-     "datetime": "202609301553",
-     "url": "https://n.news.naver.com/mnews/article/277/0005822922"
-    },
-    {
-     "title": "코스피, 외인·기관 동반 매도에 6830선 후퇴…코스닥은 상승",
+     "title": "코스피 상승전환해 7000선 턱밑까지…코스닥은 4%대 '급등'",
      "office": "한국경제",
-     "datetime": "202609301542",
-     "url": "https://n.news.naver.com/mnews/article/015/0005337660"
+     "datetime": "202610011551",
+     "url": "https://n.news.naver.com/mnews/article/015/0005338202"
     },
     {
-     "title": "[속보]코스피, 사흘째 내리막 6800선 후퇴…외국인 오늘도 폭풍매도",
+     "title": "[속보]코스피 2% 가까이 올라 6970선 마감…코스닥은 4.5% 상승",
      "office": "이데일리",
-     "datetime": "202609301534",
-     "url": "https://n.news.naver.com/mnews/article/018/0006377794"
+     "datetime": "202610011535",
+     "url": "https://n.news.naver.com/mnews/article/018/0006378757"
+    },
+    {
+     "title": "기관 매수 나서자 코스피 상승 반전, 6900선 탈환… 코스닥도 3%대 ↑",
+     "office": "머니투데이",
+     "datetime": "202610011455",
+     "url": "https://n.news.naver.com/mnews/article/008/0005421061"
     }
    ]
   },
   {
-   "code": "403870",
-   "name": "HPSP",
+   "code": "240810",
+   "name": "원익IPS",
    "market": "KOSDAQ",
-   "chg": 4.59,
-   "value": 212530496200.0,
-   "mcap": 5250700000000.0,
+   "chg": 7.98,
+   "value": 228274514000.0,
+   "mcap": 6969900000000.0,
    "news": [
     {
-     "title": "주성엔지니어링, 코스닥 시총 57위→3위…9개월 만에 54계단↑[핫종목...",
-     "office": "뉴스1",
-     "datetime": "202609301605",
-     "url": "https://n.news.naver.com/mnews/article/421/0009201422"
+     "title": "코스피, 반도체 훈풍에 상승 전환…코스닥도 4% 껑충",
+     "office": "더팩트",
+     "datetime": "202610011605",
+     "url": "https://n.news.naver.com/mnews/article/629/0000538705"
     },
     {
-     "title": "반도체·바이오 매수세 유입… 알테오젠·에코프로 동반 상승",
-     "office": "서울신문",
-     "datetime": "202609301340",
-     "url": "https://n.news.naver.com/mnews/article/081/0003684750"
+     "title": "[마켓뷰] 마이크론 훈풍보다 셌다… 코스피 6900 이끈 건 ‘삼전닉스...",
+     "office": "조선비즈",
+     "datetime": "202610011557",
+     "url": "https://n.news.naver.com/mnews/article/366/0001195667"
     },
     {
-     "title": "美 반도체주 훈풍에 장비주 강세…주성엔지니어링 코스닥 시총 3위[이...",
-     "office": "서울경제",
-     "datetime": "202609301030",
-     "url": "https://n.news.naver.com/mnews/article/011/0004666750"
+     "title": "코스피 상승전환해 7000선 턱밑까지…코스닥은 4%대 '급등'",
+     "office": "한국경제",
+     "datetime": "202610011551",
+     "url": "https://n.news.naver.com/mnews/article/015/0005338202"
     },
     {
-     "title": "美반도체주 반등에 코스피 6900선 회복…외국인 순매수 전환[개장시황...",
-     "office": "뉴스1",
-     "datetime": "202609300933",
-     "url": "https://n.news.naver.com/mnews/article/421/0009199672"
+     "title": "'전약후강' 7천피 턱밑까지…코스닥 4%대 '훨훨'",
+     "office": "SBS Biz",
+     "datetime": "202610011539",
+     "url": "https://n.news.naver.com/mnews/article/374/0000535864"
     },
     {
-     "title": "[속보]코스피, 반도체 강세에 6920선…코스닥도 동반 강세",
+     "title": "[속보]코스피 2% 가까이 올라 6970선 마감…코스닥은 4.5% 상승",
      "office": "이데일리",
-     "datetime": "202609300903",
-     "url": "https://n.news.naver.com/mnews/article/018/0006377437"
+     "datetime": "202610011535",
+     "url": "https://n.news.naver.com/mnews/article/018/0006378757"
+    }
+   ]
+  },
+  {
+   "code": "067310",
+   "name": "하나마이크론",
+   "market": "KOSDAQ",
+   "chg": 7.29,
+   "value": 139200890000.0,
+   "mcap": 3377700000000.0,
+   "news": [
+    {
+     "title": "&quot;크면 손해&quot; 옛말된다…대기업 돼도 5년간 혜택은 그대로",
+     "office": "한국경제",
+     "datetime": "202610011401",
+     "url": "https://n.news.naver.com/mnews/article/015/0005338141"
+    },
+    {
+     "title": "반도체 후공정 생산라인 살펴보는 김정관 장관",
+     "office": "뉴스1",
+     "datetime": "202610011257",
+     "url": "https://n.news.naver.com/mnews/article/421/0009203395"
+    },
+    {
+     "title": "2026년 월드클래스 선정서 수여식",
+     "office": "뉴스1",
+     "datetime": "202610011257",
+     "url": "https://n.news.naver.com/mnews/article/421/0009203396"
+    },
+    {
+     "title": "중견기업 업계 만난 김정관 산업장관",
+     "office": "뉴스1",
+     "datetime": "202610011255",
+     "url": "https://n.news.naver.com/mnews/article/421/0009203377"
+    },
+    {
+     "title": "삼전닉스 보합인데 반도체 장비주 강세…티에프이 15%↑[핫종목]",
+     "office": "뉴스1",
+     "datetime": "202610011054",
+     "url": "https://n.news.naver.com/mnews/article/421/0009202945"
     }
    ]
   },
@@ -86,10 +126,16 @@
    "code": "043260",
    "name": "성호전자",
    "market": "KOSDAQ",
-   "chg": 11.63,
-   "value": 138087760800.0,
-   "mcap": 1991900000000.0,
+   "chg": 7.18,
+   "value": 122904252450.0,
+   "mcap": 2139100000000.0,
    "news": [
+    {
+     "title": "기업가치 향상 회수…5개사 매각 결실 [2026 헤럴드 투자대상 운용혁...",
+     "office": "헤럴드경제",
+     "datetime": "202610011145",
+     "url": "https://n.news.naver.com/mnews/article/016/0002704309"
+    },
     {
      "title": "덕산넵코어스 25% 급등, 거래량·거래대금 코스닥 1위",
      "office": "서울신문",
@@ -105,82 +151,42 @@
    ]
   },
   {
-   "code": "240810",
-   "name": "원익IPS",
-   "market": "KOSDAQ",
-   "chg": 0.69,
-   "value": 123219366400.0,
-   "mcap": 6439800000000.0,
-   "news": [
-    {
-     "title": "'전강후약' 코스피…외인·기관 '팔자'에 6800선 제자리",
-     "office": "뉴시스",
-     "datetime": "202609301607",
-     "url": "https://n.news.naver.com/mnews/article/003/0014224659"
-    },
-    {
-     "title": "주성엔지니어링, 코스닥 시총 57위→3위…9개월 만에 54계단↑[핫종목...",
-     "office": "뉴스1",
-     "datetime": "202609301605",
-     "url": "https://n.news.naver.com/mnews/article/421/0009201422"
-    },
-    {
-     "title": "3거래일 연속 하락한 코스피, 美 금리 부담에 투심 제한 [시황]",
-     "office": "데일리안",
-     "datetime": "202609301559",
-     "url": "https://n.news.naver.com/mnews/article/119/0003138095"
-    },
-    {
-     "title": "코스피, 6800선 약보합 마감…코스닥은 소폭 상승",
-     "office": "아시아경제",
-     "datetime": "202609301553",
-     "url": "https://n.news.naver.com/mnews/article/277/0005822922"
-    },
-    {
-     "title": "코스피, 외인·기관 동반 매도에 6830선 후퇴…코스닥은 상승",
-     "office": "한국경제",
-     "datetime": "202609301542",
-     "url": "https://n.news.naver.com/mnews/article/015/0005337660"
-    }
-   ]
-  },
-  {
-   "code": "457190",
-   "name": "이수스페셜티케미컬",
+   "code": "009830",
+   "name": "한화솔루션",
    "market": "KOSPI",
-   "chg": 16.91,
-   "value": 89755897500.0,
-   "mcap": 2402400000000.0,
+   "chg": 0.0,
+   "value": 118134075900.0,
+   "mcap": 7623900000000.0,
    "news": [
     {
-     "title": "이수화학·이수스페셜티케미컬, 노조와 ‘무파업 10년’ 선언…“상생...",
-     "office": "스포츠서울",
-     "datetime": "202609301237",
-     "url": "https://n.news.naver.com/mnews/article/468/0001269747"
+     "title": "'한달 앞당겨' 한화그룹, 올해 재계 첫 임원인사 포문…&quot;1980년대생 전...",
+     "office": "뉴시스",
+     "datetime": "202610011603",
+     "url": "https://n.news.naver.com/mnews/article/003/0014228023"
     },
     {
-     "title": "[서울데이터랩]개장 직후 인기 검색 종목 20選",
-     "office": "서울신문",
-     "datetime": "202609300912",
-     "url": "https://n.news.naver.com/mnews/article/081/0003684657"
-    },
-    {
-     "title": "[단독] 이수스페셜티, 황화리튬 다음달 생산…전고체 시대 열린다",
-     "office": "한국경제TV",
-     "datetime": "202609291441",
-     "url": "https://n.news.naver.com/mnews/article/215/0001267556"
-    },
-    {
-     "title": "‘배당락’ 삼전 던진 상위 1%…삼성그룹株, 나란히 순매도 상위 [주식...",
+     "title": "한화솔루션·첨단소재, 임원 10명 신규 선임… 6명은 80년대생",
      "office": "서울경제",
-     "datetime": "202609291432",
-     "url": "https://n.news.naver.com/mnews/article/011/0004666398"
+     "datetime": "202610011602",
+     "url": "https://n.news.naver.com/mnews/article/011/0004667383"
     },
     {
-     "title": "주식 고수 순매수 1위는 삼전…4% 하락에 저가매수 나섰나 [주식 초고...",
-     "office": "서울경제",
-     "datetime": "202609281250",
-     "url": "https://n.news.naver.com/mnews/article/011/0004665933"
+     "title": "한화솔루션, 2027년 정기 임원인사⋯신임 임원 10명 발탁",
+     "office": "아이뉴스24",
+     "datetime": "202610011555",
+     "url": "https://n.news.naver.com/mnews/article/031/0001062852"
+    },
+    {
+     "title": "서울중앙지검 석화업체 6곳·임직원 37명 기소…역대 최대 규모 담합",
+     "office": "디지털타임스",
+     "datetime": "202610011551",
+     "url": "https://n.news.naver.com/mnews/article/029/0003051026"
+    },
+    {
+     "title": "한화 방산·에너지 계열사 정기 임원인사…&quot;성장 잠재력 중심&quot;",
+     "office": "연합뉴스",
+     "datetime": "202610011545",
+     "url": "https://n.news.naver.com/mnews/article/001/0016351173"
     }
    ]
   }
@@ -193,8 +199,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-04",
    "intro_close": 1647000,
-   "last_close": 1776000,
-   "last_date": "2026-09-30"
+   "last_close": 1833000,
+   "last_date": "2026-10-01"
   },
   {
    "code": "108490",
@@ -202,8 +208,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 304500,
-   "last_close": 286000,
-   "last_date": "2026-09-30"
+   "last_close": 296500,
+   "last_date": "2026-10-01"
   },
   {
    "code": "030530",
@@ -211,8 +217,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 22500,
-   "last_close": 26400,
-   "last_date": "2026-09-30"
+   "last_close": 28000,
+   "last_date": "2026-10-01"
   },
   {
    "code": "005930",
@@ -220,8 +226,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-07",
    "intro_close": 270000,
-   "last_close": 268500,
-   "last_date": "2026-09-30"
+   "last_close": 276000,
+   "last_date": "2026-10-01"
   },
   {
    "code": "161580",
@@ -229,8 +235,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 33500,
-   "last_close": 39450,
-   "last_date": "2026-09-30"
+   "last_close": 40700,
+   "last_date": "2026-10-01"
   },
   {
    "code": "212560",
@@ -238,8 +244,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 11880,
-   "last_close": 10110,
-   "last_date": "2026-09-30"
+   "last_close": 10430,
+   "last_date": "2026-10-01"
   },
   {
    "code": "036930",
@@ -247,8 +253,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 187200,
-   "last_close": 232500,
-   "last_date": "2026-09-30"
+   "last_close": 241000,
+   "last_date": "2026-10-01"
   },
   {
    "code": "024060",
@@ -256,8 +262,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 14510,
-   "last_close": 11970,
-   "last_date": "2026-09-30"
+   "last_close": 11980,
+   "last_date": "2026-10-01"
   },
   {
    "code": "100590",
@@ -265,8 +271,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 4970,
-   "last_close": 4665,
-   "last_date": "2026-09-30"
+   "last_close": 4815,
+   "last_date": "2026-10-01"
   },
   {
    "code": "187660",
@@ -274,8 +280,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 8300,
-   "last_close": 7700,
-   "last_date": "2026-09-30"
+   "last_close": 7540,
+   "last_date": "2026-10-01"
   },
   {
    "code": "001820",
@@ -283,8 +289,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-11",
    "intro_close": 137400,
-   "last_close": 149200,
-   "last_date": "2026-09-30"
+   "last_close": 158700,
+   "last_date": "2026-10-01"
   },
   {
    "code": "105560",
@@ -292,8 +298,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 181200,
-   "last_close": 168800,
-   "last_date": "2026-09-30"
+   "last_close": 166000,
+   "last_date": "2026-10-01"
   },
   {
    "code": "093370",
@@ -301,8 +307,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 14220,
-   "last_close": 15000,
-   "last_date": "2026-09-30"
+   "last_close": 15710,
+   "last_date": "2026-10-01"
   },
   {
    "code": "000990",
@@ -310,8 +316,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 111800,
-   "last_close": 136600,
-   "last_date": "2026-09-30"
+   "last_close": 142500,
+   "last_date": "2026-10-01"
   },
   {
    "code": "036540",
@@ -319,8 +325,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-15",
    "intro_close": 8650,
-   "last_close": 10780,
-   "last_date": "2026-09-30"
+   "last_close": 11000,
+   "last_date": "2026-10-01"
   },
   {
    "code": "042510",
@@ -328,8 +334,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-15",
    "intro_close": 12270,
-   "last_close": 11170,
-   "last_date": "2026-09-30"
+   "last_close": 10990,
+   "last_date": "2026-10-01"
   },
   {
    "code": "052690",
@@ -337,8 +343,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-08",
    "intro_close": 142600,
-   "last_close": 122600,
-   "last_date": "2026-09-30"
+   "last_close": 125800,
+   "last_date": "2026-10-01"
   },
   {
    "code": "004310",
@@ -346,8 +352,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-08",
    "intro_close": 10440,
-   "last_close": 8400,
-   "last_date": "2026-09-30"
+   "last_close": 8480,
+   "last_date": "2026-10-01"
   },
   {
    "code": "413630",
@@ -355,8 +361,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-16",
    "intro_close": 4680,
-   "last_close": 4100,
-   "last_date": "2026-09-30"
+   "last_close": 4140,
+   "last_date": "2026-10-01"
   },
   {
    "code": "115440",
@@ -364,8 +370,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-16",
    "intro_close": 9660,
-   "last_close": 11730,
-   "last_date": "2026-09-30"
+   "last_close": 11810,
+   "last_date": "2026-10-01"
   },
   {
    "code": "411080",
@@ -373,8 +379,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-16",
    "intro_close": 7120,
-   "last_close": 6500,
-   "last_date": "2026-09-30"
+   "last_close": 6640,
+   "last_date": "2026-10-01"
   },
   {
    "code": "000150",
@@ -382,8 +388,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-17",
    "intro_close": 1405000,
-   "last_close": 1368000,
-   "last_date": "2026-09-30"
+   "last_close": 1384000,
+   "last_date": "2026-10-01"
   },
   {
    "code": "082740",
@@ -391,8 +397,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-17",
    "intro_close": 53000,
-   "last_close": 49000,
-   "last_date": "2026-09-30"
+   "last_close": 48500,
+   "last_date": "2026-10-01"
   },
   {
    "code": "119850",
@@ -400,8 +406,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-17",
    "intro_close": 51300,
-   "last_close": 57200,
-   "last_date": "2026-09-30"
+   "last_close": 54600,
+   "last_date": "2026-10-01"
   },
   {
    "code": "028050",
@@ -409,8 +415,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-18",
    "intro_close": 51800,
-   "last_close": 47700,
-   "last_date": "2026-09-30"
+   "last_close": 47350,
+   "last_date": "2026-10-01"
   },
   {
    "code": "218410",
@@ -418,8 +424,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-18",
    "intro_close": 60100,
-   "last_close": 58500,
-   "last_date": "2026-09-30"
+   "last_close": 60000,
+   "last_date": "2026-10-01"
   },
   {
    "code": "032820",
@@ -427,8 +433,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-18",
    "intro_close": 13870,
-   "last_close": 12300,
-   "last_date": "2026-09-30"
+   "last_close": 12540,
+   "last_date": "2026-10-01"
   },
   {
    "code": "042370",
@@ -436,8 +442,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-18",
    "intro_close": 11440,
-   "last_close": 10630,
-   "last_date": "2026-09-30"
+   "last_close": 11000,
+   "last_date": "2026-10-01"
   },
   {
    "code": "006360",
@@ -445,8 +451,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-18",
    "intro_close": 37200,
-   "last_close": 33950,
-   "last_date": "2026-09-30"
+   "last_close": 32950,
+   "last_date": "2026-10-01"
   },
   {
    "code": "067310",
@@ -454,8 +460,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-21",
    "intro_close": 44800,
-   "last_close": 47350,
-   "last_date": "2026-09-30"
+   "last_close": 51200,
+   "last_date": "2026-10-01"
   },
   {
    "code": "240810",
@@ -463,8 +469,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-21",
    "intro_close": 129000,
-   "last_close": 131500,
-   "last_date": "2026-09-30"
+   "last_close": 143500,
+   "last_date": "2026-10-01"
   },
   {
    "code": "437730",
@@ -472,8 +478,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-21",
    "intro_close": 55700,
-   "last_close": 49450,
-   "last_date": "2026-09-30"
+   "last_close": 51300,
+   "last_date": "2026-10-01"
   },
   {
    "code": "043260",
@@ -481,8 +487,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-21",
    "intro_close": 26850,
-   "last_close": 26450,
-   "last_date": "2026-09-30"
+   "last_close": 28500,
+   "last_date": "2026-10-01"
   },
   {
    "code": "003490",
@@ -490,8 +496,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-22",
    "intro_close": 31400,
-   "last_close": 32000,
-   "last_date": "2026-09-30"
+   "last_close": 31200,
+   "last_date": "2026-10-01"
   },
   {
    "code": "001440",
@@ -499,8 +505,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-22",
    "intro_close": 31600,
-   "last_close": 29650,
-   "last_date": "2026-09-30"
+   "last_close": 30150,
+   "last_date": "2026-10-01"
   },
   {
    "code": "356680",
@@ -508,8 +514,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-23",
    "intro_close": 18220,
-   "last_close": 18200,
-   "last_date": "2026-09-30"
+   "last_close": 18150,
+   "last_date": "2026-10-01"
   },
   {
    "code": "440110",
@@ -517,8 +523,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-23",
    "intro_close": 81600,
-   "last_close": 81700,
-   "last_date": "2026-09-30"
+   "last_close": 89700,
+   "last_date": "2026-10-01"
   },
   {
    "code": "103590",
@@ -526,8 +532,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-23",
    "intro_close": 81700,
-   "last_close": 82500,
-   "last_date": "2026-09-30"
+   "last_close": 82900,
+   "last_date": "2026-10-01"
   },
   {
    "code": "096770",
@@ -535,8 +541,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-28",
    "intro_close": 158200,
-   "last_close": 148800,
-   "last_date": "2026-09-30"
+   "last_close": 139600,
+   "last_date": "2026-10-01"
   },
   {
    "code": "007810",
@@ -544,8 +550,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-28",
    "intro_close": 69000,
-   "last_close": 74300,
-   "last_date": "2026-09-30"
+   "last_close": 79000,
+   "last_date": "2026-10-01"
   },
   {
    "code": "303810",
@@ -553,8 +559,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-28",
    "intro_close": 3425,
-   "last_close": 2860,
-   "last_date": "2026-09-30"
+   "last_close": 2810,
+   "last_date": "2026-10-01"
   },
   {
    "code": "012210",
@@ -562,8 +568,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-28",
    "intro_close": 12420,
-   "last_close": 12190,
-   "last_date": "2026-09-30"
+   "last_close": 11900,
+   "last_date": "2026-10-01"
   },
   {
    "code": "042700",
@@ -571,8 +577,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-29",
    "intro_close": 252000,
-   "last_close": 256500,
-   "last_date": "2026-09-30"
+   "last_close": 268500,
+   "last_date": "2026-10-01"
   },
   {
    "code": "403870",
@@ -580,8 +586,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-29",
    "intro_close": 61000,
-   "last_close": 63700,
-   "last_date": "2026-09-30"
+   "last_close": 69000,
+   "last_date": "2026-10-01"
   },
   {
    "code": "452190",
@@ -589,8 +595,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-29",
    "intro_close": 6190,
-   "last_close": 6100,
-   "last_date": "2026-09-30"
+   "last_close": 6250,
+   "last_date": "2026-10-01"
   },
   {
    "code": "402340",
@@ -598,8 +604,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-30",
    "intro_close": 1139000,
-   "last_close": 1139000,
-   "last_date": "2026-09-30"
+   "last_close": 1155000,
+   "last_date": "2026-10-01"
   },
   {
    "code": "457190",
@@ -607,9 +613,18 @@
    "market": "KOSPI",
    "intro_date": "2026-09-30",
    "intro_close": 79700,
-   "last_close": 79700,
-   "last_date": "2026-09-30"
+   "last_close": 78400,
+   "last_date": "2026-10-01"
+  },
+  {
+   "code": "009830",
+   "name": "한화솔루션",
+   "market": "KOSPI",
+   "intro_date": "2026-10-01",
+   "intro_close": 34250,
+   "last_close": 34250,
+   "last_date": "2026-10-01"
   }
  ],
- "generated_at": "2026-09-30T07:12:44.407279+00:00"
+ "generated_at": "2026-10-01T07:12:46.728096+00:00"
 }
