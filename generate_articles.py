@@ -35,7 +35,6 @@ SYSTEM_PROMPT = """당신은 한국 주식 블로그 「차트로 보는 오늘�
 ## 블로그 철칙 (최우선)
 "모든 걸 사실대로, 결과물은 오류 없이 정확하게. 확인 안 된 숫자는 쓰지 않고 뺍니다."
 - 존댓말(합니다체)로 처음부터 끝까지 통일한다. 평서체("~했다", "~이다")와 절대 섞지 않는다.
-- 1,500~2,500자
 - 어그로 질문형 제목
 - 매수·매도 권유 금지, 목표주가 단정 금지, 면책 문구 필수
 - 구체적인 매수 수량·투입 금액·분할 매수 계획을 제시하지 않는다(예: "9주가 한도", "122만 원어치", "1차 50주"). 리스크 관리는 가격대(손절 기준선)로만 설명한다.
@@ -46,18 +45,19 @@ SYSTEM_PROMPT = """당신은 한국 주식 블로그 「차트로 보는 오늘�
 ## 콘텐츠 철학
 "우리는 상한가 뒤쫓는 사람이 아니다. 현재 차트의 흐름을 읽어서 앞으로 어떻게 대응할지 조언하는 사람이다."
 
-## 글 구성 — 고정 틀이 아니다 (가장 중요)
-아래는 쓸 수 있는 재료 목록일 뿐입니다. **글마다 구성과 순서를 다르게** 가져가야 합니다.
-모든 글이 같은 순서, 같은 소제목으로 나오면 실패한 원고입니다.
+## 글의 형식 — 하루 1편 묶음 글 (가장 중요)
+하루에 글을 여러 편 쓰지 않습니다. 그날 눈에 띈 종목 2~3개를 **한 편의 글 안에서** 다룹니다.
+종목마다 따로 글을 쪼개지 않습니다.
 
 [필수 — 모든 글에 포함]
-- 도입부 맨 위에 굵은 글씨 사실 요약 1~2문장 (날짜 + 종목명 + 코드 + 종가 + 등락률 + 그날의 핵심 지표)
-- 차트 이미지 (<a target="_blank">로 감싸기)
-- 숫자 근거가 있는 분석 본문
-- 면책 문구 5줄 + 누적 수익률 링크
+- 제목: 그날 전체를 아우르는 질문형 제목 (40자 이내). 종목명을 다 나열하지 말고 그날의 핵심을 뽑는다.
+- 도입부 맨 위에 굵은 글씨 요약 1~2문장: 날짜 + 다루는 종목 + 그날의 공통점이나 핵심 사실
+- 종목마다: 종가·등락률·거래량, 차트 이미지(<a target="_blank">로 감싸기), 숫자 근거가 있는 분석
+- 마지막에 종목들을 함께 놓고 보는 마무리 한 단락 (공통점이든 대비되는 점이든)
+- 면책 문구 5줄 + 누적 수익률 링크 — **글 전체에 한 번만**, 맨 끝에
 
-[선택 — 그날 그 종목에 실제로 해당하는 것만 고른다. 전부 넣지 말 것]
-- 최근 뉴스 요약 + 출처 링크 (뉴스가 없으면 이 섹션 자체를 뺀다)
+[종목별 선택 — 그 종목에 실제로 해당하는 것만 고른다. 전부 넣지 말 것]
+- 최근 뉴스 요약 + 출처 링크 (뉴스가 없으면 뺀다)
 - 이동평균선·보조지표 표 (지표/값/해석 3열, <thead>/<th> 금지, <tbody> 첫 행 <td><b>)
 - 지지·저항 가격대
 - 추세가 무효화되는 가격 조건
@@ -68,10 +68,11 @@ SYSTEM_PROMPT = """당신은 한국 주식 블로그 「차트로 보는 오늘�
 [변주 규칙 — 반드시 지킬 것]
 - 그날 가장 특이한 사실로 글을 시작한다. 거래량이 터진 날은 거래량에서, 윗꼬리가 길면 그 캔들에서,
   뉴스가 결정적이면 뉴스에서 출발한다. 매번 같은 방식으로 시작하지 않는다.
-- 소제목 문구를 재사용하지 않는다. "다음 언덕은 어디인가" 같은 문구를 모든 글에 반복하면 안 된다.
-  그 종목, 그날에 맞는 소제목을 새로 쓴다.
-- 섹션 개수도 글마다 다르게 한다. 어떤 날은 짧고 밀도 높게, 어떤 날은 길게.
-- 표는 꼭 필요한 글에만 쓴다.
+- 종목마다 다루는 깊이와 섹션을 다르게 한다. 두 종목을 똑같은 틀로 나란히 쓰지 않는다.
+  한 종목은 차트 위주로, 다른 종목은 뉴스·수급 위주로 가는 식으로 각도를 달리한다.
+- 소제목 문구를 재사용하지 않는다. "다음 언덕은 어디인가" 같은 문구를 매번 반복하면 안 된다.
+- 표는 꼭 필요한 종목에만 쓴다. 모든 종목에 기계적으로 표를 넣지 않는다.
+- 전체 분량 2,500~4,000자.
 
 ## GEO 원칙
 - 도입부 최상단에 굵게 처리한 1~2문장 사실 요약 (날짜+종목명+코드+가격+등락률+핵심 지표)
@@ -155,56 +156,52 @@ def call_deepseek(user_prompt: str) -> str:
     return r.json()["choices"][0]["message"]["content"]
 
 
-def build_user_prompt(pick, analysis, news_list, chart_url):
-    is_large = pick["name"] in LARGE_CAP_NAMES or pick.get("mcap", 0) >= 10_000_000_000_000
+def build_roundup_prompt(items, day):
+    """하루치 종목 전부를 묶어 1편짜리 원고를 요청하는 프롬프트."""
+    blocks = []
+    for n, it in enumerate(items, 1):
+        pick, analysis = it["pick"], it["analysis"]
+        is_large = (pick["name"] in LARGE_CAP_NAMES
+                    or pick.get("mcap", 0) >= 10_000_000_000_000)
 
-    news_text = "관련 뉴스 없음"
-    if news_list:
-        lines = [f"- [{n['office']}] {n['title']} ({n['url']})" for n in news_list[:3]]
-        news_text = "\n".join(lines)
+        news_text = "관련 뉴스 없음"
+        if it["news_list"]:
+            news_text = "\n".join(
+                f"  - [{x['office']}] {x['title']} ({x['url']})"
+                for x in it["news_list"][:3]
+            )
 
-    ma = analysis["ma"]
-    return f"""다음 종목의 차트 데이터를 바탕으로 블로그 원고 1편을 작성해주세요.
-
-[종목 정보]
-- 종목명: {pick['name']}
-- 종목코드: {pick['code']}
-- 시장: {pick['market']}
-- 종목 소개: {"생략 (대기업이므로 '이 회사는 무엇을 하는가' 섹션 제외)" if is_large else "포함 필요"}
-
-[차트 데이터 - {analysis['asof']} 기준]
-- 종가: {analysis['close']:,}원
-- 전일 종가: {analysis['prev_close']:,}원
-- 등락률: {analysis['chg_pct']:+.2f}%
-- 고가: {analysis['high']:,}원
-- 저가: {analysis['low']:,}원
-- 거래량: {analysis['volume']:,}주
-- 거래량 배수 (직전 20거래일 평균 대비): {analysis['vol_ratio']}배
+        ma = analysis["ma"]
+        blocks.append(f"""
+[종목 {n}] {pick['name']} ({pick['code']}) · {pick['market']}
+- 회사 소개: {"생략 (대기업)" if is_large else "필요하면 한두 줄 포함 가능"}
+- 종가: {analysis['close']:,}원 / 전일 종가: {analysis['prev_close']:,}원 / 등락률: {analysis['chg_pct']:+.2f}%
+- 고가: {analysis['high']:,}원 / 저가: {analysis['low']:,}원
+- 거래량: {analysis['volume']:,}주 (직전 20거래일 평균의 {analysis['vol_ratio']}배)
 - 이평선: ma5={ma['ma5']:,} / ma10={ma['ma10']:,} / ma20={ma['ma20']:,} / ma240={ma['ma240']:,}
-- 이평선 배열: {analysis['arrangement']}
-- 240일선 대비: {analysis['vs_ma240_pct']:+.1f}%
+- 이평선 배열: {analysis['arrangement']} / 240일선 대비: {analysis['vs_ma240_pct']:+.1f}%
 - 주봉 20선: {analysis['weekly_ma20']:,}
-- MACD: {analysis['macd']} / 시그널: {analysis['macd_sig']} / 히스토그램: {analysis['macd_hist']}
+- MACD: {analysis['macd']} / 시그널 {analysis['macd_sig']} / 히스토그램 {analysis['macd_hist']}
 - MACD 크로스: {analysis['macd_cross']} ({analysis['macd_cross_days_ago']}거래일 전)
 - RSI(14): {analysis['rsi']}
-- 120일 고점: {analysis['recent120_high']:,}원
-- 120일 저점: {analysis['recent120_low']:,}원
-- 52주 고점: {analysis['high_52w']:,}원
-- 52주 저점: {analysis['low_52w']:,}원
-- 52주 고점 대비: {analysis['drawdown_from_52w_high_pct']:+.1f}%
-- 일목 전환선: {analysis['tenkan']:,}원 / 기준선: {analysis['kijun']:,}원
-
-[뉴스]
+- 120일 고점/저점: {analysis['recent120_high']:,}원 / {analysis['recent120_low']:,}원
+- 52주 고점/저점: {analysis['high_52w']:,}원 / {analysis['low_52w']:,}원 (52주 고점 대비 {analysis['drawdown_from_52w_high_pct']:+.1f}%)
+- 일목 전환선/기준선: {analysis['tenkan']:,}원 / {analysis['kijun']:,}원
+- 차트 이미지 URL: {it['chart_url']}
+- 뉴스:
 {news_text}
+""")
 
-[차트 이미지 URL]
-{chart_url}
-
+    names = " · ".join(f"{it['pick']['name']}" for it in items)
+    return f"""{day} 자 블로그 원고를 **1편만** 작성해주세요.
+아래 {len(items)}개 종목을 한 편의 글 안에서 함께 다룹니다 ({names}).
+종목마다 글을 쪼개지 마세요.
+{''.join(blocks)}
 [출력 요구사항]
 반드시 JSON 형식으로만 응답:
 {{
-  "title": "제목 (어그로 질문형, 40자 이내)",
-  "tags": "#태그1 #태그2 #태그3 #태그4",
+  "title": "제목 (그날 전체를 아우르는 질문형, 40자 이내)",
+  "tags": "#태그1 #태그2 #태그3 #태그4 #태그5",
   "body_html": "본문 HTML (마크다운 코드블록 없이 순수 HTML만)"
 }}
 """
@@ -230,9 +227,9 @@ def main():
         sys.exit("picked 종목이 없습니다")
 
     issue_num = get_next_issue_number()
-    print(f"[시작] 발행분 {issue_num:03d} — {day}, {len(picked)}종목")
+    print(f"[시작] 발행분 {issue_num:03d} — {day}, {len(picked)}종목을 1편으로 묶음")
 
-    articles = []
+    items = []
     for p in picked:
         code = p["code"]
         apath = OUT / "analysis" / f"{code}.json"
@@ -255,68 +252,71 @@ def main():
         else:
             print(f"[warn] {p['name']} Daum 검증 실패 → analysis 값 사용", file=sys.stderr)
 
-        news_list = p.get("news", [])
-        chart_url = (
-            f"https://raw.githubusercontent.com/dg4989001-coder/chart-today"
-            f"/main/out/charts/{code}_{ymd}.png"
+        items.append({
+            "pick": p,
+            "analysis": analysis,
+            "news_list": p.get("news", []),
+            "chart_url": (
+                f"https://raw.githubusercontent.com/dg4989001-coder/chart-today"
+                f"/main/out/charts/{code}_{ymd}.png"
+            ),
+        })
+
+    if not items:
+        sys.exit("분석 데이터가 있는 종목이 없습니다")
+
+    names = ", ".join(f"{it['pick']['name']}({it['pick']['code']})" for it in items)
+    print(f"[생성] 묶음 글 1편 — {names}")
+
+    content = call_deepseek(build_roundup_prompt(items, day))
+    content = content.strip()
+    if content.startswith("```"):
+        content = re.sub(r"^```(?:json)?\s*", "", content)
+        content = re.sub(r"\s*```$", "", content)
+    data = json.loads(content)
+    print(f"[완료] {data['title']}")
+
+    # 발행 작업이 Daum과 바로 대조할 수 있도록 사용한 수치를 표로 남긴다
+    verify_rows = ["| 종목 | 코드 | 종가 | 등락률 | 고가 | 저가 | 거래량 |",
+                   "|---|---|---|---|---|---|---|"]
+    for it in items:
+        a, p = it["analysis"], it["pick"]
+        verify_rows.append(
+            f"| {p['name']} | {p['code']} | {a['close']:,} | {a['chg_pct']:+.2f}% | "
+            f"{a['high']:,} | {a['low']:,} | {a['volume']:,} |"
         )
 
-        print(f"[생성] {p['name']} ({code})...")
-        try:
-            content = call_deepseek(build_user_prompt(p, analysis, news_list, chart_url))
-            # 마크다운 코드블록 제거
-            content = content.strip()
-            if content.startswith("```"):
-                content = re.sub(r"^```(?:json)?\s*", "", content)
-                content = re.sub(r"\s*```$", "", content)
-            data = json.loads(content)
-            articles.append({
-                "code": code,
-                "name": p["name"],
-                "title": data["title"],
-                "tags": data["tags"],
-                "body_html": data["body_html"],
-            })
-            print(f"[완료] {p['name']} — {data['title']}")
-        except Exception as e:
-            print(f"[실패] {p['name']}: {e}", file=sys.stderr)
-
-    if not articles:
-        sys.exit("생성된 원고가 없습니다")
-
     md = [
-        f"# 발행 지시서 — {day} ({len(articles)}편)",
+        f"# 발행 지시서 — {day} (묶음 글 1편)",
         "작성: DeepSeek API · 발행: 클로드",
         "",
         "## 공통 정보",
         "- 블로그: https://mynote86824.tistory.com",
         "- 카테고리: 오늘의 핫종목",
-        "- 발행 방식: **비공개** (오빠 확인 후 공개 전환)",
-        "- 발행 전 검증: Daum API로 종가·등락률 대조, 금지 문체 확인",
+        "- 발행 방식: **비공개** (형 확인 후 공개 전환)",
+        f"- 형식: **하루 1편 묶음 글** — 종목 {len(items)}개를 한 글에서 다룸",
+        f"- 다룬 종목: {names}",
+        "- 발행 전 검증: 아래 「검증용 수치」를 Daum API 값과 대조, 금지 문체 확인",
+        "",
+        "## 검증용 수치 (원고 작성에 사용한 값)",
+        *verify_rows,
         "",
         "---",
         "",
+        "## 제목",
+        data["title"],
+        "",
+        "## 태그",
+        data["tags"],
+        "",
+        "## 본문 HTML",
+        data["body_html"],
+        "",
     ]
-    for i, a in enumerate(articles, 1):
-        md += [
-            f"## {i}편 — {a['name']} ({a['code']})",
-            "",
-            "### 제목",
-            a["title"],
-            "",
-            "### 태그",
-            a["tags"],
-            "",
-            "### 본문 HTML",
-            a["body_html"],
-            "",
-            "---",
-            "",
-        ]
 
     out_path = CLAUDE_DIR / f"발행분-{issue_num:03d}-{ymd}.md"
     out_path.write_text("\n".join(md), encoding="utf-8")
-    print(f"\n[저장] {out_path} ({len(articles)}편)")
+    print(f"\n[저장] {out_path} (묶음 글 1편, {len(items)}종목)")
 
 
 if __name__ == "__main__":
