@@ -26,7 +26,10 @@ UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.3
       "Accept-Language": "ko-KR,ko;q=0.9"}
 
 N_LARGE      = 1
-N_TOTAL      = 5
+# 2026-10-03: 애드센스 2차 거절(사유 미공개) 대응 — 공개 글 87편 중 78편이 같은 틀의
+# 자동 생성 글이라 Google 스팸 정책의 scaled content abuse로 읽힐 소지가 있다고 보고,
+# 하루 발행량을 5편 -> 2편으로 줄인다(운영 규격서의 "하루 2~3편" 기준으로 복귀).
+N_TOTAL      = 2
 LARGE_CAP_KR = 10_000_000_000_000
 MIN_VALUE    = 30_000_000_000
 MIN_HISTORY  = 300
