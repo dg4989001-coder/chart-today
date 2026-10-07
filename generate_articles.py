@@ -35,11 +35,13 @@ SYSTEM_PROMPT = """당신은 한국 주식 블로그 「차트로 보는 오늘�
 ## 블로그 철칙 (최우선)
 "모든 걸 사실대로, 결과물은 오류 없이 정확하게. 확인 안 된 숫자는 쓰지 않고 뺍니다."
 - 존댓말(합니다체)로 처음부터 끝까지 통일한다. 평서체("~했다", "~이다")와 절대 섞지 않는다.
-- 어그로 질문형 제목
+- 제목에 어그로·낚시를 쓰지 않는다. 과장 질문형 제목 금지.
 - 매수·매도 권유 금지, 목표주가 단정 금지, 면책 문구 필수
 - 구체적인 매수 수량·투입 금액·분할 매수 계획을 제시하지 않는다(예: "9주가 한도", "122만 원어치", "1차 50주"). 리스크 관리는 가격대(손절 기준선)로만 설명한다.
 - 매체마다 수치 다르면 그 숫자는 버린다
 - 주어진 데이터에 없는 숫자는 절대 지어내지 않는다
+- 종목 사이의 인과관계·공통점·대비를 임의로 만들어내지 않는다. 데이터와 뉴스로
+  확인되지 않으면 "서로 무관하다"고 쓰는 것이 정답이다.
 - 상장 후 240거래일이 지나지 않은 종목은 240일선을 아예 언급하지 않는다
 
 ## 콘텐츠 철학
@@ -50,10 +52,17 @@ SYSTEM_PROMPT = """당신은 한국 주식 블로그 「차트로 보는 오늘�
 종목마다 따로 글을 쪼개지 않습니다.
 
 [필수 — 모든 글에 포함]
-- 제목: 그날 전체를 아우르는 질문형 제목 (40자 이내). 종목명을 다 나열하지 말고 그날의 핵심을 뽑는다.
-- 도입부 맨 위에 굵은 글씨 요약 1~2문장: 날짜 + 다루는 종목 + 그날의 공통점이나 핵심 사실
+- 제목: 사실 요약형 (50자 이내). 날짜와 다룬 종목의 핵심 사실(등락률 등)을 담는다.
+  질문형 제목은 쓰지 않는다. 특히 종목들 사이에 공통 원인이 있는 것처럼 암시하는 제목
+  ("무엇이 이 둘을 갈랐나", "왜 한쪽만 올랐나" 등)은 금지한다.
+- 도입부 맨 위에 굵은 글씨 요약 1~2문장: 날짜 + 다루는 종목 + 각 종목의 종가·등락률·거래량 배수.
+  없는 공통점을 만들어 넣지 않는다.
 - 종목마다: 종가·등락률·거래량, 차트 이미지(<a target="_blank">로 감싸기), 숫자 근거가 있는 분석
-- 마지막에 종목들을 함께 놓고 보는 마무리 한 단락 (공통점이든 대비되는 점이든)
+- 마지막 마무리 단락은 "종목별 다음 관전 포인트"로 쓴다. 종목마다 다음에 볼 가격대를 따로 정리한다.
+  공통점이나 대비는 실제 근거(같은 업종·같은 테마·같은 재료·공급관계 등)가 데이터와 뉴스로
+  확인될 때만 쓴다. 근거가 없으면 "두 종목은 업종과 사업 영역이 겹치지 않아 하나의 흐름으로
+  묶어 볼 근거가 없습니다"처럼 무관함을 명시하고 병렬로만 정리한다.
+  "거래량이 평소보다 많았다"는 것은 종목 선정 기준 자체이므로 공통점으로 쓰지 않는다.
 - 면책 문구 5줄 + 누적 수익률 링크 — **글 전체에 한 번만**, 맨 끝에
 
 [종목별 선택 — 그 종목에 실제로 해당하는 것만 고른다. 전부 넣지 말 것]
@@ -136,6 +145,29 @@ def fetch_daum_quote(code: str):
         return None
 
 
+def daum_bar_count(code: str) -> int:
+    """Daum 일봉 응답 개수 = 상장 후 거래일수(최대 260). 실패 시 -1.
+
+    2026-10-07 추가 (사고 19 재발 대응):
+    - SYSTEM_PROMPT에 "상장 후 240거래일 미만이면 240일선을 언급하지 말라"는
+      규칙이 있었지만, build_roundup_prompt가 상장일과 무관하게 ma240 값과
+      "240일선 대비 +X%"를 데이터로 넣어주고 있어서 규칙이 무력화됐다.
+      숫자를 아예 주지 않는 것이 유일하게 확실한 방법이다.
+    """
+    url = f"https://finance.daum.net/api/charts/A{code}/days"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Referer": f"https://finance.daum.net/quotes/A{code}",
+    }
+    try:
+        r = requests.get(url, headers=headers,
+                         params={"limit": 260, "adjusted": "true"}, timeout=10)
+        return len(r.json().get("data", []))
+    except Exception as e:
+        print(f"[warn] 거래일수 조회 실패 {code}: {e}", file=sys.stderr)
+        return -1
+
+
 def call_deepseek(user_prompt: str) -> str:
     headers = {
         "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
@@ -172,14 +204,29 @@ def build_roundup_prompt(items, day):
             )
 
         ma = analysis["ma"]
+        bars = daum_bar_count(pick["code"])
+        if bars >= 240:
+            ma_lines = (
+                f"- 이평선: ma5={ma['ma5']:,} / ma10={ma['ma10']:,}"
+                f" / ma20={ma['ma20']:,} / ma240={ma['ma240']:,}\n"
+                f"- 이평선 배열: {analysis['arrangement']}"
+                f" / 240일선 대비: {analysis['vs_ma240_pct']:+.1f}%"
+            )
+        else:
+            note = f"상장 후 거래일수 {bars}일" if bars >= 0 else "거래일수 확인 실패"
+            ma_lines = (
+                f"- 이평선: ma5={ma['ma5']:,} / ma10={ma['ma10']:,}"
+                f" / ma20={ma['ma20']:,}\n"
+                f"- 이평선 배열: {analysis['arrangement']}\n"
+                f"- ※ {note} — 240일선·240일 이동평균은 산출 불가. 절대 언급하지 말 것."
+            )
         blocks.append(f"""
 [종목 {n}] {pick['name']} ({pick['code']}) · {pick['market']}
 - 회사 소개: {"생략 (대기업)" if is_large else "필요하면 한두 줄 포함 가능"}
 - 종가: {analysis['close']:,}원 / 전일 종가: {analysis['prev_close']:,}원 / 등락률: {analysis['chg_pct']:+.2f}%
 - 고가: {analysis['high']:,}원 / 저가: {analysis['low']:,}원
 - 거래량: {analysis['volume']:,}주 (직전 20거래일 평균의 {analysis['vol_ratio']}배)
-- 이평선: ma5={ma['ma5']:,} / ma10={ma['ma10']:,} / ma20={ma['ma20']:,} / ma240={ma['ma240']:,}
-- 이평선 배열: {analysis['arrangement']} / 240일선 대비: {analysis['vs_ma240_pct']:+.1f}%
+{ma_lines}
 - 주봉 20선: {analysis['weekly_ma20']:,}
 - MACD: {analysis['macd']} / 시그널 {analysis['macd_sig']} / 히스토그램 {analysis['macd_hist']}
 - MACD 크로스: {analysis['macd_cross']} ({analysis['macd_cross_days_ago']}거래일 전)
@@ -200,7 +247,7 @@ def build_roundup_prompt(items, day):
 [출력 요구사항]
 반드시 JSON 형식으로만 응답:
 {{
-  "title": "제목 (그날 전체를 아우르는 질문형, 40자 이내)",
+  "title": "제목 (사실 요약형, 50자 이내 — 질문형·어그로 금지)",
   "tags": "#태그1 #태그2 #태그3 #태그4 #태그5",
   "body_html": "본문 HTML (마크다운 코드블록 없이 순수 HTML만)"
 }}
