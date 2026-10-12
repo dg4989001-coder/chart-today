@@ -5,8 +5,9 @@
 데이터: Yahoo Finance 일봉 (KRX)
 출력  : charts/<code>.png  +  analysis/<code>.json
 """
-import json, math, os, shutil, sys
+import json, math, os, shutil, sys, time
 import pandas as pd, numpy as np
+import requests
 import matplotlib
 matplotlib.use("Agg")
 from matplotlib import font_manager as fm
@@ -158,7 +159,50 @@ def add_ichimoku(ax, d):
     ax.plot(x, tenkan, color=TENKAN_C, lw=1.2, ls=(0, (5, 3)), zorder=6, alpha=0.9)
     ax.plot(x, kijun, color=KIJUN_C, lw=1.2, ls=(0, (5, 3)), zorder=6, alpha=0.9)
 
-def draw(df, code, name, asof, window=120, notes=None, info=None):
+# ────────────────────────────────────────────────────────────
+# 차트 라벨의 등락률 전용 — Daum 정규장 전일 종가
+#
+# data/<코드>.csv 는 네이버 일봉에서 받는데, "그날의 마지막 종가"는 시간외 단일가까지
+# 반영된 값이라 정규장 종가와 다를 수 있다. fetch.py 의 fix_last_close() 는 매 실행마다
+# "마지막 행"만 Daum regularTradePrice 로 보정하므로, 다음 날 전체 시계열을 다시 받아오면
+# 어제 행은 도로 시간외 값으로 돌아간다.
+# draw()/summarize() 는 연속한 두 종가로 등락률을 계산하므로, 그 결과 차트 제목과
+# 당일 주석의 등락률이 본문과 어긋난다(2026-10-08 발견, 2026-10-12 재발:
+# 동양고속 11.02% vs 실제 8.68%, 두산테스나 +0.41% vs 실제 -1.20% — 부호까지 반대).
+#
+# 지표(MA/RSI/MACD/일목)는 CSV 그대로 두고 — 고치면 본문 수치와 어긋난다 —
+# 등락률 계산에 쓰는 "전일 종가"만 Daum quotes 의 prevClosingPrice 로 바꾼다.
+# Daum 의 tradeDate 가 차트 기준일과 다르거나 조회에 실패하면 기존 동작을 그대로 쓴다.
+# ────────────────────────────────────────────────────────────
+_UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                     "(KHTML, like Gecko) Chrome/126.0 Safari/537.36",
+       "Accept-Language": "ko-KR,ko;q=0.9"}
+_PREV_CACHE: dict = {}
+
+
+def daum_prev_close(code: str, asof: str):
+    """asof("YYYY.MM.DD") 가 Daum 최신 거래일과 같을 때만 정규장 전일 종가를 돌려준다."""
+    if code not in _PREV_CACHE:
+        res = None
+        try:
+            r = requests.get(f"https://finance.daum.net/api/quotes/A{code}?summary=false",
+                             headers={**_UA, "Referer": f"https://finance.daum.net/quotes/A{code}"},
+                             timeout=10)
+            j = r.json()
+            td, pv = str(j["tradeDate"]), int(j["prevClosingPrice"])
+            if len(td) == 8 and td.isdigit() and pv > 0:
+                res = (f"{td[:4]}.{td[4:6]}.{td[6:]}", pv)
+            time.sleep(0.3)
+        except Exception as e:
+            print(f"[warn] Daum 전일종가 조회 실패 {code}: {e}", file=sys.stderr)
+        _PREV_CACHE[code] = res
+    res = _PREV_CACHE[code]
+    if not res or res[0] != asof:
+        return None
+    return res[1]
+
+
+def draw(df, code, name, asof, window=120, notes=None, info=None, prev_close=None):
     d = df.tail(window).reset_index(drop=True)
     x = np.arange(len(d))
     fig = plt.figure(figsize=(11.5, 9.6), dpi=130, facecolor=SURF)
@@ -221,7 +265,8 @@ def draw(df, code, name, asof, window=120, notes=None, info=None):
                      color=col, fontsize=9, va="center", fontweight="bold", annotation_clip=False)
 
     last = d.iloc[-1]
-    chg = (last["close"] / d.iloc[-2]["close"] - 1) * 100
+    _prev = prev_close if prev_close else d.iloc[-2]["close"]
+    chg = (last["close"] / _prev - 1) * 100
     sign = "▲" if chg > 0 else ("▼" if chg < 0 else "―")
     fig.text(0.075, 0.962, f"{name} ({code})", fontsize=17, fontweight="bold", color=INK)
     fig.text(0.075, 0.930, f"{asof} 종가 {last['close']:,.0f}원  {sign}{abs(chg):.2f}%"
@@ -316,16 +361,17 @@ def draw(df, code, name, asof, window=120, notes=None, info=None):
     return out
 
 # ── 요약 ──────────────────────────────────────────────────────────
-def summarize(df, code, name, asof):
+def summarize(df, code, name, asof, prev_close=None):
     r, p = df.iloc[-1], df.iloc[-2]
+    pv = prev_close if prev_close else p["close"]
     win60, win120 = df.tail(60), df.tail(120)
     hi52, lo52 = df.tail(240)["high"].max(), df.tail(240)["low"].min()
     mk, mdays = last_cross(df["macd"], df["macd_sig"])
     wma20 = weekly_ma20(df)
     s = {
         "code": code, "name": name, "asof": asof,
-        "close": int(r["close"]), "prev_close": int(p["close"]),
-        "chg_pct": round((r["close"]/p["close"]-1)*100, 2),
+        "close": int(r["close"]), "prev_close": int(pv),
+        "chg_pct": round((r["close"]/pv-1)*100, 2),
         "high": int(r["high"]), "low": int(r["low"]),
         "volume": int(r["volume"]), "vol_ma20": int(r["vol_ma20"]),
         "vol_ma20_prev": None if pd.isna(r["vol_ma20_prev"]) else int(r["vol_ma20_prev"]),
@@ -357,7 +403,12 @@ def build(code, name, asof_cut=None):
     if asof_cut: df = df[df["date"] <= pd.Timestamp(asof_cut)]
     df = add_indicators(df).reset_index(drop=True)
     asof = df["date"].iloc[-1].strftime("%Y.%m.%d")
-    s = summarize(df, code, name, asof)
+    prev_close = daum_prev_close(code, asof)
+    if prev_close:
+        csv_prev = int(round(float(df["close"].iloc[-2])))
+        if csv_prev != prev_close:
+            print(f"[prev] {code} {asof} 전일종가 {csv_prev:,} → {prev_close:,} (Daum 정규장) — 등락률 라벨 보정")
+    s = summarize(df, code, name, asof, prev_close=prev_close)
 
     d = df.tail(120).reset_index(drop=True)
     ih, il = int(d["high"].idxmax()), int(d["low"].idxmin())
@@ -386,7 +437,7 @@ def build(code, name, asof_cut=None):
             f"RSI(14) : {s['rsi']:.0f}\n"
             f"MACD : {'골든크로스' if s['macd_cross']=='golden' else '데드크로스'} "
             f"{s['macd_cross_days_ago']}거래일 전")
-    png = draw(df, code, name, asof, notes=notes, info=info)
+    png = draw(df, code, name, asof, notes=notes, info=info, prev_close=prev_close)
     dated = f"{CHARTS}/{code}_{asof.replace('.', '')}.png"
     shutil.copyfile(png, dated)
     with open(f"{ANALYSIS}/{code}.json", "w") as f:
