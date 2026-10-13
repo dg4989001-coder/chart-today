@@ -371,6 +371,7 @@ def summarize(df, code, name, asof, prev_close=None):
     s = {
         "code": code, "name": name, "asof": asof,
         "close": int(r["close"]), "prev_close": int(pv),
+        "open": int(r["open"]),
         "chg_pct": round((r["close"]/pv-1)*100, 2),
         "high": int(r["high"]), "low": int(r["low"]),
         "volume": int(r["volume"]), "vol_ma20": int(r["vol_ma20"]),
