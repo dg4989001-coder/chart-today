@@ -40,6 +40,8 @@ SYSTEM_PROMPT = """당신은 한국 주식 블로그 「차트로 보는 오늘�
 - 구체적인 매수 수량·투입 금액·분할 매수 계획을 제시하지 않는다(예: "9주가 한도", "122만 원어치", "1차 50주"). 리스크 관리는 가격대(손절 기준선)로만 설명한다.
 - 매체마다 수치 다르면 그 숫자는 버린다
 - 주어진 데이터에 없는 숫자는 절대 지어내지 않는다
+- "시가"·"출발가"로는 아래 데이터의 '시가' 값만 쓴다. 전일 종가를 시가로 바꿔 쓰지 않는다.
+  시가가 데이터에 없으면 출발가 서술 자체를 생략한다.
 - 종목 사이의 인과관계·공통점·대비를 임의로 만들어내지 않는다. 데이터와 뉴스로
   확인되지 않으면 "서로 무관하다"고 쓰는 것이 정답이다.
 - 상장 후 240거래일이 지나지 않은 종목은 240일선을 아예 언급하지 않는다
@@ -120,6 +122,11 @@ def fetch_daum_quote(code: str):
       "오늘 종가"는 반드시 regularTradePrice(정규장 15:30 확정 종가)를 써야 함.
     - changeRate 필드도 tradePrice 기준으로 계산되어 있어 그대로 쓰면 안 되고,
       regularTradePrice / prevClosingPrice 로 직접 재계산한다.
+
+    2026-10-13 추가 (사고 22 대응):
+    - 프롬프트에 시가를 한 번도 넘기지 않아서, DeepSeek가 "OOO원에서 출발해"를
+      쓸 때 가장 가까운 숫자인 전일 종가를 시가 자리에 넣었다(2종목 모두 동일 패턴).
+      openingPrice 를 함께 받아 데이터 블록에 명시한다.
     """
     url = f"https://finance.daum.net/api/quotes/A{code}?summary=false"
     headers = {
@@ -136,6 +143,7 @@ def fetch_daum_quote(code: str):
             "close": close,
             "prev_close": prev_close,
             "chg_pct": chg_pct,
+            "open": int(j["openingPrice"]),
             "high": int(j["highPrice"]),
             "low": int(j["lowPrice"]),
             "volume": int(j["accTradeVolume"]),
@@ -220,10 +228,12 @@ def build_roundup_prompt(items, day):
                 f"- 이평선 배열: {analysis['arrangement']}\n"
                 f"- ※ {note} — 240일선·240일 이동평균은 산출 불가. 절대 언급하지 말 것."
             )
+        open_line = (f"- 시가(그날 출발가): {analysis['open']:,}원\n"
+                     if analysis.get("open") else "")
         blocks.append(f"""
 [종목 {n}] {pick['name']} ({pick['code']}) · {pick['market']}
 - 회사 소개: {"생략 (대기업)" if is_large else "필요하면 한두 줄 포함 가능"}
-- 종가: {analysis['close']:,}원 / 전일 종가: {analysis['prev_close']:,}원 / 등락률: {analysis['chg_pct']:+.2f}%
+{open_line}- 종가: {analysis['close']:,}원 / 전일 종가: {analysis['prev_close']:,}원 / 등락률: {analysis['chg_pct']:+.2f}%
 - 고가: {analysis['high']:,}원 / 저가: {analysis['low']:,}원
 - 거래량: {analysis['volume']:,}주 (직전 20거래일 평균의 {analysis['vol_ratio']}배)
 {ma_lines}
@@ -292,6 +302,7 @@ def main():
             analysis["close"] = dq["close"]
             analysis["prev_close"] = dq["prev_close"]
             analysis["chg_pct"] = dq["chg_pct"]
+            analysis["open"] = dq["open"]
             analysis["high"] = dq["high"]
             analysis["low"] = dq["low"]
             analysis["volume"] = dq["volume"]
