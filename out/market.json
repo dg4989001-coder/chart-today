@@ -1,37 +1,86 @@
 {
- "date": "2026-10-13",
+ "date": "2026-10-14",
  "source": "naver",
  "picked": [
   {
-   "code": "002720",
-   "name": "국제약품",
+   "code": "006400",
+   "name": "삼성SDI",
    "market": "KOSPI",
-   "chg": 11.68,
-   "value": 150526286400.0,
-   "mcap": 92000000000.0,
+   "chg": 5.36,
+   "value": 506267200000.0,
+   "mcap": 47545500000000.0,
    "news": [
     {
-     "title": "국제약품 이어 종근당도…제약업계 오너 3세 승계 '속도'",
-     "office": "비즈워치",
-     "datetime": "202610130730",
-     "url": "https://n.news.naver.com/mnews/article/648/0000051524"
+     "title": "코스피, 반등 실패…6거래일 연속 내리며 '6천피' 턱걸이(종합)",
+     "office": "연합뉴스",
+     "datetime": "202610141636",
+     "url": "https://n.news.naver.com/mnews/article/001/0016376955"
     },
     {
-     "title": "국제약품 3세 남태훈, 지분 10.7% 확보…승계 마지막 퍼즐은 '우경'",
-     "office": "더팩트",
-     "datetime": "202610130001",
-     "url": "https://n.news.naver.com/mnews/article/629/0000541335"
+     "title": "호수·전철·산업·인프라 품은 '성성호수'...천안 주거타운 급부상",
+     "office": "파이낸셜뉴스",
+     "datetime": "202610141632",
+     "url": "https://n.news.naver.com/mnews/article/014/0005589224"
+    },
+    {
+     "title": "ASML 실적에 반도체株 '급커브'⋯'약보합' 코스피 반등 실패",
+     "office": "아이뉴스24",
+     "datetime": "202610141627",
+     "url": "https://n.news.naver.com/mnews/article/031/0001066037"
+    },
+    {
+     "title": "2% 급등하더니 '털썩'…코스피 6000선 '턱걸이'",
+     "office": "TV조선",
+     "datetime": "202610141626",
+     "url": "https://n.news.naver.com/mnews/article/448/0000644862"
+    },
+    {
+     "title": "中 ‘메모리 쇼크’ 넘으니 이번엔 ‘ASML 충격’…우군없는 삼전닉스",
+     "office": "디지털타임스",
+     "datetime": "202610141613",
+     "url": "https://n.news.naver.com/mnews/article/029/0003053113"
     }
    ]
   },
   {
-   "code": "142280",
-   "name": "녹십자엠에스",
-   "market": "KOSDAQ",
-   "chg": 3.64,
-   "value": 103513148275.0,
-   "mcap": 92100000000.0,
-   "news": []
+   "code": "373220",
+   "name": "LG에너지솔루션",
+   "market": "KOSPI",
+   "chg": 2.2,
+   "value": 278443098000.0,
+   "mcap": 98046000000000.0,
+   "news": [
+    {
+     "title": "[단독] 구광모, LG엔솔 전 사장 고발…상속재판서 '모녀 조력' 의혹",
+     "office": "블로터",
+     "datetime": "202610141658",
+     "url": "https://n.news.naver.com/mnews/article/293/0000091602"
+    },
+    {
+     "title": "[증시 인사이트] 전강후약 코스피 변동성 심화…외국인이 상승세 꺾었...",
+     "office": "SBS Biz",
+     "datetime": "202610141640",
+     "url": "https://n.news.naver.com/mnews/article/374/0000537798"
+    },
+    {
+     "title": "코스피, 반등 실패…6거래일 연속 내리며 '6천피' 턱걸이(종합)",
+     "office": "연합뉴스",
+     "datetime": "202610141636",
+     "url": "https://n.news.naver.com/mnews/article/001/0016376955"
+    },
+    {
+     "title": "ASML 실적에 반도체株 '급커브'⋯'약보합' 코스피 반등 실패",
+     "office": "아이뉴스24",
+     "datetime": "202610141627",
+     "url": "https://n.news.naver.com/mnews/article/031/0001066037"
+    },
+    {
+     "title": "2% 급등하더니 '털썩'…코스피 6000선 '턱걸이'",
+     "office": "TV조선",
+     "datetime": "202610141626",
+     "url": "https://n.news.naver.com/mnews/article/448/0000644862"
+    }
+   ]
   }
  ],
  "rejected": [],
@@ -42,8 +91,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-04",
    "intro_close": 1647000,
-   "last_close": 1443000,
-   "last_date": "2026-10-13"
+   "last_close": 1419000,
+   "last_date": "2026-10-14"
   },
   {
    "code": "108490",
@@ -51,8 +100,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 304500,
-   "last_close": 250500,
-   "last_date": "2026-10-13"
+   "last_close": 249500,
+   "last_date": "2026-10-14"
   },
   {
    "code": "030530",
@@ -60,8 +109,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-04",
    "intro_close": 22500,
-   "last_close": 25150,
-   "last_date": "2026-10-13"
+   "last_close": 24500,
+   "last_date": "2026-10-14"
   },
   {
    "code": "005930",
@@ -70,7 +119,7 @@
    "intro_date": "2026-09-07",
    "intro_close": 270000,
    "last_close": 232000,
-   "last_date": "2026-10-13"
+   "last_date": "2026-10-14"
   },
   {
    "code": "161580",
@@ -78,8 +127,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 33500,
-   "last_close": 39400,
-   "last_date": "2026-10-13"
+   "last_close": 37700,
+   "last_date": "2026-10-14"
   },
   {
    "code": "212560",
@@ -87,8 +136,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 11880,
-   "last_close": 9580,
-   "last_date": "2026-10-13"
+   "last_close": 9540,
+   "last_date": "2026-10-14"
   },
   {
    "code": "036930",
@@ -96,8 +145,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-07",
    "intro_close": 187200,
-   "last_close": 262000,
-   "last_date": "2026-10-13"
+   "last_close": 240500,
+   "last_date": "2026-10-14"
   },
   {
    "code": "024060",
@@ -105,8 +154,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 14510,
-   "last_close": 11570,
-   "last_date": "2026-10-13"
+   "last_close": 11810,
+   "last_date": "2026-10-14"
   },
   {
    "code": "100590",
@@ -114,8 +163,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 4970,
-   "last_close": 5170,
-   "last_date": "2026-10-13"
+   "last_close": 5210,
+   "last_date": "2026-10-14"
   },
   {
    "code": "187660",
@@ -123,8 +172,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-10",
    "intro_close": 8300,
-   "last_close": 5740,
-   "last_date": "2026-10-13"
+   "last_close": 5690,
+   "last_date": "2026-10-14"
   },
   {
    "code": "001820",
@@ -132,8 +181,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-11",
    "intro_close": 137400,
-   "last_close": 142800,
-   "last_date": "2026-10-13"
+   "last_close": 142500,
+   "last_date": "2026-10-14"
   },
   {
    "code": "105560",
@@ -141,8 +190,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 181200,
-   "last_close": 162400,
-   "last_date": "2026-10-13"
+   "last_close": 159200,
+   "last_date": "2026-10-14"
   },
   {
    "code": "093370",
@@ -150,8 +199,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 14220,
-   "last_close": 13990,
-   "last_date": "2026-10-13"
+   "last_close": 14060,
+   "last_date": "2026-10-14"
   },
   {
    "code": "000990",
@@ -159,8 +208,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-14",
    "intro_close": 111800,
-   "last_close": 126500,
-   "last_date": "2026-10-13"
+   "last_close": 117600,
+   "last_date": "2026-10-14"
   },
   {
    "code": "036540",
@@ -168,8 +217,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-15",
    "intro_close": 8650,
-   "last_close": 11320,
-   "last_date": "2026-10-13"
+   "last_close": 10360,
+   "last_date": "2026-10-14"
   },
   {
    "code": "042510",
@@ -177,8 +226,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-15",
    "intro_close": 12270,
-   "last_close": 17340,
-   "last_date": "2026-10-13"
+   "last_close": 18200,
+   "last_date": "2026-10-14"
   },
   {
    "code": "052690",
@@ -186,8 +235,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-08",
    "intro_close": 142600,
-   "last_close": 108700,
-   "last_date": "2026-10-13"
+   "last_close": 108300,
+   "last_date": "2026-10-14"
   },
   {
    "code": "004310",
@@ -195,8 +244,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-08",
    "intro_close": 10440,
-   "last_close": 7630,
-   "last_date": "2026-10-13"
+   "last_close": 7580,
+   "last_date": "2026-10-14"
   },
   {
    "code": "413630",
@@ -204,8 +253,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-16",
    "intro_close": 4680,
-   "last_close": 3770,
-   "last_date": "2026-10-13"
+   "last_close": 3705,
+   "last_date": "2026-10-14"
   },
   {
    "code": "115440",
@@ -213,8 +262,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-16",
    "intro_close": 9660,
-   "last_close": 10110,
-   "last_date": "2026-10-13"
+   "last_close": 10000,
+   "last_date": "2026-10-14"
   },
   {
    "code": "411080",
@@ -222,8 +271,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-16",
    "intro_close": 7120,
-   "last_close": 7360,
-   "last_date": "2026-10-13"
+   "last_close": 7390,
+   "last_date": "2026-10-14"
   },
   {
    "code": "000150",
@@ -231,8 +280,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-17",
    "intro_close": 1405000,
-   "last_close": 1162000,
-   "last_date": "2026-10-13"
+   "last_close": 1144000,
+   "last_date": "2026-10-14"
   },
   {
    "code": "082740",
@@ -240,8 +289,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-17",
    "intro_close": 53000,
-   "last_close": 37400,
-   "last_date": "2026-10-13"
+   "last_close": 39850,
+   "last_date": "2026-10-14"
   },
   {
    "code": "119850",
@@ -249,8 +298,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-17",
    "intro_close": 51300,
-   "last_close": 42100,
-   "last_date": "2026-10-13"
+   "last_close": 44600,
+   "last_date": "2026-10-14"
   },
   {
    "code": "028050",
@@ -258,8 +307,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-18",
    "intro_close": 51800,
-   "last_close": 45350,
-   "last_date": "2026-10-13"
+   "last_close": 45400,
+   "last_date": "2026-10-14"
   },
   {
    "code": "218410",
@@ -267,8 +316,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-18",
    "intro_close": 60100,
-   "last_close": 53700,
-   "last_date": "2026-10-13"
+   "last_close": 55300,
+   "last_date": "2026-10-14"
   },
   {
    "code": "032820",
@@ -276,8 +325,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-18",
    "intro_close": 13870,
-   "last_close": 10580,
-   "last_date": "2026-10-13"
+   "last_close": 10510,
+   "last_date": "2026-10-14"
   },
   {
    "code": "042370",
@@ -285,8 +334,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-18",
    "intro_close": 11440,
-   "last_close": 10040,
-   "last_date": "2026-10-13"
+   "last_close": 10240,
+   "last_date": "2026-10-14"
   },
   {
    "code": "006360",
@@ -294,8 +343,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-18",
    "intro_close": 37200,
-   "last_close": 29300,
-   "last_date": "2026-10-13"
+   "last_close": 29800,
+   "last_date": "2026-10-14"
   },
   {
    "code": "067310",
@@ -303,8 +352,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-21",
    "intro_close": 44800,
-   "last_close": 49350,
-   "last_date": "2026-10-13"
+   "last_close": 44700,
+   "last_date": "2026-10-14"
   },
   {
    "code": "240810",
@@ -312,8 +361,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-21",
    "intro_close": 129000,
-   "last_close": 130400,
-   "last_date": "2026-10-13"
+   "last_close": 121500,
+   "last_date": "2026-10-14"
   },
   {
    "code": "437730",
@@ -321,8 +370,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-21",
    "intro_close": 55700,
-   "last_close": 43000,
-   "last_date": "2026-10-13"
+   "last_close": 42200,
+   "last_date": "2026-10-14"
   },
   {
    "code": "043260",
@@ -330,8 +379,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-21",
    "intro_close": 26850,
-   "last_close": 30050,
-   "last_date": "2026-10-13"
+   "last_close": 29800,
+   "last_date": "2026-10-14"
   },
   {
    "code": "003490",
@@ -339,8 +388,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-22",
    "intro_close": 31400,
-   "last_close": 30500,
-   "last_date": "2026-10-13"
+   "last_close": 30150,
+   "last_date": "2026-10-14"
   },
   {
    "code": "001440",
@@ -348,8 +397,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-22",
    "intro_close": 31600,
-   "last_close": 24700,
-   "last_date": "2026-10-13"
+   "last_close": 24950,
+   "last_date": "2026-10-14"
   },
   {
    "code": "356680",
@@ -357,8 +406,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-23",
    "intro_close": 18220,
-   "last_close": 17740,
-   "last_date": "2026-10-13"
+   "last_close": 16700,
+   "last_date": "2026-10-14"
   },
   {
    "code": "440110",
@@ -366,8 +415,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-23",
    "intro_close": 81600,
-   "last_close": 71400,
-   "last_date": "2026-10-13"
+   "last_close": 66200,
+   "last_date": "2026-10-14"
   },
   {
    "code": "103590",
@@ -375,8 +424,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-23",
    "intro_close": 81700,
-   "last_close": 73400,
-   "last_date": "2026-10-13"
+   "last_close": 74900,
+   "last_date": "2026-10-14"
   },
   {
    "code": "096770",
@@ -384,8 +433,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-28",
    "intro_close": 158200,
-   "last_close": 156800,
-   "last_date": "2026-10-13"
+   "last_close": 163200,
+   "last_date": "2026-10-14"
   },
   {
    "code": "007810",
@@ -393,8 +442,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-28",
    "intro_close": 69000,
-   "last_close": 80300,
-   "last_date": "2026-10-13"
+   "last_close": 75800,
+   "last_date": "2026-10-14"
   },
   {
    "code": "303810",
@@ -402,8 +451,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-28",
    "intro_close": 3425,
-   "last_close": 2530,
-   "last_date": "2026-10-13"
+   "last_close": 2540,
+   "last_date": "2026-10-14"
   },
   {
    "code": "012210",
@@ -411,8 +460,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-10-07",
    "intro_close": 13720,
-   "last_close": 10040,
-   "last_date": "2026-10-13"
+   "last_close": 10590,
+   "last_date": "2026-10-14"
   },
   {
    "code": "042700",
@@ -420,8 +469,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-29",
    "intro_close": 252000,
-   "last_close": 229000,
-   "last_date": "2026-10-13"
+   "last_close": 217500,
+   "last_date": "2026-10-14"
   },
   {
    "code": "403870",
@@ -429,8 +478,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-29",
    "intro_close": 61000,
-   "last_close": 61600,
-   "last_date": "2026-10-13"
+   "last_close": 57100,
+   "last_date": "2026-10-14"
   },
   {
    "code": "452190",
@@ -438,8 +487,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-09-29",
    "intro_close": 6190,
-   "last_close": 5810,
-   "last_date": "2026-10-13"
+   "last_close": 5400,
+   "last_date": "2026-10-14"
   },
   {
    "code": "402340",
@@ -447,8 +496,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-30",
    "intro_close": 1139000,
-   "last_close": 857000,
-   "last_date": "2026-10-13"
+   "last_close": 852000,
+   "last_date": "2026-10-14"
   },
   {
    "code": "457190",
@@ -456,8 +505,8 @@
    "market": "KOSPI",
    "intro_date": "2026-09-30",
    "intro_close": 79700,
-   "last_close": 82900,
-   "last_date": "2026-10-13"
+   "last_close": 91300,
+   "last_date": "2026-10-14"
   },
   {
    "code": "009830",
@@ -465,8 +514,8 @@
    "market": "KOSPI",
    "intro_date": "2026-10-01",
    "intro_close": 34250,
-   "last_close": 32750,
-   "last_date": "2026-10-13"
+   "last_close": 33350,
+   "last_date": "2026-10-14"
   },
   {
    "code": "011070",
@@ -474,8 +523,8 @@
    "market": "KOSPI",
    "intro_date": "2026-10-06",
    "intro_close": 644000,
-   "last_close": 452500,
-   "last_date": "2026-10-13"
+   "last_close": 441500,
+   "last_date": "2026-10-14"
   },
   {
    "code": "373220",
@@ -483,8 +532,8 @@
    "market": "KOSPI",
    "intro_date": "2026-10-08",
    "intro_close": 401000,
-   "last_close": 410000,
-   "last_date": "2026-10-13"
+   "last_close": 422000,
+   "last_date": "2026-10-14"
   },
   {
    "code": "007660",
@@ -492,8 +541,8 @@
    "market": "KOSPI",
    "intro_date": "2026-10-08",
    "intro_close": 125500,
-   "last_close": 117200,
-   "last_date": "2026-10-13"
+   "last_close": 111200,
+   "last_date": "2026-10-14"
   },
   {
    "code": "084670",
@@ -501,8 +550,8 @@
    "market": "KOSPI",
    "intro_date": "2026-10-12",
    "intro_close": 41300,
-   "last_close": 34350,
-   "last_date": "2026-10-13"
+   "last_close": 41950,
+   "last_date": "2026-10-14"
   },
   {
    "code": "131970",
@@ -510,8 +559,8 @@
    "market": "KOSDAQ",
    "intro_date": "2026-10-12",
    "intro_close": 123800,
-   "last_close": 133000,
-   "last_date": "2026-10-13"
+   "last_close": 126200,
+   "last_date": "2026-10-14"
   },
   {
    "code": "002720",
@@ -519,8 +568,8 @@
    "market": "KOSPI",
    "intro_date": "2026-10-13",
    "intro_close": 4495,
-   "last_close": 4495,
-   "last_date": "2026-10-13"
+   "last_close": 4465,
+   "last_date": "2026-10-14"
   },
   {
    "code": "142280",
@@ -528,9 +577,18 @@
    "market": "KOSDAQ",
    "intro_date": "2026-10-13",
    "intro_close": 3895,
-   "last_close": 3895,
-   "last_date": "2026-10-13"
+   "last_close": 3710,
+   "last_date": "2026-10-14"
+  },
+  {
+   "code": "006400",
+   "name": "삼성SDI",
+   "market": "KOSPI",
+   "intro_date": "2026-10-14",
+   "intro_close": 591000,
+   "last_close": 591000,
+   "last_date": "2026-10-14"
   }
  ],
- "generated_at": "2026-10-13T11:09:58.039474+00:00"
+ "generated_at": "2026-10-14T08:14:13.262855+00:00"
 }
