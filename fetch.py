@@ -34,6 +34,13 @@ LARGE_CAP_KR = 10_000_000_000_000
 MIN_VALUE    = 30_000_000_000
 MIN_HISTORY  = 300
 
+# 2026-10-28 (사고 28): 후보 풀 크기. 예전에는 대형 8 + 중소형 15 = 23종목만 검사해,
+# 조건을 전부 통과하는 종목이 거래대금 컷(10-28 실측 약 940억) 미달로 검사조차 되지
+# 않는 일이 생겼다(10-28 선정 0건 → 원고 미생성). 거래대금 컷은 장이 좋은 날 더
+# 올라가므로 "장이 좋을수록 후보가 줄어드는" 역효과가 있었다.
+POOL_LARGE   = 20
+POOL_SMALL   = 80
+
 
 def today_kst() -> dt.date:
     return dt.datetime.now(KST).date()
@@ -345,10 +352,18 @@ def pick(df: pd.DataFrame, day: dt.date) -> pd.DataFrame:
     mid = d[(d["mcap"].fillna(0) < LARGE_CAP_KR) & (d["chg"] >= -10) & (d["chg"] <= 20)]
     small = mid.sort_values("value", ascending=False)
 
+    # 2026-10-28 (사고 28): 급등장에서는 거래대금 상위가 "급락 후 반등 대형주"로
+    # 채워지는데, 그 종목들은 ma5>ma10>ma20 정배열 조건상 통과가 구조적으로 불가능하다
+    # (10-28 삼성전자 실측: ma5 221,700 / ma10 218,900 / ma20 240,425).
+    # 반면 조건을 전부 통과하던 종목은 거래대금이 컷 아래라 아예 검사되지 않았다.
+    # → 후보 풀을 대형 8+중소형 15에서 대형 20+중소형 80으로 넓힌다.
+    #   1차 루프는 N_TOTAL(2)종목이 통과하면 즉시 멈추므로 보통은 끝까지 돌지 않는다.
     cand = pd.concat([
-        large.head(N_LARGE * 8),
-        small.head((N_TOTAL - N_LARGE) * 15),
+        large.head(POOL_LARGE),
+        small.head(POOL_SMALL),
     ]).drop_duplicates("code").reset_index(drop=True)
+    print(f"[ok] 후보 풀 {len(cand)}종목 "
+          f"(대형 {min(len(large), POOL_LARGE)} · 중소형 {min(len(small), POOL_SMALL)})")
 
     passed, already, cached = [], set(), {}
     for _, r in cand.iterrows():
@@ -375,7 +390,16 @@ def pick(df: pd.DataFrame, day: dt.date) -> pd.DataFrame:
             code = str(r["code"]).zfill(6)
             if code in already: continue
             try:
-                df_d = cached.get(code) or add_indicators(daily(code, r.get("market"), day))
+                # 2026-10-28 (사고 28): 예전 코드는
+                #   df_d = cached.get(code) or add_indicators(...)
+                # 였는데, DataFrame에 or 를 쓰면 ValueError("The truth value of a
+                # DataFrame is ambiguous")가 난다. 그래서 1차에서 이미 본 종목은
+                # 전부 예외로 빠지고 눌림 보충이 반쯤 동작하지 않았다
+                # (10-27 경고 22건 / 10-28 23건 = 1차 후보 전원).
+                if code in cached:
+                    df_d = cached[code]
+                else:
+                    df_d = add_indicators(daily(code, r.get("market"), day))
                 cached[code] = df_d
                 if not (-10 <= r["chg"] <= 0): continue
                 last = df_d.iloc[-1]
@@ -498,7 +522,12 @@ def main():
     print("\n[완료]", json.dumps({"picked": len(picked), "rejected": len(rejected)},
                                 ensure_ascii=False))
     if not picked:
-        sys.exit("선정된 종목이 없습니다 — 데이터 경로를 점검하세요")
+        # 2026-10-28 (사고 28): "조건을 통과한 종목이 없는 날"은 고장이 아니다.
+        # 예전에는 exit 1 이어서 run 전체가 빨간 실패로 남아 진짜 고장과 구분되지
+        # 않았고, watchlist 종가 갱신 커밋까지 함께 날아갔다. 데이터 경로가 실제로
+        # 끊기면 그 앞 단계(스냅샷·일봉)에서 이미 예외가 나므로 여기서 죽일 필요가 없다.
+        print("[info] 선정된 종목이 없습니다 — 조건을 통과한 종목이 없는 날입니다 "
+              "(고장 아님). 원고 생성은 건너뛰고 watchlist 갱신만 반영됩니다.")
 
 
 if __name__ == "__main__":
