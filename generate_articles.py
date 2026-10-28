@@ -281,7 +281,10 @@ def main():
 
     picked = market["picked"]
     if not picked:
-        sys.exit("picked 종목이 없습니다")
+        # 2026-10-28 (사고 28): 선정 종목이 없는 날은 고장이 아니므로 정상 종료한다.
+        # fetch.py 가 데이터 경로 문제로 실패하면 이 파일까지 오지 못한다.
+        print("[info] picked 종목이 없습니다 — 원고를 만들지 않고 정상 종료합니다.")
+        return
 
     issue_num = get_next_issue_number()
     print(f"[시작] 발행분 {issue_num:03d} — {day}, {len(picked)}종목을 1편으로 묶음")
