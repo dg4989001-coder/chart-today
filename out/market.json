@@ -7,9 +7,21 @@
    "name": "한진칼",
    "market": "KOSPI",
    "chg": 29.97,
-   "value": 187700169600.0,
+   "value": 187708053600.0,
    "mcap": 11696800000000.0,
    "news": [
+    {
+     "title": "조원태, 사재 털어 추가 매입…대한항공 지분 전쟁",
+     "office": "채널A",
+     "datetime": "202611032001",
+     "url": "https://n.news.naver.com/mnews/article/449/0000366303"
+    },
+    {
+     "title": "주식 사들이는 호반에 반격나선 조원태…대한항공 놓고 지분 경쟁 '상...",
+     "office": "MBN",
+     "datetime": "202611031959",
+     "url": "https://n.news.naver.com/mnews/article/057/0001976565"
+    },
     {
      "title": "한진칼 주식 더 사는 조원태…호반과 지분경쟁 2R",
      "office": "국제신문",
@@ -27,18 +39,6 @@
      "office": "헤럴드경제",
      "datetime": "202611031841",
      "url": "https://n.news.naver.com/mnews/article/016/0002718340"
-    },
-    {
-     "title": "'몸값' 뛴 산은, 통합 LCC 본사 부산 유치 결론 내려라",
-     "office": "부산일보",
-     "datetime": "202611031836",
-     "url": "https://n.news.naver.com/mnews/article/082/0001405506"
-    },
-    {
-     "title": "자금 앞세워 최대주주 넘보는 호반…'우군 방어선' 견고한 조원태 회...",
-     "office": "이데일리",
-     "datetime": "202611031815",
-     "url": "https://n.news.naver.com/mnews/article/018/0006403023"
     }
    ]
   },
@@ -46,9 +46,9 @@
    "code": "030530",
    "name": "원익홀딩스",
    "market": "KOSDAQ",
-   "chg": 1.85,
-   "value": 178462373150.0,
-   "mcap": 2545000000000.0,
+   "chg": 2.32,
+   "value": 185634365900.0,
+   "mcap": 2556600000000.0,
    "news": [
     {
      "title": "반도체 호황에…원익 공채에 1만2000명 몰려 '역대 최대'",
@@ -689,5 +689,5 @@
    "last_date": "2026-11-03"
   }
  ],
- "generated_at": "2026-11-03T10:40:38.658775+00:00"
+ "generated_at": "2026-11-03T11:09:20.428023+00:00"
 }
