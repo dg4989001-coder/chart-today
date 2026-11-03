@@ -220,6 +220,10 @@ def daily_pykrx(code: str, start: str, end: str) -> pd.DataFrame:
 
 
 def daily(code: str, market: str | None, day: dt.date) -> pd.DataFrame:
+    return fix_official_closes(code, _daily_raw(code, market, day))
+
+
+def _daily_raw(code: str, market: str | None, day: dt.date) -> pd.DataFrame:
     try:
         return daily_naver(code, day)
     except Exception as e:
@@ -262,6 +266,67 @@ def daum_regular_close(code: str):
         print(f"[warn] Daum 종가 조회 실패 {code}: {e}", file=sys.stderr)
     _DAUM_CACHE[code] = res
     return res
+
+
+# ────────────────────────────────────────────────────────────
+# 전 구간 종가 보정 — Daum changePrice/changeRate 역산 (2026-11-03)
+# 네이버·야후 일봉은 마지막 날뿐 아니라 과거 모든 행의 종가가 시간외 단일가까지
+# 반영된 값이다(11-03 실측: watchlist 8종목의 11-02 공식 종가와 전부 불일치.
+# 한진칼 11-02 공식 134,800 vs 일봉 144,100 — 6.9%). 그래서 fix_last_close()
+# 로 마지막 행만 고쳐도 MA·RSI·MACD 는 계속 어긋났다.
+# Daum 일봉의 changePrice/changeRate 는 전일 정규장 종가 기준이므로
+#     전일 공식 종가 = changePrice / changeRate
+# 로 역산된다(8종목 전수 일치 확인). 조회 실패면 기존 동작을 그대로 쓴다.
+# ────────────────────────────────────────────────────────────
+_OFFICIAL_CACHE: dict = {}
+
+
+def daum_official_closes(code: str) -> dict:
+    """{"YYYY-MM-DD": 정규장 종가} — 실패하면 빈 dict."""
+    if code in _OFFICIAL_CACHE:
+        return _OFFICIAL_CACHE[code]
+    out: dict = {}
+    try:
+        path = f"/api/charts/A{code}/days?limit=760&adjusted=true"
+        r = requests.get("https://finance.daum.net/api/home/sec",
+                         params={"path": path},
+                         headers={**UA, "Referer": f"https://finance.daum.net/quotes/A{code}"},
+                         timeout=15)
+        rows = r.json().get("data") or []
+        for i in range(1, len(rows)):
+            cur, prev = rows[i], rows[i - 1]
+            cp, cr = cur.get("changePrice"), cur.get("changeRate")
+            if cp is None or cr is None:
+                continue
+            px = cur.get("tradePrice") if cr == 0 else round(cp / cr)
+            d = str(prev.get("date"))[:10]
+            if px and px > 0 and len(d) == 10:
+                out[d] = int(px)
+        time.sleep(0.3)
+    except Exception as e:
+        print(f"[warn] Daum 정규장 종가 조회 실패 {code}: {e}", file=sys.stderr)
+        out = {}
+    _OFFICIAL_CACHE[code] = out
+    return out
+
+
+def fix_official_closes(code: str, df: pd.DataFrame) -> pd.DataFrame:
+    """일봉 종가를 Daum 정규장 종가로 전 구간 교체한다."""
+    if df is None or not len(df):
+        return df
+    m = daum_official_closes(code)
+    if not m:
+        return fix_last_close(code, df)
+    df = df.copy()
+    new = df["date"].astype(str).str.slice(0, 10).map(m)
+    hit = new.notna()
+    diff = hit & (new != df["close"])
+    n = int(diff.sum())
+    if n:
+        df.loc[diff, "close"] = new[diff].astype(float).values
+        print(f"[fix] {code} 종가 {n}행 정규장 종가로 교체 "
+              f"(대조 {int(hit.sum())}행 / 전체 {len(df)}행)")
+    return fix_last_close(code, df)
 
 
 def fix_last_close(code: str, df: pd.DataFrame) -> pd.DataFrame:
