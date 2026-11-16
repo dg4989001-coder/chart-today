@@ -51,7 +51,13 @@ jobs:
         id: dedup
         if: github.event_name == 'schedule'
         run: |
+          # 사고 35: schedule 지연이 한국 자정을 넘기면 'date' 가 다음 날을 가리켜
+          # dedup 이 무력해진다. market_guard.base_date() 와 같은 규칙으로 보정한다.
           TODAY=$(TZ=Asia/Seoul date +%Y%m%d)
+          if [ "$(TZ=Asia/Seoul date +%-H)" -lt 9 ]; then
+            TODAY=$(TZ=Asia/Seoul date -d yesterday +%Y%m%d)
+          fi
+          echo "[dedup] 기준 거래일 $TODAY"
           if ls claude/발행분-*-$TODAY.md >/dev/null 2>&1; then
             echo "done=true" >> "$GITHUB_OUTPUT"
             echo "[dedup] $TODAY 원고 이미 존재 — 건너뜀"
@@ -85,7 +91,7 @@ jobs:
 
       - name: 시세 수집
         if: github.event_name == 'workflow_dispatch' || (steps.guard.outputs.skip == 'false' && steps.dedup.outputs.done == 'false')
-        run: python fetch.py ${{ github.event.inputs.date }}
+        run: python fetch.py ${{ github.event.inputs.date || steps.guard.outputs.tradedate }}
 
       - name: 지표 계산 및 차트 생성
         if: github.event_name == 'workflow_dispatch' || (steps.guard.outputs.skip == 'false' && steps.dedup.outputs.done == 'false')
@@ -102,11 +108,13 @@ jobs:
         run: |
           git config user.name  "chart-today-bot"
           git config user.email "actions@github.com"
+          DAY="${{ github.event.inputs.date || steps.guard.outputs.tradedate }}"
+          if [ -z "$DAY" ]; then DAY=$(TZ=Asia/Seoul date +%Y-%m-%d); fi
           git add -A data out claude watchlist.json
           if git diff --staged --quiet; then
             echo "변경 없음"
           else
-            git commit -m "데이터 갱신 + 원고 생성 $(TZ=Asia/Seoul date +%Y-%m-%d)"
+            git commit -m "데이터 갱신 + 원고 생성 $DAY"
             git push
           fi
 
