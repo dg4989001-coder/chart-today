@@ -46,6 +46,16 @@ def today_kst() -> dt.date:
     return dt.datetime.now(KST).date()
 
 
+def base_kst() -> dt.date:
+    """기준 거래일 — 09:00 KST 이전이면 전날(사고 35).
+
+    GitHub schedule 지연이 한국 자정을 넘기면 '오늘'은 이미 다음 날이지만
+    가장 최근에 끝난 장은 전날이다. market_guard.base_date() 와 같은 규칙.
+    """
+    now = dt.datetime.now(KST)
+    return now.date() if now.hour >= 9 else (now - dt.timedelta(days=1)).date()
+
+
 def add_indicators(df):
     c = df["close"]
     h, l = df["high"], df["low"]
@@ -137,7 +147,7 @@ def market_snapshot(day: str):
     - 과거 재실행에 네이버 실시간을 쓰지 않는다 (picked 흔들림 방지)
     """
     cache_path = f"{OUT}/snapshot_{day}.csv"
-    today_str = today_kst().strftime("%Y%m%d")
+    today_str = base_kst().strftime("%Y%m%d")
 
     # 1) 과거 날짜 & 캐시 존재 → 재사용
     if day != today_str and os.path.exists(cache_path):
@@ -501,7 +511,7 @@ def quality_problem(df: pd.DataFrame) -> str | None:
 
 # ────────────────────────────────────────────────────────────
 def main():
-    day = today_kst()
+    day = base_kst()
     if len(sys.argv) > 1:
         day = dt.date.fromisoformat(sys.argv[1])
     ymd = day.strftime("%Y%m%d")
