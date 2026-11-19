@@ -1,0 +1,46 @@
+{
+  "status": "ready",
+  "trading_date": "2026-11-19",
+  "title": "11월 19일 셀트리온 +3.61%·대한항공 +3.67%, 나란히 단기 정배열 유지",
+  "category": "오늘의 핫종목",
+  "tags": [
+    "셀트리온",
+    "대한항공",
+    "068270",
+    "003490",
+    "정배열",
+    "차트분석"
+  ],
+  "body_file": "post.html",
+  "body_format": "tistory_editor_html_fragment",
+  "body_sha256": "ecd64aa2aaf03c79ed673f2de997eab624fde6ba0e19e7114cba88c03d1cd633",
+  "body_bytes": 7444,
+  "charts": [
+    "out/charts/068270_20261119.png",
+    "out/charts/003490_20261119.png"
+  ],
+  "thumbnail": "out/charts/068270_20261119.png",
+  "visibility": "private",
+  "source_manuscript": "claude/발행분-048-20261119.md",
+  "source_commit": "db4632b4758b408caa7e1001f6168be0ef312573",
+  "reviewed_by": "claude",
+  "reviewed_at": "2026-11-19T19:00:00+09:00",
+  "review": {
+    "numeric_errors": 0,
+    "corrections": 8,
+    "stocks": [
+      {
+        "code": "068270",
+        "name": "셀트리온",
+        "close": 215000,
+        "change_pct": 3.61
+      },
+      {
+        "code": "003490",
+        "name": "대한항공",
+        "close": 32450,
+        "change_pct": 3.67
+      }
+    ]
+  }
+}
