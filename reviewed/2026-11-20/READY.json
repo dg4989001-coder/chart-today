@@ -1,0 +1,53 @@
+{
+  "status": "ready",
+  "trading_date": "2026-11-20",
+  "title": "11월 20일 셀트리온 213,000원 -0.93%·노랑풍선 4,580원 +10.63% 거래량 10.7배",
+  "category": "오늘의 핫종목",
+  "tags": [
+    "셀트리온",
+    "노랑풍선",
+    "068270",
+    "104620",
+    "차트분석"
+  ],
+  "body_file": "post.html",
+  "body_format": "tistory_editor_html_fragment",
+  "body_sha256": "ad08e9f79cae89fb6423ab2fa146e72dee587bd5f53728f09621048fa82ea666",
+  "body_bytes": 9840,
+  "charts": [
+    "out/charts/104620_20261120.png",
+    "out/charts/068270_20261120.png"
+  ],
+  "thumbnail": "out/charts/104620_20261120.png",
+  "visibility": "private",
+  "source_manuscript": "claude/발행분-049-20261120.md",
+  "source_commit": "728df38b58f6e81da501e9aee98be97b9326db3d",
+  "reviewed_by": "claude",
+  "reviewed_at": "2026-11-20T18:32:03+09:00",
+  "review": {
+    "numeric_errors": 2,
+    "corrections": 6,
+    "stocks": [
+      {
+        "code": "068270",
+        "name": "셀트리온",
+        "close": 213000,
+        "change_pct": -0.93
+      },
+      {
+        "code": "104620",
+        "name": "노랑풍선",
+        "close": 4580,
+        "change_pct": 10.63
+      }
+    ],
+    "notes": [
+      "노랑풍선 52주 고점 6,510원 → 6,960원 (사고24: analysis가 240거래일 창으로 계산해 2025-11-21 고점을 놓침. Daum high52wPrice 6,960 / 2025-11-21과 일치 확인)",
+      "노랑풍선 52주 고점 대비 29.6% → 34.2%",
+      "셀트리온 '정배열 유지' → ma60 190,893원·ma120 185,456원 명시, ma120이 ma240 아래라 완전한 정배열 아님으로 범위 한정",
+      "셀트리온 h2 '남은 뉴스는 지수 이야기뿐' → '관련 기사는 지수 이야기가 중심' (단정 완화)",
+      "셀트리온 '신규 모멘텀 확인되지 않습니다' → 수집된 기사 5건 범위로 한정",
+      "노랑풍선 재료에 한·중 정상회담·한중 FTA 서비스·투자 후속협상 실질 타결과 중국 지사 보유 여행사 송출 영업 허용 내용 보강, 근거 약한 디지털데일리 문장 삭제"
+    ]
+  }
+}
