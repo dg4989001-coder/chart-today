@@ -102,6 +102,29 @@ jobs:
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: python generate_articles.py
+
+      - name: 원고 자동 검증
+        # 2026-11-20 추가. 매일 손으로 하던 숫자 대조를 여기서 끝낸다.
+        #  - Daum 정규장 값과 analysis 대조 (종가·시가·고가·저가·등락률·거래량·52주 고저)
+        #  - data/<코드>.csv 로 MA(5·10·20·60·120·240)·RSI·MACD·일목 재계산
+        #  - 「정배열」 서술 범위 (analysis 에 없는 ma60·ma120 을 여기서 산출)
+        #  - 캔들 4값 관계 서술 (사고 37) · 출처 불명 수치 · 차트 PNG
+        # 결과는 out/verify/<YYYYMMDD>.json 에 남고 아래 '결과 커밋' 이 함께 올린다.
+        # 검증 오류가 있어도 원고 자체는 유효하므로 워크플로를 실패시키지 않는다.
+        # 사람이 out/verify 를 보고 판단한다.
+        if: github.event_name == 'workflow_dispatch' || (steps.guard.outputs.skip == 'false' && steps.dedup.outputs.done == 'false')
+        continue-on-error: true
+        run: |
+          DAY="${{ github.event.inputs.date || steps.guard.outputs.tradedate }}"
+          if [ -z "$DAY" ]; then
+            # 사고 35 와 같은 규칙: 09:00 KST 이전이면 전날이 기준 거래일
+            DAY=$(TZ=Asia/Seoul date +%Y-%m-%d)
+            if [ "$(TZ=Asia/Seoul date +%-H)" -lt 9 ]; then
+              DAY=$(TZ=Asia/Seoul date -d yesterday +%Y-%m-%d)
+            fi
+          fi
+          echo "[verify] 기준 거래일 $DAY"
+          python verify.py --date "$(echo "$DAY" | tr -d '-')"
         
       - name: 결과 커밋
         if: github.event_name == 'workflow_dispatch' || (steps.guard.outputs.skip == 'false' && steps.dedup.outputs.done == 'false')
