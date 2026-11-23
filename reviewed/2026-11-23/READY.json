@@ -1,0 +1,47 @@
+{
+  "status": "ready",
+  "trading_date": "2026-11-23",
+  "title": "2026년 11월 23일 SFA반도체 10.36% 급등, 대한광통신은 0.72% 소폭 하락",
+  "category": "오늘의 핫종목",
+  "tags": [
+    "SFA반도체",
+    "대한광통신",
+    "코스닥",
+    "차트분석",
+    "주식블로그"
+  ],
+  "body_file": "post.html",
+  "body_format": "tistory_editor_html_fragment",
+  "body_sha256": "ad3c6fb4ae09c70f060d0d32beeccbdc827adbe426a69f03be2db58c56cf2013",
+  "body_bytes": 6599,
+  "charts": [
+    "out/charts/036540_20261123.png",
+    "out/charts/010170_20261123.png"
+  ],
+  "thumbnail": "out/charts/036540_20261123.png",
+  "visibility": "private",
+  "source_manuscript": "claude/발행분-050-20261123.md",
+  "source_commit": "d3e4a6b6bb8b9cd406391d76d2b5ad0e6f7f68df",
+  "reviewed_by": "claude",
+  "reviewed_at": "2026-11-23T18:36:38+09:00",
+  "review": {
+    "numeric_errors": 3,
+    "corrections": 6,
+    "verify_json": "out/verify/20261123.json",
+    "verify_status": "fail(errors 4 / warnings 6)",
+    "stocks": [
+      {
+        "code": "036540",
+        "name": "SFA반도체",
+        "close": 8950,
+        "change_pct": 10.36
+      },
+      {
+        "code": "010170",
+        "name": "대한광통신",
+        "close": 13880,
+        "change_pct": -0.72
+      }
+    ]
+  }
+}
