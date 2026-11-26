@@ -1,0 +1,45 @@
+{
+  "status": "ready",
+  "trading_date": "2026-11-26",
+  "title": "11월 26일 로보티즈 2.77% 하락·금양그린파워 10.29% 급등, 거래량 각각 1.2배·3.1배",
+  "category": "오늘의 핫종목",
+  "tags": [
+    "로보티즈",
+    "금양그린파워",
+    "코스닥",
+    "차트분석",
+    "거래량"
+  ],
+  "body_file": "post.html",
+  "body_format": "tistory_editor_html_fragment",
+  "body_sha256": "15d4d8e62c5c23389f0a95eb603bbfdb122191882294e44deb96166ab7d14084",
+  "body_bytes": 9171,
+  "charts": [
+    "out/charts/108490_20261126.png",
+    "out/charts/282720_20261126.png"
+  ],
+  "thumbnail": "out/charts/108490_20261126.png",
+  "visibility": "private",
+  "source_manuscript": "claude/발행분-053-20261126.md",
+  "source_commit": "7b0db0624510de1b3aba0ad03065f030fd464656",
+  "reviewed_by": "claude",
+  "reviewed_at": "2026-11-27T03:43:57+09:00",
+  "review": {
+    "numeric_errors": 0,
+    "corrections": 6,
+    "stocks": [
+      {
+        "code": "108490",
+        "name": "로보티즈",
+        "close": 280500,
+        "change_pct": -2.77
+      },
+      {
+        "code": "282720",
+        "name": "금양그린파워",
+        "close": 10720,
+        "change_pct": 10.29
+      }
+    ]
+  }
+}
