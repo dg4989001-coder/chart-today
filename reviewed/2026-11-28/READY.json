@@ -1,0 +1,41 @@
+{
+  "status": "ready",
+  "post_type": "weekly_report",
+  "trading_date": "2026-11-28",
+  "week_range": "2026-11-23 ~ 2026-11-27",
+  "title": "12월 첫째 주 증시 대응 기준 — 코스피 4,915.68, 하루 6% 등락이 두 번 나온 뒤 (11.30~12.4)",
+  "category": "시장 뉴스",
+  "tags": [
+    "코스피",
+    "코스닥",
+    "증안펀드",
+    "주간시장리포트",
+    "차트분석",
+    "미국고용보고서"
+  ],
+  "body_file": "post.html",
+  "body_format": "tistory_editor_html_fragment",
+  "body_sha256": "ca7165653dcc2095b4d7919b767c4c1c7e85f49c8e829ebfaaec10fbd424645a",
+  "body_bytes": 11878,
+  "charts": [
+    "out/charts/282720_20261127.png",
+    "out/charts/108490_20261127.png"
+  ],
+  "thumbnail": "out/charts/282720_20261127.png",
+  "visibility": "private",
+  "reviewed_by": "claude",
+  "reviewed_at": "2026-11-28T21:23:59+09:00",
+  "review": {
+    "kospi": {
+      "close": 4915.68,
+      "week_pct": 0.94,
+      "week_high": 5006.03,
+      "week_low": 4697.51
+    },
+    "kosdaq": {
+      "close": 708.99,
+      "week_pct": 9.81
+    },
+    "note": "예약 작업(토 08:17 폴란드)이 device_absent 로 미발화·자동 비활성화되어 형 지시로 수동 작성"
+  }
+}
